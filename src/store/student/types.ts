@@ -7,3 +7,16 @@ export const LOG_OUT_STUDENT = 'LOG_OUT_STUDENT';
 export type StoreState = {
   student: Student;
 };
+
+export type GetState = () => StoreState;
+
+export type logOutStudent = {
+  type: typeof LOG_OUT_STUDENT;
+};
+
+export type loginSuccessStudent = {
+  type: typeof LOGIN_SUCCESS_STUDENT;
+  student: Student;
+};
+
+export type StudentActionTypes = loginSuccessStudent | logOutStudent;
