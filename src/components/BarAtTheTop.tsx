@@ -12,7 +12,7 @@ const renderDate = () => {
 };
 
 export default function BarAtTheTop() {
-  const student: string = 'Jack';
+  const student: string = '';
   const teacher: string = '';
 
   const renderLoginLogout = () => {
