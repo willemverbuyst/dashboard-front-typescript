@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
 import moment from 'moment';
 import { Layout } from 'antd';
 
@@ -10,6 +12,21 @@ const renderDate = () => {
 };
 
 export default function BarAtTheTop() {
+  const student: string = 'Jack';
+  const teacher: string = '';
+
+  const renderLoginLogout = () => {
+    return student || teacher ? <LogoutButton /> : <LoginButton />;
+  };
+
+  const renderWelcome = () => {
+    return student ? (
+      <div>Welcome {student}!</div>
+    ) : teacher ? (
+      <div>Welcome {teacher}!</div>
+    ) : null;
+  };
+
   return (
     <Header
       style={{
@@ -32,6 +49,8 @@ export default function BarAtTheTop() {
         Dashboard
       </Link>
       {renderDate()}
+      {renderWelcome()}
+      {renderLoginLogout()}
     </Header>
   );
 }
