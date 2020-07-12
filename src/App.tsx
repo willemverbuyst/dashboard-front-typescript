@@ -5,7 +5,7 @@ import BarAtTheTop from './components/BarAtTheTop';
 import Sidebar from './components/Sidebar';
 import StudentMainPage from './pages/student/StudentMain';
 import TeacherMainPage from './pages/teacher/TeacherMain';
-import Home from './pages/home/Home';
+import Home from './pages/home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import './App.css';
