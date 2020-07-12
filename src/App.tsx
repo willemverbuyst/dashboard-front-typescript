@@ -5,6 +5,7 @@ import BarAtTheTop from './components/BarAtTheTop';
 import Sidebar from './components/Sidebar';
 import StudentMainPage from './pages/student/StudentMain';
 import TeacherMainPage from './pages/teacher/TeacherMain';
+import ListOfQuestions from './pages/teacher/ListOfQuestions';
 import Home from './pages/home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -29,6 +30,11 @@ function App() {
             exact
             path="/teachers/:teacherid"
             component={TeacherMainPage}
+          />
+          <Route
+            exact
+            path="/teachers/:teacherid/questions/list"
+            component={ListOfQuestions}
           />
         </Switch>
       </Layout>
