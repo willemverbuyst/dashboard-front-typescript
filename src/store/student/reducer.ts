@@ -6,7 +6,7 @@ import {
   LOG_OUT_STUDENT,
 } from './types';
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('student_token');
 
 const initialState: Student = {
   id: null,

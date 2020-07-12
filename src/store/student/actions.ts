@@ -9,7 +9,6 @@ import {
   StudentActionTypes,
 } from './types';
 import { Student, LoginCredentials } from '../../types/model';
-import { selectStudentToken } from './selectors';
 
 export const loginSuccessStudent = (student: Student): StudentActionTypes => {
   return {
@@ -56,7 +55,7 @@ export const studentLoggingOut = () => {
 
 export const getStudentWithStoredToken = () => {
   return async (dispatch: Dispatch, getState: GetState) => {
-    const token = selectStudentToken(getState());
+    const token = getState().student.token;
 
     if (token === null) return;
 

@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Layout } from 'antd';
 import BarAtTheTop from './components/BarAtTheTop';
 import Sidebar from './components/Sidebar';
-import StudentMainPage from './pages/student/StudentMain';
-import TeacherMainPage from './pages/teacher/TeacherMain';
-import ListOfQuestions from './pages/teacher/ListOfQuestions';
 import Home from './pages/home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import StudentMainPage from './pages/student/StudentMain';
+import TeacherMainPage from './pages/teacher/TeacherMain';
+import ListOfQuestions from './pages/teacher/ListOfQuestions';
+import { getStudentWithStoredToken } from './store/student/actions';
+import { getTeacherWithStoredToken } from './store/teacher/actions';
 import './App.css';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTeacherWithStoredToken());
+    dispatch(getStudentWithStoredToken());
+  }, [dispatch]);
   return (
     <>
       <BarAtTheTop />

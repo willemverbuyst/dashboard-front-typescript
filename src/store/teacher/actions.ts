@@ -22,7 +22,7 @@ export const logOutTeacher = (): TeacherActionTypes => ({
   type: LOG_OUT_TEACHER,
 });
 
-const tokenStudentStillValid = (teacher: Teacher): TeacherActionTypes => ({
+const tokenTeacherStillValid = (teacher: Teacher): TeacherActionTypes => ({
   type: TOKEN_STILL_VALID_TEACHER,
   teacher,
 });
@@ -54,18 +54,18 @@ export const teacherLoggingOut = () => {
   };
 };
 
-export const getTeachertWithStoredToken = () => {
+export const getTeacherWithStoredToken = () => {
   return async (dispatch: Dispatch, getState: GetTeacherState) => {
-    const token = selectTeacherToken(getState());
+    const token = getState().teacher.token;
 
     if (token === null) return;
 
     try {
       // if token check if valid
-      const response = await axios.get(`${apiUrl}/student`, {
+      const response = await axios.get(`${apiUrl}/teacher`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      dispatch(tokenStudentStillValid(response.data));
+      dispatch(tokenTeacherStillValid(response.data));
     } catch (error) {
       if (error.response) {
         console.log(error.response.message);
