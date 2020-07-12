@@ -9,7 +9,6 @@ import {
   TeacherActionTypes,
 } from './types';
 import { Teacher, LoginCredentials } from '../../types/model';
-import { selectTeacherToken } from './selectors';
 
 const loginSuccessTeacher = (teacher: Teacher): TeacherActionTypes => {
   return {

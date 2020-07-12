@@ -7,7 +7,7 @@ import {
   selectTeacherId,
 } from '../../store/teacher/selectors';
 import { createQuestion } from '../../store/questions/actions';
-import { AddQuestion } from '../../types/model';
+import { PostNewQuestion } from '../../types/model';
 import { Layout, Form, Input, Button, Select, Row, Col } from 'antd';
 
 const { Content } = Layout;
@@ -19,7 +19,7 @@ export default function AddQuestionForm() {
   const token = useSelector(selectTeacherToken);
   const teacherId = useSelector(selectTeacherId);
   const subjects = useSelector(selectTeacherSubjects);
-  const [newQuestion, setNewQuestion] = useState<AddQuestion>({
+  const [newQuestion, setNewQuestion] = useState<PostNewQuestion>({
     subject: 1,
     question: '',
     answer1: '',
