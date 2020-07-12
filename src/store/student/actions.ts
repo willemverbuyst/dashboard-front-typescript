@@ -8,7 +8,7 @@ import {
   GetState,
   StudentActionTypes,
 } from './types';
-import { Student } from '../../types/model';
+import { Student, LoginCredentials } from '../../types/model';
 
 const loginSuccessStudent = (student: Student): StudentActionTypes => {
   return {
@@ -21,17 +21,14 @@ export const logOutStudent = (): StudentActionTypes => ({
   type: LOG_OUT_STUDENT,
 });
 
-export const loginStudent = (
-  email: string,
-  password: string,
-  isStudent: number
-) => {
+export const loginStudent = (credentials: LoginCredentials) => {
+  const { email, password, status } = credentials;
   return async (dispatch: Dispatch, getState: GetState) => {
     try {
       const response = await axios.post(`${apiUrl}/login`, {
         email,
         password,
-        isStudent,
+        isStudent: status,
       });
 
       dispatch(loginSuccessStudent(response.data));

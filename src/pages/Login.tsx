@@ -2,21 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginStudent } from '../store/student/actions';
+import { ButtonEvent, LoginCredentials } from '../types/model';
+
 import { Layout, Form, Input, Button, Radio, Row, Col } from 'antd';
 
 const { Content } = Layout;
 
 export default function Login() {
   const dispatch = useDispatch();
-  // type InputEvent = React.ChangeEvent<HTMLInputElement>;
-  type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
-
-  // update = (e: InputEvent): void => this.props.login[e.target.name] = e.target.value;
-
   const history = useHistory();
-  const [status, setStatus] = useState(1);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [loginCredentials, setLoginCredentials] = useState<LoginCredentials>({
+    email: '',
+    password: '',
+    status: 1,
+  });
+
   const studentId: number | undefined = undefined;
   const teacherId: number | undefined = undefined;
 
@@ -31,8 +31,12 @@ export default function Login() {
 
   const submitForm = (e: ButtonEvent): void => {
     e.preventDefault();
-    console.log('submit form');
-    dispatch(loginStudent(email, password, status));
+    dispatch(loginStudent(loginCredentials));
+    setLoginCredentials({
+      email: '',
+      password: '',
+      status: 1,
+    });
   };
 
   return (
@@ -43,8 +47,13 @@ export default function Login() {
             <Form name="basic" initialValues={{ remember: true }}>
               <Form.Item>
                 <Radio.Group
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
+                  value={loginCredentials.status}
+                  onChange={(e) =>
+                    setLoginCredentials({
+                      ...loginCredentials,
+                      status: e.target.value,
+                    })
+                  }
                 >
                   <Radio value={1}>Student</Radio>
                   <Radio value={2}>Teacher</Radio>
@@ -59,8 +68,13 @@ export default function Login() {
               >
                 <Input
                   placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={loginCredentials.email}
+                  onChange={(e) =>
+                    setLoginCredentials({
+                      ...loginCredentials,
+                      email: e.target.value,
+                    })
+                  }
                 />
               </Form.Item>
 
@@ -72,8 +86,13 @@ export default function Login() {
               >
                 <Input.Password
                   placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={loginCredentials.password}
+                  onChange={(e) =>
+                    setLoginCredentials({
+                      ...loginCredentials,
+                      password: e.target.value,
+                    })
+                  }
                 />
               </Form.Item>
 
