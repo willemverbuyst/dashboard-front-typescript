@@ -3,7 +3,7 @@ import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
 import { FETCH_QUESTIONS, GetState, QuestionActionTypes } from './types';
 import { Questions } from '../../types/model';
-import { TeacherState } from '../teacher/types';
+import { GetTeacherState } from '../teacher/types';
 import { selectTeacherToken } from '../teacher/selectors';
 
 export const questionsFetched = (questions: Questions): QuestionActionTypes => {
@@ -14,7 +14,7 @@ export const questionsFetched = (questions: Questions): QuestionActionTypes => {
 };
 
 export function getQuestionsForSubject(id: number) {
-  return async function thunk(dispatch: Dispatch, getState: TeacherState) {
+  return async function thunk(dispatch: Dispatch, getState: GetTeacherState) {
     const token = selectTeacherToken(getState());
 
     try {

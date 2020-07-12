@@ -2,7 +2,7 @@ import { Teacher } from '../../types/model';
 import {
   TeacherActionTypes,
   LOGIN_SUCCESS_TEACHER,
-  // TOKEN_STILL_VALID_STUDENT,
+  TOKEN_STILL_VALID_TEACHER,
   LOG_OUT_TEACHER,
 } from './types';
 
@@ -24,8 +24,8 @@ export default (state = initialState, action: TeacherActionTypes) => {
       userToken && localStorage.setItem('student_token', userToken);
       return { ...state, ...action.teacher };
 
-    // case TOKEN_STILL_VALID_TEACHER:
-    //   return { ...state, ...action.payload };
+    case TOKEN_STILL_VALID_TEACHER:
+      return { ...state, ...action.teacher };
 
     case LOG_OUT_TEACHER:
       localStorage.removeItem('student_token');

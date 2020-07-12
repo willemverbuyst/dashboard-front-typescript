@@ -8,7 +8,7 @@ export type StoreState = {
   teacher: Teacher;
 };
 
-export type TeacherState = () => StoreState;
+export type GetTeacherState = () => StoreState;
 
 export type logOutTeacher = {
   type: typeof LOG_OUT_TEACHER;
@@ -19,4 +19,12 @@ export type loginSuccessTeacher = {
   teacher: Teacher;
 };
 
-export type TeacherActionTypes = loginSuccessTeacher | logOutTeacher;
+export type tokenTeacherStillValid = {
+  type: typeof TOKEN_STILL_VALID_TEACHER;
+  teacher: Teacher;
+};
+
+export type TeacherActionTypes =
+  | loginSuccessTeacher
+  | logOutTeacher
+  | tokenTeacherStillValid;
