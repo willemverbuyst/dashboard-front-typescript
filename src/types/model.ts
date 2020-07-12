@@ -7,6 +7,7 @@ export type Student = {
   name: string | null;
   email: string | null;
   token: string | null;
+  subjects: string[] | null;
 };
 
 export type LoginCredentials = {

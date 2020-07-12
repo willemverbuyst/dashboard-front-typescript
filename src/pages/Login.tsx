@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginStudent } from '../store/student/actions';
 import { ButtonEvent, LoginCredentials } from '../types/model';
+import { selectStudentId } from '../store/student/selectors';
 
 import { Layout, Form, Input, Button, Radio, Row, Col } from 'antd';
 
@@ -17,7 +18,7 @@ export default function Login() {
     status: 1,
   });
 
-  const studentId: number | undefined = undefined;
+  const studentId = useSelector(selectStudentId);
   const teacherId: number | undefined = undefined;
 
   useEffect(() => {

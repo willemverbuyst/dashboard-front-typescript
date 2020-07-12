@@ -13,6 +13,7 @@ const initialState: Student = {
   name: null,
   email: null,
   token: token,
+  subjects: null,
 };
 
 export default (state = initialState, action: StudentActionTypes) => {
