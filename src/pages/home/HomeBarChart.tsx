@@ -1,7 +1,7 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-export default function BarChartHome() {
+export default function HomeBarChart() {
   const chartData = {
     labels: ['Welcome', 'to', 'your', 'dashboard'],
     datasets: [
