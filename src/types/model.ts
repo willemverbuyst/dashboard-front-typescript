@@ -43,6 +43,15 @@ export type Answer = {
   correct: boolean;
 };
 
+export type AddQuestion = {
+  subject: number;
+  question: string;
+  answer1: string;
+  answer2: string;
+  answer3: string;
+  answer4: string;
+};
+
 export type LoginCredentials = {
   email: string;
   password: string;
