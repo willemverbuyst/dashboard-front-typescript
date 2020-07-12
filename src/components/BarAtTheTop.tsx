@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
-import moment from 'moment';
+import { selectStudentName } from '../store/student/selectors';
 import { Layout } from 'antd';
 
 const { Header } = Layout;
@@ -12,7 +14,7 @@ const renderDate = () => {
 };
 
 export default function BarAtTheTop() {
-  const student: string = '';
+  const student = useSelector(selectStudentName);
   const teacher: string = '';
 
   const renderLoginLogout = () => {
