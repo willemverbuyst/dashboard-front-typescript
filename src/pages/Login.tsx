@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginStudent } from '../store/student/actions';
 import { Layout, Form, Input, Button, Radio, Row, Col } from 'antd';
 
 const { Content } = Layout;
 
 export default function Login() {
+  const dispatch = useDispatch();
   // type InputEvent = React.ChangeEvent<HTMLInputElement>;
   type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
 
@@ -29,6 +32,7 @@ export default function Login() {
   const submitForm = (e: ButtonEvent): void => {
     e.preventDefault();
     console.log('submit form');
+    dispatch(loginStudent(email, password, status));
   };
 
   return (

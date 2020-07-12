@@ -19,7 +19,7 @@ export default (state = initialState, action: StudentActionTypes) => {
   switch (action.type) {
     case LOGIN_SUCCESS_STUDENT:
       const userToken = action.student.token;
-      if (userToken) localStorage.setItem('student_token', userToken);
+      userToken && localStorage.setItem('student_token', userToken);
       return { ...state, ...action.student };
 
     // case TOKEN_STILL_VALID_STUDENT:

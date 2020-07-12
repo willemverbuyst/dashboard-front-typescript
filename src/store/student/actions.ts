@@ -1,3 +1,5 @@
+import { apiUrl } from '../../config/constants';
+import axios from 'axios';
 import { Dispatch } from 'redux';
 import {
   LOGIN_SUCCESS_STUDENT,
@@ -7,9 +9,6 @@ import {
   StudentActionTypes,
 } from './types';
 import { Student } from '../../types/model';
-
-import { apiUrl } from '../../config/constants';
-import axios from 'axios';
 
 const loginSuccessStudent = (student: Student): StudentActionTypes => {
   return {
