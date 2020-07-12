@@ -10,6 +10,15 @@ export type Student = {
   subjects: string[] | null;
 };
 
+export type Teacher = {
+  id: number | null;
+  name: string | null;
+  email: string | null;
+  token: string | null;
+  subjects: string[] | null;
+  students: string[] | null;
+};
+
 export type LoginCredentials = {
   email: string;
   password: string;
