@@ -7,7 +7,7 @@ export type Student = {
   name: string | null;
   email: string | null;
   token: string | null;
-  subjects: Subject[] | null;
+  subjects: Subjects[] | null;
 };
 
 export type Teacher = {
@@ -15,11 +15,16 @@ export type Teacher = {
   name: string | null;
   email: string | null;
   token: string | null;
-  subjects: Subject[] | null;
-  students: string[] | null;
+  subjects: Subjects[] | null;
+  students: Students[] | null;
 };
 
-export type Subject = {
+export type Subjects = {
+  name: string;
+  id: number;
+};
+
+export type Students = {
   name: string;
   id: number;
 };
