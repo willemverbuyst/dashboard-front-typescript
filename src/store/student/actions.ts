@@ -10,7 +10,7 @@ import {
 } from './types';
 import { Student, LoginCredentials } from '../../types/model';
 
-const loginSuccessStudent = (student: Student): StudentActionTypes => {
+export const loginSuccessStudent = (student: Student): StudentActionTypes => {
   return {
     type: LOGIN_SUCCESS_STUDENT,
     student,

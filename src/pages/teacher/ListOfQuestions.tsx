@@ -34,31 +34,36 @@ export default function ListOfQuestions() {
   const renderQuestions = () => {
     return (
       <Collapse style={{ width: 650 }}>
-        {questions.map(({ text, answers }, i) => (
-          <Panel header={text} key={i}>
-            <ol>
-              {answers.map(({ text, correct }, i) => (
-                <li
-                  key={i}
-                  style={
-                    !correct
-                      ? { color: 'red' }
-                      : { color: 'green', fontWeight: 'bold' }
-                  }
-                >
-                  {text}
-                </li>
-              ))}
-            </ol>
-          </Panel>
-        ))}
+        {questions &&
+          questions.map(({ text, answers }, i) => (
+            <Panel header={text} key={i}>
+              <ol>
+                {answers.map(({ text, correct }, i) => (
+                  <li
+                    key={i}
+                    style={
+                      !correct
+                        ? { color: 'red' }
+                        : { color: 'green', fontWeight: 'bold' }
+                    }
+                  >
+                    {text}
+                  </li>
+                ))}
+              </ol>
+            </Panel>
+          ))}
       </Collapse>
     );
   };
 
   const renderSubjectsSelector = () => {
     return (
-      <Form justify="center" name="basic" initialValues={{ remember: true }}>
+      <Form
+        style={{ justifyContent: 'center' }}
+        name="basic"
+        initialValues={{ remember: true }}
+      >
         <Form.Item
           name="subject"
           rules={[{ required: true, message: 'Please select a subject' }]}
@@ -69,11 +74,12 @@ export default function ListOfQuestions() {
             style={{ width: 160 }}
             onChange={(e) => setSubject(e)}
           >
-            {subjects.map(({ name, id }, i) => (
-              <Option key={i} value={id}>
-                {name}
-              </Option>
-            ))}
+            {subjects &&
+              subjects.map(({ name, id }, i) => (
+                <Option key={i} value={id}>
+                  {name}
+                </Option>
+              ))}
           </Select>
         </Form.Item>
         <Form.Item>

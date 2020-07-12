@@ -5,7 +5,7 @@ import {
   LOGIN_SUCCESS_TEACHER,
   // TOKEN_STILL_VALID_STUDENT,
   LOG_OUT_TEACHER,
-  GetState,
+  TeacherState,
   TeacherActionTypes,
 } from './types';
 import { Teacher, LoginCredentials } from '../../types/model';
@@ -23,7 +23,7 @@ export const logOutTeacher = (): TeacherActionTypes => ({
 
 export const loginTeacher = (credentials: LoginCredentials) => {
   const { email, password, status } = credentials;
-  return async (dispatch: Dispatch, getState: GetState) => {
+  return async (dispatch: Dispatch, getState: TeacherState) => {
     try {
       const response = await axios.post(`${apiUrl}/login`, {
         email,
@@ -43,7 +43,7 @@ export const loginTeacher = (credentials: LoginCredentials) => {
 };
 
 export const teacherLoggingOut = () => {
-  return function thunk(dispatch: Dispatch, getState: GetState) {
+  return function thunk(dispatch: Dispatch, getState: TeacherState) {
     dispatch(logOutTeacher());
   };
 };

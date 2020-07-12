@@ -29,6 +29,20 @@ export type Students = {
   id: number;
 };
 
+export type Questions = {
+  all: Question[] | null;
+};
+
+export type Question = {
+  text: string;
+  answers: Answer[];
+};
+
+export type Answer = {
+  text: string;
+  correct: boolean;
+};
+
 export type LoginCredentials = {
   email: string;
   password: string;
