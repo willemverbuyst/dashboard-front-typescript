@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginStudent } from '../store/student/actions';
+import { loginTeacher } from '../store/teacher/actions';
 import { ButtonEvent, LoginCredentials } from '../types/model';
 import { selectStudentId } from '../store/student/selectors';
+import { selectTeacherId } from '../store/teacher/selectors';
 
 import { Layout, Form, Input, Button, Radio, Row, Col } from 'antd';
 
@@ -17,9 +19,8 @@ export default function Login() {
     password: '',
     status: 1,
   });
-
   const studentId = useSelector(selectStudentId);
-  const teacherId: number | undefined = undefined;
+  const teacherId = useSelector(selectTeacherId);
 
   useEffect(() => {
     if (studentId) {
@@ -32,7 +33,10 @@ export default function Login() {
 
   const submitForm = (e: ButtonEvent): void => {
     e.preventDefault();
-    dispatch(loginStudent(loginCredentials));
+    loginCredentials.status === 1
+      ? dispatch(loginStudent(loginCredentials))
+      : dispatch(loginTeacher(loginCredentials));
+
     setLoginCredentials({
       email: '',
       password: '',

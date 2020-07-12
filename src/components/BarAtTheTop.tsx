@@ -5,6 +5,7 @@ import moment from 'moment';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import { selectStudentName } from '../store/student/selectors';
+import { selectTeacherName } from '../store/teacher/selectors';
 import { Layout } from 'antd';
 
 const { Header } = Layout;
@@ -15,7 +16,7 @@ const renderDate = () => {
 
 export default function BarAtTheTop() {
   const student = useSelector(selectStudentName);
-  const teacher: string = '';
+  const teacher = useSelector(selectTeacherName);
 
   const renderLoginLogout = () => {
     return student || teacher ? <LogoutButton /> : <LoginButton />;
