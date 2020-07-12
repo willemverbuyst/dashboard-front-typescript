@@ -19,4 +19,12 @@ export type loginSuccessStudent = {
   student: Student;
 };
 
-export type StudentActionTypes = loginSuccessStudent | logOutStudent;
+export type tokenStudentStillValid = {
+  type: typeof TOKEN_STILL_VALID_STUDENT;
+  student: Student;
+};
+
+export type StudentActionTypes =
+  | loginSuccessStudent
+  | logOutStudent
+  | tokenStudentStillValid;

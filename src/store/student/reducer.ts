@@ -2,7 +2,7 @@ import { Student } from '../../types/model';
 import {
   StudentActionTypes,
   LOGIN_SUCCESS_STUDENT,
-  // TOKEN_STILL_VALID_STUDENT,
+  TOKEN_STILL_VALID_STUDENT,
   LOG_OUT_STUDENT,
 } from './types';
 
@@ -23,8 +23,8 @@ export default (state = initialState, action: StudentActionTypes) => {
       userToken && localStorage.setItem('student_token', userToken);
       return { ...state, ...action.student };
 
-    // case TOKEN_STILL_VALID_STUDENT:
-    //   return { ...state, ...action.payload };
+    case TOKEN_STILL_VALID_STUDENT:
+      return { ...state, ...action.student };
 
     case LOG_OUT_STUDENT:
       localStorage.removeItem('student_token');

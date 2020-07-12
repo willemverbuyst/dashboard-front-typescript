@@ -3,12 +3,13 @@ import axios from 'axios';
 import { Dispatch } from 'redux';
 import {
   LOGIN_SUCCESS_STUDENT,
-  // TOKEN_STILL_VALID_STUDENT,
+  TOKEN_STILL_VALID_STUDENT,
   LOG_OUT_STUDENT,
   GetState,
   StudentActionTypes,
 } from './types';
 import { Student, LoginCredentials } from '../../types/model';
+import { selectStudentToken } from './selectors';
 
 export const loginSuccessStudent = (student: Student): StudentActionTypes => {
   return {
@@ -19,6 +20,11 @@ export const loginSuccessStudent = (student: Student): StudentActionTypes => {
 
 export const logOutStudent = (): StudentActionTypes => ({
   type: LOG_OUT_STUDENT,
+});
+
+const tokenStudentStillValid = (student: Student): StudentActionTypes => ({
+  type: TOKEN_STILL_VALID_STUDENT,
+  student,
 });
 
 export const loginStudent = (credentials: LoginCredentials) => {
@@ -45,5 +51,28 @@ export const loginStudent = (credentials: LoginCredentials) => {
 export const studentLoggingOut = () => {
   return function thunk(dispatch: Dispatch, getState: GetState) {
     dispatch(logOutStudent());
+  };
+};
+
+export const getStudentWithStoredToken = () => {
+  return async (dispatch: Dispatch, getState: GetState) => {
+    const token = selectStudentToken(getState());
+
+    if (token === null) return;
+
+    try {
+      // if token check if valid
+      const response = await axios.get(`${apiUrl}/student`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      dispatch(tokenStudentStillValid(response.data));
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.message);
+      } else {
+        console.log(error);
+      }
+      dispatch(logOutStudent());
+    }
   };
 };
