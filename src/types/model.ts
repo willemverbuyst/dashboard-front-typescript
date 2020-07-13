@@ -84,3 +84,12 @@ export type AddNewSubject = {
   name: string;
   id: number;
 };
+
+// MODELS FOR CHARTS
+export type InputBarChart = {
+  labels: string[];
+  data: number[];
+  color: string[];
+  title: string;
+  max: number;
+};
