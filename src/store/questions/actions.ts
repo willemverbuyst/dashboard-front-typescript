@@ -19,7 +19,10 @@ export const questionsFetched = (questions: Questions): QuestionActionTypes => {
 };
 
 export function addQuestionToList(question: AddNewQuestion) {
-  return { type: ADD_QUESTION, question };
+  return {
+    type: ADD_QUESTION,
+    question,
+  };
 }
 
 export function getQuestionsForSubject(id: number) {

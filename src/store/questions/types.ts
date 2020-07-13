@@ -17,7 +17,7 @@ export type questionsFetched = {
 
 export type addQuestionToList = {
   type: typeof ADD_QUESTION;
-  addQuestion: AddNewQuestion;
+  question: AddNewQuestion;
 };
 
 export type QuestionActionTypes = questionsFetched | addQuestionToList;

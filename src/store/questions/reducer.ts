@@ -11,10 +11,11 @@ export default (state = initialState, action: QuestionActionTypes) => {
       return { ...state, all: action.questions };
 
     case ADD_QUESTION:
+      console.log(action);
       if (state.all) {
-        return { ...state, all: [...state.all, action.addQuestion] };
+        return { ...state, all: [...state.all, action.question] };
       } else {
-        return { ...state, all: action.addQuestion };
+        return { ...state, all: action.question };
       }
 
     // case REMOVE_QUESTIONS:
