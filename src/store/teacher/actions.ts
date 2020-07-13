@@ -5,10 +5,11 @@ import {
   LOGIN_SUCCESS_TEACHER,
   TOKEN_STILL_VALID_TEACHER,
   LOG_OUT_TEACHER,
+  ADD_SUBJECT,
   GetTeacherState,
   TeacherActionTypes,
 } from './types';
-import { Teacher, LoginCredentials } from '../../types/model';
+import { Teacher, LoginCredentials, NewSubject } from '../../types/model';
 
 const loginSuccessTeacher = (teacher: Teacher): TeacherActionTypes => {
   return {
@@ -24,6 +25,11 @@ export const logOutTeacher = (): TeacherActionTypes => ({
 const tokenTeacherStillValid = (teacher: Teacher): TeacherActionTypes => ({
   type: TOKEN_STILL_VALID_TEACHER,
   teacher,
+});
+
+const addSubject = (subject: NewSubject) => ({
+  type: ADD_SUBJECT,
+  subject,
 });
 
 export const loginTeacher = (credentials: LoginCredentials) => {
@@ -75,3 +81,26 @@ export const getTeacherWithStoredToken = () => {
     }
   };
 };
+
+export function createSubject(subject: NewSubject) {
+  return async function thunk(dispatch: Dispatch, getState: GetTeacherState) {
+    const token = getState().teacher.token;
+
+    try {
+      const response = await axios.post(
+        `${apiUrl}/subject`,
+        {
+          subject,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      dispatch(addSubject(response.data.newSubject));
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+      } else {
+        console.log(error.message);
+      }
+    }
+  };
+}
