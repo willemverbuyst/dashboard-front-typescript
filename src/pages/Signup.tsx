@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-// import { fetchAllTeachers } from '../store/schoolInfo/actions';
-// import { selectAllTeachers } from '../store/schoolInfo/selectors';
+import { fetchAllTeachers } from '../store/schoolInfo/actions';
+import { selectAllTeachers } from '../store/schoolInfo/selectors';
 // import { createStudent } from '../store/student/actions';
 import { createTeacher } from '../store/teacher/actions';
 import { Layout, Form, Input, Button, Radio, Select, Row, Col } from 'antd';
@@ -14,10 +14,7 @@ const { Option } = Select;
 export default function Signup() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const teachers = [
-    { name: 'Piet', id: 1 },
-    { name: 'Sjaar', id: 2 },
-  ];
+  const teachers = useSelector(selectAllTeachers);
   const [signUpCredentials, setSignUpCredentials] = useState<SignUpCredentials>(
     {
       name: '',
@@ -28,9 +25,9 @@ export default function Signup() {
     }
   );
 
-  // useEffect(() => {
-  //   dispatch(fetchAllTeachers);
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchAllTeachers);
+  }, [dispatch]);
 
   const createUser = () => {
     // if (status === 1) {
@@ -59,11 +56,12 @@ export default function Signup() {
             })
           }
         >
-          {teachers.map(({ name, id }, i) => (
-            <Option key={i} value={id}>
-              {name}
-            </Option>
-          ))}
+          {teachers &&
+            teachers.map(({ name, id }, i) => (
+              <Option key={i} value={id}>
+                {name}
+              </Option>
+            ))}
         </Select>
       </Form.Item>
     ) : null;
@@ -95,7 +93,7 @@ export default function Signup() {
                 </Radio.Group>
               </Form.Item>
 
-              {teachers ? renderExtraInput() : null}
+              {renderExtraInput()}
 
               <Form.Item
                 name="Full name"
