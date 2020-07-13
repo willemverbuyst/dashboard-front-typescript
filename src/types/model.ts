@@ -63,6 +63,7 @@ export type LoginCredentials = {
   status: number;
 };
 
-export type NewSubject = {
-  text: string;
+export type AddNewSubject = {
+  name: string;
+  id: number;
 };

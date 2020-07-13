@@ -4,6 +4,7 @@ import {
   LOGIN_SUCCESS_TEACHER,
   TOKEN_STILL_VALID_TEACHER,
   LOG_OUT_TEACHER,
+  ADD_SUBJECT,
 } from './types';
 
 const token = localStorage.getItem('teacher_token');
@@ -30,6 +31,13 @@ export default (state = initialState, action: TeacherActionTypes) => {
     case LOG_OUT_TEACHER:
       localStorage.removeItem('teacher_token');
       return { ...initialState, token: null };
+
+    case ADD_SUBJECT:
+      if (state.subjects) {
+        return { ...state, subjects: [...state.subjects, action.subject] };
+      } else {
+        return { ...state, subjects: [action.subject] };
+      }
 
     default:
       return state;

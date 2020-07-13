@@ -9,7 +9,12 @@ import {
   GetTeacherState,
   TeacherActionTypes,
 } from './types';
-import { Teacher, LoginCredentials, NewSubject } from '../../types/model';
+import {
+  Teacher,
+  LoginCredentials,
+  AddNewSubject,
+  AddNewQuestion,
+} from '../../types/model';
 
 const loginSuccessTeacher = (teacher: Teacher): TeacherActionTypes => {
   return {
@@ -27,7 +32,7 @@ const tokenTeacherStillValid = (teacher: Teacher): TeacherActionTypes => ({
   teacher,
 });
 
-const addSubject = (subject: NewSubject) => ({
+const addSubject = (subject: AddNewSubject) => ({
   type: ADD_SUBJECT,
   subject,
 });
@@ -82,7 +87,7 @@ export const getTeacherWithStoredToken = () => {
   };
 };
 
-export function createSubject(subject: NewSubject) {
+export function createSubject(subject: string) {
   return async function thunk(dispatch: Dispatch, getState: GetTeacherState) {
     const token = getState().teacher.token;
 

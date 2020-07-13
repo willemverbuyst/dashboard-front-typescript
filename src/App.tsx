@@ -11,6 +11,7 @@ import StudentMainPage from './pages/student/StudentMain';
 import TeacherMainPage from './pages/teacher/TeacherMain';
 import ListOfQuestions from './pages/teacher/ListOfQuestions';
 import AddQuestionForm from './pages/teacher/AddQuestionForm';
+import AddSubject from './pages/teacher/AddSubject';
 import { getStudentWithStoredToken } from './store/student/actions';
 import { getTeacherWithStoredToken } from './store/teacher/actions';
 import './App.css';
@@ -50,6 +51,11 @@ function App() {
             exact
             path="/teachers/:teacherid/questions/add"
             component={AddQuestionForm}
+          />
+          <Route
+            exact
+            path="/teachers/:teacherid/subject/add"
+            component={AddSubject}
           />
         </Switch>
       </Layout>

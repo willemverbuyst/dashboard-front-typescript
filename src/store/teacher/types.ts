@@ -1,4 +1,4 @@
-import { Teacher, NewSubject } from '../../types/model';
+import { Teacher, AddNewSubject } from '../../types/model';
 
 export const LOGIN_SUCCESS_TEACHER = 'LOGIN_SUCCESS_TEACHER';
 export const TOKEN_STILL_VALID_TEACHER = 'TOKEN_STILL_VALID_TEACHER';
@@ -27,7 +27,7 @@ export type tokenTeacherStillValid = {
 
 export type addSubject = {
   type: typeof ADD_SUBJECT;
-  subject: NewSubject;
+  subject: AddNewSubject;
 };
 
 export type TeacherActionTypes =
