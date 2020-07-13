@@ -63,14 +63,7 @@ export type LoginCredentials = {
   status: number;
 };
 
-export type SignUpCredentialsTeacher = {
-  name: string;
-  email: string;
-  password: string;
-  status: number;
-};
-
-export type SignUpCredentialsStudent = {
+export type SignUpCredentials = {
   name: string;
   email: string;
   password: string;
