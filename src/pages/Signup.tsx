@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllTeachers } from '../store/schoolInfo/actions';
 import { selectAllTeachers } from '../store/schoolInfo/selectors';
-// import { createStudent } from '../store/student/actions';
+import { createStudent } from '../store/student/actions';
 import { createTeacher } from '../store/teacher/actions';
 import { Layout, Form, Input, Button, Radio, Select, Row, Col } from 'antd';
 import { SignUpCredentials } from '../types/model';
@@ -30,13 +30,13 @@ export default function Signup() {
   }, [dispatch]);
 
   const createUser = () => {
-    // if (status === 1) {
-    //   dispatch(createStudent(status, name, email, password, teacher));
-    //   history.push(`/`);
-    // } else {
-    dispatch(createTeacher(signUpCredentials));
-    history.push(`/`);
-    // }
+    if (signUpCredentials.status === 1) {
+      dispatch(createStudent(signUpCredentials));
+      history.push(`/`);
+    } else {
+      dispatch(createTeacher(signUpCredentials));
+      history.push(`/`);
+    }
   };
 
   const renderExtraInput = () => {
