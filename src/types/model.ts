@@ -19,6 +19,15 @@ export type Teacher = {
   students: Students[] | null;
 };
 
+export type Teachers = {
+  all: SelectTeacher[] | null;
+};
+
+export type SelectTeacher = {
+  name: string;
+  id: number;
+};
+
 export type Subjects = {
   name: string;
   id: number;
