@@ -13,7 +13,7 @@ import {
   Teacher,
   LoginCredentials,
   AddNewSubject,
-  AddNewQuestion,
+  SignUpCredentialsTeacher,
 } from '../../types/model';
 
 const loginSuccessTeacher = (teacher: Teacher): TeacherActionTypes => {
@@ -83,6 +83,30 @@ export const getTeacherWithStoredToken = () => {
         console.log(error);
       }
       dispatch(logOutTeacher());
+    }
+  };
+};
+
+export const createTeacher = (
+  signUpCredentialsTeacher: SignUpCredentialsTeacher
+) => {
+  const { status, name, email, password } = signUpCredentialsTeacher;
+  return async (dispatch: Dispatch, getState: GetTeacherState) => {
+    try {
+      const response = await axios.post(`${apiUrl}/signup`, {
+        isStudent: status,
+        name,
+        email,
+        password,
+      });
+
+      dispatch(loginSuccessTeacher(response.data));
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+      } else {
+        console.log(error.message);
+      }
     }
   };
 };
