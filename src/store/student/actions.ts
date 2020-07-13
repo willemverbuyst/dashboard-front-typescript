@@ -8,7 +8,11 @@ import {
   GetState,
   StudentActionTypes,
 } from './types';
-import { Student, LoginCredentials } from '../../types/model';
+import {
+  Student,
+  LoginCredentials,
+  SignUpCredentials,
+} from '../../types/model';
 
 export const loginSuccessStudent = (student: Student): StudentActionTypes => {
   return {
@@ -72,6 +76,29 @@ export const getStudentWithStoredToken = () => {
         console.log(error);
       }
       dispatch(logOutStudent());
+    }
+  };
+};
+
+export const createStudent = (signUpCredentials: SignUpCredentials) => {
+  const { status, name, email, password, teacherId } = signUpCredentials;
+  return async (dispatch: Dispatch, getState: GetState) => {
+    try {
+      const response = await axios.post(`${apiUrl}/signup`, {
+        isStudent: status,
+        name,
+        email,
+        password,
+        teacherId,
+      });
+
+      dispatch(loginSuccessStudent(response.data));
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+      } else {
+        console.log(error.message);
+      }
     }
   };
 };
