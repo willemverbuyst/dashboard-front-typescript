@@ -1,12 +1,7 @@
 import axios from 'axios';
 import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
-import {
-  FETCH_QUESTIONS,
-  ADD_QUESTION,
-  GetState,
-  QuestionActionTypes,
-} from './types';
+import { FETCH_QUESTIONS, ADD_QUESTION, QuestionActionTypes } from './types';
 import { Questions, PostNewQuestion, AddNewQuestion } from '../../types/model';
 import { GetTeacherState } from '../teacher/types';
 import { selectTeacherToken } from '../teacher/selectors';

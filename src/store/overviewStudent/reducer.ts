@@ -14,8 +14,8 @@ export default (state = initialState, action: overviewStudentTypes) => {
   switch (action.type) {
     case FETCH_RESULTS_FOR_STUDENT_MAIN:
       return { ...state, results: action.results };
-    // case REMOVE_RESULTS_FOR_STUDENT_MAIN:
-    //   return initialState;
+    case REMOVE_RESULTS_FOR_STUDENT_MAIN:
+      return initialState;
 
     default:
       return state;

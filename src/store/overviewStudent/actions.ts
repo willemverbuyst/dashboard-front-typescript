@@ -17,11 +17,11 @@ export function resultsFetched(results: Results): overviewStudentTypes {
   };
 }
 
-// export function removeResults() {
-//   return {
-//     type: REMOVE_RESULTS_FOR_STUDENT_MAIN,
-//   };
-// }
+export function removeResults() {
+  return {
+    type: REMOVE_RESULTS_FOR_STUDENT_MAIN,
+  };
+}
 
 export function getResultsForStudentMain(id: number) {
   return async function thunk(dispatch: Dispatch, getState: GetStudentState) {
