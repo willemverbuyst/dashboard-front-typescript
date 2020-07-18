@@ -8,7 +8,7 @@ export type StoreState = {
   student: Student;
 };
 
-export type GetState = () => StoreState;
+export type GetStudentState = () => StoreState;
 
 export type logOutStudent = {
   type: typeof LOG_OUT_STUDENT;

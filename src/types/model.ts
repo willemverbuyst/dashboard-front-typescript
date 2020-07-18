@@ -23,6 +23,10 @@ export type Teachers = {
   all: SelectTeacher[] | null;
 };
 
+export type Results = {
+  results: string[] | null;
+};
+
 export type SelectTeacher = {
   name: string;
   id: number;

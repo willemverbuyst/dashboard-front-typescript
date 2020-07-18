@@ -5,7 +5,7 @@ import {
   LOGIN_SUCCESS_STUDENT,
   TOKEN_STILL_VALID_STUDENT,
   LOG_OUT_STUDENT,
-  GetState,
+  GetStudentState,
   StudentActionTypes,
 } from './types';
 import {
@@ -32,7 +32,7 @@ const tokenStudentStillValid = (student: Student): StudentActionTypes => ({
 
 export const loginStudent = (credentials: LoginCredentials) => {
   const { email, password, status } = credentials;
-  return async (dispatch: Dispatch, getState: GetState) => {
+  return async (dispatch: Dispatch, getState: GetStudentState) => {
     try {
       const response = await axios.post(`${apiUrl}/login`, {
         email,
@@ -52,13 +52,13 @@ export const loginStudent = (credentials: LoginCredentials) => {
 };
 
 export const studentLoggingOut = () => {
-  return function thunk(dispatch: Dispatch, getState: GetState) {
+  return function thunk(dispatch: Dispatch, getState: GetStudentState) {
     dispatch(logOutStudent());
   };
 };
 
 export const getStudentWithStoredToken = () => {
-  return async (dispatch: Dispatch, getState: GetState) => {
+  return async (dispatch: Dispatch, getState: GetStudentState) => {
     const token = getState().student.token;
 
     if (token === null) return;
@@ -82,7 +82,7 @@ export const getStudentWithStoredToken = () => {
 
 export const createStudent = (signUpCredentials: SignUpCredentials) => {
   const { status, name, email, password, teacherId } = signUpCredentials;
-  return async (dispatch: Dispatch, getState: GetState) => {
+  return async (dispatch: Dispatch, getState: GetStudentState) => {
     try {
       const response = await axios.post(`${apiUrl}/signup`, {
         isStudent: status,
