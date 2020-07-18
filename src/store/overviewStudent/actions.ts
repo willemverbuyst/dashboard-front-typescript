@@ -23,7 +23,7 @@ export function removeResults() {
   };
 }
 
-export function getResultsForStudentMain(id: number) {
+export function getResultsForStudentMain() {
   return async function thunk(dispatch: Dispatch, getState: GetStudentState) {
     const token = selectStudentToken(getState());
 
