@@ -1,3 +1,4 @@
 import { StoreState } from './types';
 
-export const selectOverviewStudent = (state: StoreState) => state.results;
+export const selectOverviewStudent = (state: StoreState) =>
+  state.overviewStudent.results;

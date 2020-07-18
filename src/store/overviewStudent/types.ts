@@ -5,7 +5,7 @@ export const REMOVE_RESULTS_FOR_STUDENT_MAIN =
   'REMOVE_RESULTS_FOR_STUDENT_MAIN';
 
 export type StoreState = {
-  results: Results;
+  overviewStudent: Results;
 };
 
 export type GetState = () => StoreState;
