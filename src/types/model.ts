@@ -34,7 +34,12 @@ export type Result = {
 };
 
 export type SubjectDetailsStudent = {
-  all: string[] | null;
+  all: SubjectDetailStudent[] | null;
+};
+
+export type SubjectDetailStudent = {
+  at: string;
+  result: number;
 };
 
 export type SelectTeacher = {
