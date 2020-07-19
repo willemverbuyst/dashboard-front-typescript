@@ -38,6 +38,31 @@ export default function StudentSubjectDetails() {
     history.push(goto);
   };
 
+  const renderAmount = () => {
+    if (subjects && results) {
+      return (
+        <Col
+          style={{
+            width: 300,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: 60,
+          }}
+        >
+          <div style={{ fontSize: '1.4rem' }}>You have done</div>
+          <div style={{ fontSize: '4rem', fontWeight: 'bold' }}>
+            {results.length}
+          </div>
+          <div style={{ fontSize: '1.4rem' }}>tests so far</div>
+        </Col>
+      );
+    } else {
+      return null;
+    }
+  };
+
   const renderTestButton = () => {
     if (subjects && results) {
       return (
@@ -134,7 +159,7 @@ export default function StudentSubjectDetails() {
       <Layout style={{ padding: '24px', minHeight: '92vh' }}>
         <Content className="site-layout-background">
           <Row justify="space-around">
-            AMMOUNT OF TESTS
+            {renderAmount()}
             <br /> AVERAGE
             {renderTestButton()}
           </Row>
