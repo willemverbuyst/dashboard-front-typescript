@@ -5,6 +5,7 @@ import { MCquestionDisplay } from '../types/modelsTest';
 export default function MultipleChoiceQuestion({
   text,
   answers,
+  questionNumber,
   questionId,
   onChange,
 }: MCquestionDisplay) {
@@ -16,7 +17,11 @@ export default function MultipleChoiceQuestion({
       <Row>
         <Col>
           <Form.Item>
-            <Radio.Group onChange={(e) => onChange(e.target.value, questionId)}>
+            <Radio.Group
+              onChange={(e) =>
+                onChange(e.target.value, questionNumber, questionId)
+              }
+            >
               {answers.map(({ text, id }, i) => (
                 <Radio
                   key={i}

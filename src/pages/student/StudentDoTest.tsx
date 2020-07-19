@@ -42,25 +42,19 @@ export default function StudentDoTest() {
     dispatch(getMcQuestionsForTest(subjectid));
   }, [dispatch, subjectid]);
 
-  console.log(mcQuestions);
-
-  const onPick = (event: any, questionId: number) => {
-    console.log(event, questionId);
-    if (event.questionNumber * 1 === 1) {
-      setMcQuestions({ ...mcQuestions, question1: event.questionId });
-      event.value === 1 || event.value % 4 === 1
-        ? setMcQuestions({ ...mcQuestions, answer1: 1 })
-        : setMcQuestions({ ...mcQuestions, answer1: 0 });
-    } else if (event.questionNumber === 2) {
-      setMcQuestions({ ...mcQuestions, question2: event.questionId });
-      event.value === 1 || event.value % 4 === 1
-        ? setMcQuestions({ ...mcQuestions, answer2: 1 })
-        : setMcQuestions({ ...mcQuestions, answer2: 0 });
+  const onPick = (event: any, questionNumber: number, questionId: number) => {
+    if (questionNumber === 1) {
+      event === 1 || event % 4 === 1
+        ? setMcQuestions({ ...mcQuestions, question1: questionId, answer1: 1 })
+        : setMcQuestions({ ...mcQuestions, question1: questionId, answer1: 0 });
+    } else if (questionNumber === 2) {
+      event === 1 || event % 4 === 1
+        ? setMcQuestions({ ...mcQuestions, question2: questionId, answer2: 1 })
+        : setMcQuestions({ ...mcQuestions, question2: questionId, answer2: 0 });
     } else {
-      setMcQuestions({ ...mcQuestions, question3: event.questionId });
-      event.value === 1 || event.value % 4 === 1
-        ? setMcQuestions({ ...mcQuestions, answer3: 1 })
-        : setMcQuestions({ ...mcQuestions, answer3: 0 });
+      event === 1 || event % 4 === 1
+        ? setMcQuestions({ ...mcQuestions, question3: questionId, answer3: 1 })
+        : setMcQuestions({ ...mcQuestions, question3: questionId, answer3: 0 });
     }
   };
 
@@ -72,6 +66,7 @@ export default function StudentDoTest() {
           text={text}
           answers={answers}
           onChange={onPick}
+          questionNumber={i + 1}
           questionId={id}
         />
       ));

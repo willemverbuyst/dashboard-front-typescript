@@ -19,6 +19,7 @@ export type MCanswer = {
 export type MCquestionDisplay = {
   text: string;
   answers: MCanswer[];
+  questionNumber: number;
   questionId: number;
   onChange: RadioEvent;
 };
@@ -34,5 +35,6 @@ export type AnswerTest = {
 
 export type RadioEvent = (
   event: React.ChangeEvent<HTMLInputElement>,
+  questionNumber: number,
   questionId: number
 ) => void;
