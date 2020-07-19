@@ -10,7 +10,8 @@ import {
 } from '../../store/student/selectors';
 import { getMcQuestionsForTest } from '../../store/test/actions';
 import { select3mcQuestionsForSubject } from '../../store/test/selectors';
-import { Layout, Row } from 'antd';
+import { AnswerTest } from '../../types/modelsTest';
+import { Layout } from 'antd';
 
 const { Content } = Layout;
 
@@ -22,6 +23,14 @@ export default function StudentDoTest() {
   const token = useSelector(selectStudentToken);
   const questions = useSelector(select3mcQuestionsForSubject);
   const subjects = useSelector(selectStudentSubjects);
+  const [mcQuestions, setMcQuestions] = useState<AnswerTest>({
+    question1: 0,
+    question2: 0,
+    question3: 0,
+    answer1: 0,
+    answer2: 0,
+    answer3: 0,
+  });
 
   useEffect(() => {
     if (token === null) {
@@ -33,16 +42,37 @@ export default function StudentDoTest() {
     dispatch(getMcQuestionsForTest(subjectid));
   }, [dispatch, subjectid]);
 
-  console.log(questions);
+  console.log(mcQuestions);
+
+  const onPick = (event: any, questionId: number) => {
+    console.log(event, questionId);
+    if (event.questionNumber * 1 === 1) {
+      setMcQuestions({ ...mcQuestions, question1: event.questionId });
+      event.value === 1 || event.value % 4 === 1
+        ? setMcQuestions({ ...mcQuestions, answer1: 1 })
+        : setMcQuestions({ ...mcQuestions, answer1: 0 });
+    } else if (event.questionNumber === 2) {
+      setMcQuestions({ ...mcQuestions, question2: event.questionId });
+      event.value === 1 || event.value % 4 === 1
+        ? setMcQuestions({ ...mcQuestions, answer2: 1 })
+        : setMcQuestions({ ...mcQuestions, answer2: 0 });
+    } else {
+      setMcQuestions({ ...mcQuestions, question3: event.questionId });
+      event.value === 1 || event.value % 4 === 1
+        ? setMcQuestions({ ...mcQuestions, answer3: 1 })
+        : setMcQuestions({ ...mcQuestions, answer3: 0 });
+    }
+  };
 
   const renderMCQ = () => {
     if (questions && subjects) {
-      return questions.map(({ text, answers }, i) => (
+      return questions.map(({ text, answers, id }, i) => (
         <MultipleChoiceQuestion
           key={i}
           text={text}
           answers={answers}
-          questionNumber={i + 1}
+          onChange={onPick}
+          questionId={id}
         />
       ));
     }

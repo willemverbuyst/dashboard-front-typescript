@@ -106,20 +106,3 @@ export type AddNewSubject = {
   name: string;
   id: number;
 };
-
-export type MC3questions = {
-  all: MCquestion[] | null;
-};
-
-export type MCquestion = {
-  text: string;
-  answers: MCanswer[];
-  // onPick: PickEvent;
-  questionNumber: number;
-};
-
-export type MCanswer = {
-  text: string;
-  id: number;
-  questionId: number;
-};

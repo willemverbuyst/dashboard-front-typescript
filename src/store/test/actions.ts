@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
-import { MC3questions } from '../../types/model';
+import { MC3questions } from '../../types/modelsTest';
 import {
   FETCH_MC_QUESTIONS,
   REMOVE_MC_QUESTIONS,

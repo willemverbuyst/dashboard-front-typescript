@@ -1,13 +1,13 @@
 import React from 'react';
 import { Radio, Form, Row, Col } from 'antd';
-import { MCquestion } from '../types/model';
+import { MCquestionDisplay } from '../types/modelsTest';
 
 export default function MultipleChoiceQuestion({
   text,
   answers,
-  // onPick,
-  questionNumber,
-}: MCquestion) {
+  questionId,
+  onChange,
+}: MCquestionDisplay) {
   return (
     <>
       <Row>
@@ -16,8 +16,8 @@ export default function MultipleChoiceQuestion({
       <Row>
         <Col>
           <Form.Item>
-            <Radio.Group>
-              {answers.map(({ text, id, questionId }, i) => (
+            <Radio.Group onChange={(e) => onChange(e.target.value, questionId)}>
+              {answers.map(({ text, id }, i) => (
                 <Radio
                   key={i}
                   style={{
