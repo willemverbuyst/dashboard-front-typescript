@@ -26,10 +26,18 @@ export type InputBarChartTest = {
   title: string;
   max: number;
 };
+
 export type InputLineChart = {
   labels: string[];
   data: number[];
   color: string[];
   title: string;
   max: number;
+};
+
+export type InputPieChart = {
+  labels: string[];
+  data: number[];
+  color: string[];
+  title: string;
 };
