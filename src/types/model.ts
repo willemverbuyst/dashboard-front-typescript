@@ -1,6 +1,9 @@
 export type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
 // type InputEvent = React.ChangeEvent<HTMLInputElement>;
 // update = (e: InputEvent): void => this.props.login[e.target.name] = e.target.value;
+export type PickEvent = {
+  onChange: (event: React.MouseEvent<HTMLButtonElement>) => string;
+};
 
 export type Student = {
   id: number | null;
@@ -105,5 +108,18 @@ export type AddNewSubject = {
 };
 
 export type MC3questions = {
-  mc3questions: string[] | null;
+  all: MCquestion[] | null;
+};
+
+export type MCquestion = {
+  text: string;
+  answers: MCanswer[];
+  // onPick: PickEvent;
+  questionNumber: number;
+};
+
+export type MCanswer = {
+  text: string;
+  id: number;
+  questionId: number;
 };

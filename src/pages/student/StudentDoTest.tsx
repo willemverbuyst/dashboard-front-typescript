@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-
+import MultipleChoiceQuestion from '../../components/MultipleChoiceQuestion';
 import {
   selectStudentId,
   selectStudentSubjects,
@@ -10,7 +10,7 @@ import {
 } from '../../store/student/selectors';
 import { getMcQuestionsForTest } from '../../store/test/actions';
 import { select3mcQuestionsForSubject } from '../../store/test/selectors';
-import { Layout } from 'antd';
+import { Layout, Row } from 'antd';
 
 const { Content } = Layout;
 
@@ -33,9 +33,18 @@ export default function StudentDoTest() {
     dispatch(getMcQuestionsForTest(subjectid));
   }, [dispatch, subjectid]);
 
+  console.log(questions);
+
   const renderMCQ = () => {
     if (questions && subjects) {
-      return <>mc questions</>;
+      return questions.map(({ text, answers }, i) => (
+        <MultipleChoiceQuestion
+          key={i}
+          text={text}
+          answers={answers}
+          questionNumber={i + 1}
+        />
+      ));
     }
   };
 

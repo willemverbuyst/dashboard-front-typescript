@@ -4,7 +4,7 @@ export const FETCH_MC_QUESTIONS = 'FETCH_MC_QUESTIONS';
 export const REMOVE_MC_QUESTIONS = 'REMOVE_MC_QUESTIONS';
 
 export type StoreState = {
-  mc3questions: MC3questions;
+  test: MC3questions;
 };
 
 export type GetState = () => StoreState;
