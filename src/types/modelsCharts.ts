@@ -41,3 +41,9 @@ export type InputPieChart = {
   color: string[];
   title: string;
 };
+
+export type InputScatterChart = {
+  data: number[];
+  color: string[];
+  title: string;
+};
