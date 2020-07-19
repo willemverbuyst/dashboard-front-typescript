@@ -29,6 +29,19 @@ export default function StudentMain() {
   }, [dispatch]);
 
   const renderData = () => {
+    if (results && subjects) {
+      const subjectIds = subjects.map((subject) => subject.id);
+      const subjectSorted = subjectIds.map((id) =>
+        results.filter((result) => result.subject === id)
+      );
+      const averages = subjectSorted.map((subject) =>
+        Math.round(
+          (subject.reduce((a, b) => a + b.result * 1, 0) /
+            (subject.length * 3)) *
+            100
+        )
+      );
+    }
     console.log(results);
     return <p>success</p>;
   };

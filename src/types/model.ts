@@ -24,7 +24,13 @@ export type Teachers = {
 };
 
 export type Results = {
-  results: string[] | null;
+  results: Result[] | null;
+};
+
+export type Result = {
+  at: string;
+  result: number;
+  subject: number;
 };
 
 export type SelectTeacher = {
