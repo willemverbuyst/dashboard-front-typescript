@@ -1,5 +1,5 @@
 import { StoreState } from './types';
 
-export const selectDetailsForSubject = (state: StoreState) => {
+export const select3mcQuestionsForSubject = (state: StoreState) => {
   return state.mc3questions;
 };
