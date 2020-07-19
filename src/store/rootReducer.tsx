@@ -5,6 +5,7 @@ import schoolInfo from './schoolInfo/reducer';
 import student from './student/reducer';
 import teacher from './teacher/reducer';
 import subjectDetailsStudent from './subjectDetailsStudent/reducer';
+import test from './test/reducer';
 
 export default combineReducers({
   overviewStudent,
@@ -13,4 +14,5 @@ export default combineReducers({
   student,
   subjectDetailsStudent,
   teacher,
+  test,
 });

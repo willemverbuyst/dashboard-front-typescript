@@ -103,3 +103,7 @@ export type AddNewSubject = {
   name: string;
   id: number;
 };
+
+export type MC3questions = {
+  mc3questions: string[] | null;
+};
