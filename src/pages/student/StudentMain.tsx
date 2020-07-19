@@ -9,6 +9,7 @@ import { getResultsForStudentMain } from '../../store/overviewStudent/actions';
 import { selectOverviewStudent } from '../../store/overviewStudent/selectors';
 import DoughnutChart from '../../components/charts/DoughnutChart';
 import BarChart from '../../components/charts/BarChart';
+import PolarChart from '../../components/charts/PolarChart';
 import { Layout, Row, Col } from 'antd';
 
 const { Content } = Layout;
@@ -47,6 +48,13 @@ export default function StudentMain() {
         averages.reduce((a, b) => a + b * 1, 0) / averages.length
       );
       const subjectLabel = subjects && subjects.map((subject) => subject.name);
+
+      const polarData = subjectSorted.map((subject) => subject.length);
+      const polarLabels = subjects.map((subject) => subject.name);
+      const polarColor = subjectSorted.map(
+        (subject) =>
+          '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6)
+      );
       return results[0] ? (
         <>
           <Row justify="space-around">
@@ -74,7 +82,16 @@ export default function StudentMain() {
             </Col>
           </Row>
           <Row justify="center">
-            {/* <Col style={{ width: 650 }}>{renderPolar(subjectSorted)}</Col> */}
+            <Col style={{ width: 650 }}>
+              <PolarChart
+                data={polarData}
+                labels={polarLabels}
+                color={polarColor}
+                title={`You have done a total of ${
+                  subjectSorted.flat().length
+                } tests so far`.toUpperCase()}
+              />
+            </Col>
           </Row>
         </>
       ) : (
