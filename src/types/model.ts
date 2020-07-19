@@ -97,3 +97,9 @@ export type InputBarChart = {
   title: string;
   max: number;
 };
+
+export type InputDoughnutChart = {
+  data: number[];
+  color: string[];
+  title: string;
+};

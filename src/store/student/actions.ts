@@ -13,6 +13,7 @@ import {
   LoginCredentials,
   SignUpCredentials,
 } from '../../types/model';
+import { removeResults } from '../overviewStudent/actions';
 
 export const loginSuccessStudent = (student: Student): StudentActionTypes => {
   return {
@@ -54,6 +55,7 @@ export const loginStudent = (credentials: LoginCredentials) => {
 export const studentLoggingOut = () => {
   return function thunk(dispatch: Dispatch, getState: GetStudentState) {
     dispatch(logOutStudent());
+    dispatch(removeResults());
   };
 };
 
