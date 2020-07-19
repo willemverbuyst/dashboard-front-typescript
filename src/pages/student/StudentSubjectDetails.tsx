@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import BarChart from '../../components/charts/BarChart';
+import DoughnutChart from '../../components/charts/DoughnutChart';
 import {
   selectStudentId,
   selectStudentSubjects,
@@ -58,6 +59,27 @@ export default function StudentSubjectDetails() {
           <div style={{ fontSize: '1.4rem' }}>tests so far</div>
         </Col>
       );
+    } else {
+      return null;
+    }
+  };
+
+  const renderAverage = () => {
+    if (subjects && results) {
+      const data = results.map(({ result }) => result);
+      const average = Math.round(
+        (data.reduce((a, b) => a + b, 0) / (data.length * 3)) * 100
+      );
+      const color = ['#A026FF', '#eee'];
+      return average ? (
+        <Col style={{ width: 450, paddingBottom: 60 }}>
+          <DoughnutChart
+            color={color}
+            data={[average, 100 - average]}
+            title={`YOUR AVERAGE IS ${average}%`}
+          />
+        </Col>
+      ) : null;
     } else {
       return null;
     }
@@ -160,7 +182,7 @@ export default function StudentSubjectDetails() {
         <Content className="site-layout-background">
           <Row justify="space-around">
             {renderAmount()}
-            <br /> AVERAGE
+            {renderAverage()}
             {renderTestButton()}
           </Row>
           {renderBarChart()}
