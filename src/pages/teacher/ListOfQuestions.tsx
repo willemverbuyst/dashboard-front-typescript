@@ -32,10 +32,10 @@ export default function ListOfQuestions() {
   };
 
   const renderQuestions = () => {
-    return (
-      <Collapse style={{ width: 650 }}>
-        {questions &&
-          questions.map(({ text, answers }, i) => (
+    if (questions) {
+      return (
+        <Collapse style={{ width: 650 }}>
+          {questions.map(({ text, answers }, i) => (
             <Panel header={text} key={i}>
               <ol>
                 {answers.map(({ text, correct }, i) => (
@@ -53,47 +53,49 @@ export default function ListOfQuestions() {
               </ol>
             </Panel>
           ))}
-      </Collapse>
-    );
+        </Collapse>
+      );
+    }
   };
 
   const renderSubjectsSelector = () => {
-    return (
-      <Form
-        style={{ justifyContent: 'center' }}
-        name="basic"
-        initialValues={{ remember: true }}
-      >
-        <Form.Item
-          name="subject"
-          rules={[{ required: true, message: 'Please select a subject' }]}
+    if (subjects) {
+      return (
+        <Form
+          style={{ justifyContent: 'center' }}
+          name="basic"
+          initialValues={{ remember: true }}
         >
-          <Select
-            placeholder="select a subject"
-            value={subject}
-            style={{ width: 160 }}
-            onChange={(e) => setSubject(e)}
+          <Form.Item
+            name="subject"
+            rules={[{ required: true, message: 'Please select a subject' }]}
           >
-            {subjects &&
-              subjects.map(({ name, id }, i) => (
+            <Select
+              placeholder="select a subject"
+              value={subject}
+              style={{ width: 160 }}
+              onChange={(e) => setSubject(e)}
+            >
+              {subjects.map(({ name, id }, i) => (
                 <Option key={i} value={id}>
                   {name}
                 </Option>
               ))}
-          </Select>
-        </Form.Item>
-        <Form.Item>
-          <Button
-            style={{ width: 160, backgroundColor: '#B81D9D', border: 'none' }}
-            type="primary"
-            htmlType="submit"
-            onClick={getListOfQuestions}
-          >
-            Show list
-          </Button>
-        </Form.Item>
-      </Form>
-    );
+            </Select>
+          </Form.Item>
+          <Form.Item>
+            <Button
+              style={{ width: 160, backgroundColor: '#B81D9D', border: 'none' }}
+              type="primary"
+              htmlType="submit"
+              onClick={getListOfQuestions}
+            >
+              Show list
+            </Button>
+          </Form.Item>
+        </Form>
+      );
+    }
   };
 
   return (
@@ -103,10 +105,8 @@ export default function ListOfQuestions() {
           <Row justify="center" style={{ padding: '24px' }}>
             {'Select a subject to get all the current questions in the database for that subject.'.toUpperCase()}
           </Row>
-          <Row justify="center">
-            {subjects ? renderSubjectsSelector() : null}
-          </Row>
-          <Row justify="center">{questions ? renderQuestions() : null}</Row>
+          <Row justify="center">{renderSubjectsSelector()}</Row>
+          <Row justify="center">{renderQuestions()}</Row>
         </Content>
       </Layout>
     </Layout>

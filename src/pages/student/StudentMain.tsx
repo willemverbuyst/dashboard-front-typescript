@@ -55,7 +55,7 @@ export default function StudentMain() {
         (subject) =>
           '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6)
       );
-      return results[0] ? (
+      return (
         <>
           <Row justify="space-around">
             <Col style={{ width: 450, paddingBottom: 80 }}>
@@ -92,8 +92,6 @@ export default function StudentMain() {
             </Col>
           </Row>
         </>
-      ) : (
-        <>No data yet</>
       );
     }
   };
@@ -101,9 +99,7 @@ export default function StudentMain() {
   return (
     <Layout>
       <Layout style={{ padding: '24px', minHeight: '92vh' }}>
-        <Content className="site-layout-background">
-          {results && subjects ? renderData() : null}
-        </Content>
+        <Content className="site-layout-background">{renderData()}</Content>
       </Layout>
     </Layout>
   );

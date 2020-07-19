@@ -19,17 +19,16 @@ export default function SideBar() {
   };
 
   const renderSubjectNav = () => {
-    return (
-      subjects &&
-      subjects.map(({ name, id }, i) => (
+    if (subjects) {
+      return subjects.map(({ name, id }, i) => (
         <Menu.Item
           key={i + 2}
           onClick={() => goTo(`/students/${studentId}/subjects/${id}`)}
         >
           {name.charAt(0).toUpperCase() + name.slice(1)}
         </Menu.Item>
-      ))
-    );
+      ));
+    }
   };
 
   return (
@@ -42,7 +41,7 @@ export default function SideBar() {
         <Menu.Item key="1" onClick={() => goTo(`/students/${studentId}`)}>
           Home
         </Menu.Item>
-        {subjects ? renderSubjectNav() : null}
+        {renderSubjectNav()}
       </Menu>
     </Sider>
   );

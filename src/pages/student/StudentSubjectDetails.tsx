@@ -59,8 +59,6 @@ export default function StudentSubjectDetails() {
           <div style={{ fontSize: '1.4rem' }}>tests so far</div>
         </Col>
       );
-    } else {
-      return null;
     }
   };
 
@@ -80,8 +78,6 @@ export default function StudentSubjectDetails() {
           />
         </Col>
       ) : null;
-    } else {
-      return null;
     }
   };
 
@@ -114,8 +110,6 @@ export default function StudentSubjectDetails() {
           </Button>
         </Col>
       );
-    } else {
-      return null;
     }
   };
 
@@ -171,8 +165,6 @@ export default function StudentSubjectDetails() {
           </Row>
         </>
       );
-    } else {
-      return null;
     }
   };
 

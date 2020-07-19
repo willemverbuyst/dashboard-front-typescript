@@ -28,31 +28,29 @@ export default function SideBar() {
   };
 
   const renderSubjectNav = () => {
-    return (
-      subjects &&
-      subjects.map(({ name, id }, i) => (
+    if (subjects) {
+      return subjects.map(({ name, id }, i) => (
         <Menu.Item
           key={`sub2-${i + 1}`}
           onClick={() => goTo(`/teachers/${teacherId}/subjects/${id}`)}
         >
           {name.charAt(0).toUpperCase() + name.slice(1)}
         </Menu.Item>
-      ))
-    );
+      ));
+    }
   };
 
   const renderStudentNav = () => {
-    return (
-      students &&
-      students.map(({ name, id }, i) => (
+    if (students) {
+      return students.map(({ name, id }, i) => (
         <Menu.Item
           key={`sub3-${i + 1}`}
           onClick={() => goTo(`/teachers/${teacherId}/students/${id}`)}
         >
           {name}
         </Menu.Item>
-      ))
-    );
+      ));
+    }
   };
 
   return (
@@ -65,15 +63,15 @@ export default function SideBar() {
         <Menu.Item
           key="sub1"
           icon={<HomeOutlined />}
-          onClick={() => goTo('/teachers/1')}
+          onClick={() => goTo(`/teachers/${teacherId}`)}
         >
           Home
         </Menu.Item>
         <SubMenu key="sub2" icon={<LaptopOutlined />} title="Subjects">
-          {subjects ? renderSubjectNav() : null}
+          {renderSubjectNav()}
         </SubMenu>
         <SubMenu key="sub3" icon={<UserOutlined />} title="Students">
-          {students ? renderStudentNav() : null}
+          {renderStudentNav()}
         </SubMenu>
         <SubMenu key="sub4" icon={<DatabaseOutlined />} title="Admin">
           <Menu.Item
