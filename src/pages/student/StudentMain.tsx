@@ -83,36 +83,6 @@ export default function StudentMain() {
     }
   };
 
-  // const renderAverage = (averages: number[]) => {
-  //   const generalScore = Math.round(
-  //     averages.reduce((a, b) => a + b * 1, 0) / averages.length
-  //   );
-  //   return generalScore ? (
-  //     <DoughnutChart
-  //       data={[generalScore, 100 - generalScore]}
-  //       color={['#8F1CB8', '#eee']}
-  //       title={`YOUR HAVE A GENERAL SCORE OF ${generalScore}%`}
-  //     />
-  //   ) : (
-  //     <p>YOU DON'T HAVE ENOUGH DATA YET TO DISPLAY AVERAGE</p>
-  //   );
-  // };
-
-  // const renderAveragePerSubject = (averages: number[]) => {
-  //   const subjectLabel = subjects && subjects.map((subject) => subject.name);
-  //   const color = [];
-  //   for (let i = 0; i < averages.length; i++) color.push('#008080');
-  //   return (
-  //     <BarChart
-  //       data={averages}
-  //       labels={subjectLabel}
-  //       color={color}
-  //       title={'AVERAGE SCORE PER SUBJECT'}
-  //       max={100}
-  //     />
-  //   );
-  // };
-
   return (
     <Layout>
       <Layout style={{ padding: '24px', minHeight: '92vh' }}>

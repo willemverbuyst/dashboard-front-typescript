@@ -109,3 +109,10 @@ export type InputDoughnutChart = {
   color: string[];
   title: string;
 };
+
+export type InputPolarChart = {
+  labels: string[];
+  data: number[];
+  color: string[];
+  title: string;
+};
