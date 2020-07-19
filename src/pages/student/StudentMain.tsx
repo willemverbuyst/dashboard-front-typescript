@@ -47,8 +47,8 @@ export default function StudentMain() {
       const generalScore = Math.round(
         averages.reduce((a, b) => a + b * 1, 0) / averages.length
       );
-      const subjectLabel = subjects && subjects.map((subject) => subject.name);
-
+      const barSubjectLabel =
+        subjects && subjects.map((subject) => subject.name);
       const polarData = subjectSorted.map((subject) => subject.length);
       const polarLabels = subjects.map((subject) => subject.name);
       const polarColor = subjectSorted.map(
@@ -66,19 +66,17 @@ export default function StudentMain() {
                   title={`YOUR HAVE A GENERAL SCORE OF ${generalScore}%`}
                 />
               ) : (
-                <p>YOU DON'T HAVE ENOUGH DATA YET TO DISPLAY AVERAGE</p>
+                <p>YOU DON'T HAVE ENOUGH DATA YET TO DISPLAY A GENERAL SCORE</p>
               )}
             </Col>
             <Col style={{ width: 450, paddingBottom: 80 }}>
-              {
-                <BarChart
-                  data={averages}
-                  labels={subjectLabel}
-                  color={averages.map((average) => '#008080')}
-                  title={'AVERAGE SCORE PER SUBJECT'}
-                  max={100}
-                />
-              }
+              <BarChart
+                data={averages}
+                labels={barSubjectLabel}
+                color={averages.map((average) => '#008080')}
+                title={'AVERAGE SCORE PER SUBJECT'}
+                max={100}
+              />
             </Col>
           </Row>
           <Row justify="center">

@@ -116,3 +116,11 @@ export type InputPolarChart = {
   color: string[];
   title: string;
 };
+
+export type InputBarChartTest = {
+  labels: string[];
+  data: number[];
+  color: string[];
+  title: string;
+  max: number;
+};
