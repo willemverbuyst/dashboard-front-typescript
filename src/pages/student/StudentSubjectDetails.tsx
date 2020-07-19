@@ -19,6 +19,7 @@ export default function StudentSubjectDetails() {
   const { subjectid } = useParams();
   const history = useHistory();
   const token = useSelector(selectStudentToken);
+  const studentId = useSelector(selectStudentId);
   const results = useSelector(selectDetailsForSubject);
   const subjects = useSelector(selectStudentSubjects);
   const [radio, setRadio] = useState('date');
@@ -33,13 +34,50 @@ export default function StudentSubjectDetails() {
     dispatch(getResultsForSubject(subjectid));
   }, [dispatch, subjectid]);
 
-  const renderBarChart = () => {
-    console.log(results);
+  const goTo = (goto: string) => {
+    history.push(goto);
+  };
 
+  const renderTestButton = () => {
+    if (subjects && results) {
+      return (
+        <Col
+          style={{
+            width: 300,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: 60,
+          }}
+        >
+          <Button
+            shape="circle"
+            onClick={() =>
+              goTo(`/students/${studentId}/subjects/${subjectid}/test`)
+            }
+            style={{
+              height: 120,
+              width: 120,
+              border: '2px solid #B81D9D',
+              color: '#B81D9D',
+              fontSize: '1.4rem',
+            }}
+          >
+            Take a test
+          </Button>
+        </Col>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  const renderBarChart = () => {
     if (subjects && results) {
       const subject = subjects.filter(
         (subject) => subject.id === subjectid * 1
       )[0].name;
+
       const sortedData =
         radio === 'date'
           ? results.sort(
@@ -87,7 +125,7 @@ export default function StudentSubjectDetails() {
         </>
       );
     } else {
-      return <p>NO TESTS DONE YET</p>;
+      return null;
     }
   };
 
@@ -98,7 +136,7 @@ export default function StudentSubjectDetails() {
           <Row justify="space-around">
             AMMOUNT OF TESTS
             <br /> AVERAGE
-            <br /> TESTBUTTON
+            {renderTestButton()}
           </Row>
           {renderBarChart()}
         </Content>
