@@ -8,7 +8,8 @@ import {
 import { getResultsForStudentMain } from '../../store/overviewStudent/actions';
 import { selectOverviewStudent } from '../../store/overviewStudent/selectors';
 import DoughnutChart from '../../components/charts/DoughnutChart';
-import { Layout } from 'antd';
+import BarChart from '../../components/charts/BarChart';
+import { Layout, Row, Col } from 'antd';
 
 const { Content } = Layout;
 
@@ -42,25 +43,75 @@ export default function StudentMain() {
             100
         )
       );
-      console.log(results);
-      return <p>{renderAverage(averages)}</p>;
+      const generalScore = Math.round(
+        averages.reduce((a, b) => a + b * 1, 0) / averages.length
+      );
+      const subjectLabel = subjects && subjects.map((subject) => subject.name);
+      return results[0] ? (
+        <>
+          <Row justify="space-around">
+            <Col style={{ width: 450, paddingBottom: 80 }}>
+              {generalScore ? (
+                <DoughnutChart
+                  data={[generalScore, 100 - generalScore]}
+                  color={['#8F1CB8', '#eee']}
+                  title={`YOUR HAVE A GENERAL SCORE OF ${generalScore}%`}
+                />
+              ) : (
+                <p>YOU DON'T HAVE ENOUGH DATA YET TO DISPLAY AVERAGE</p>
+              )}
+            </Col>
+            <Col style={{ width: 450, paddingBottom: 80 }}>
+              {
+                <BarChart
+                  data={averages}
+                  labels={subjectLabel}
+                  color={averages.map((average) => '#008080')}
+                  title={'AVERAGE SCORE PER SUBJECT'}
+                  max={100}
+                />
+              }
+            </Col>
+          </Row>
+          <Row justify="center">
+            {/* <Col style={{ width: 650 }}>{renderPolar(subjectSorted)}</Col> */}
+          </Row>
+        </>
+      ) : (
+        <>No data yet</>
+      );
     }
   };
 
-  const renderAverage = (averages: number[]) => {
-    const generalScore = Math.round(
-      averages.reduce((a, b) => a + b * 1, 0) / averages.length
-    );
-    return generalScore ? (
-      <DoughnutChart
-        data={[generalScore, 100 - generalScore]}
-        color={['#8F1CB8', '#eee']}
-        title={`YOUR HAVE A GENERAL SCORE OF ${generalScore}%`}
-      />
-    ) : (
-      <p>YOU DON'T HAVE ENOUGH DATA YET TO DISPLAY AVERAGE</p>
-    );
-  };
+  // const renderAverage = (averages: number[]) => {
+  //   const generalScore = Math.round(
+  //     averages.reduce((a, b) => a + b * 1, 0) / averages.length
+  //   );
+  //   return generalScore ? (
+  //     <DoughnutChart
+  //       data={[generalScore, 100 - generalScore]}
+  //       color={['#8F1CB8', '#eee']}
+  //       title={`YOUR HAVE A GENERAL SCORE OF ${generalScore}%`}
+  //     />
+  //   ) : (
+  //     <p>YOU DON'T HAVE ENOUGH DATA YET TO DISPLAY AVERAGE</p>
+  //   );
+  // };
+
+  // const renderAveragePerSubject = (averages: number[]) => {
+  //   const subjectLabel = subjects && subjects.map((subject) => subject.name);
+  //   const color = [];
+  //   for (let i = 0; i < averages.length; i++) color.push('#008080');
+  //   return (
+  //     <BarChart
+  //       data={averages}
+  //       labels={subjectLabel}
+  //       color={color}
+  //       title={'AVERAGE SCORE PER SUBJECT'}
+  //       max={100}
+  //     />
+  //   );
+  // };
 
   return (
     <Layout>
