@@ -12,7 +12,6 @@ export default function PolarChart({
     labels: labels,
     datasets: [
       {
-        label: '',
         data: data,
         backgroundColor: color,
         borderWidth: 4,

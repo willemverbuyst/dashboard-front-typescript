@@ -13,7 +13,6 @@ export default function LineChart({
     labels: labels,
     datasets: [
       {
-        label: '',
         data: data,
         backgroundColor: color,
         borderWidth: 0,

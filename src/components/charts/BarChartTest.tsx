@@ -13,7 +13,6 @@ export default function BarChartTest({
     labels: labels,
     datasets: [
       {
-        label: '',
         data: data,
         backgroundColor: color,
         borderWidth: 0,

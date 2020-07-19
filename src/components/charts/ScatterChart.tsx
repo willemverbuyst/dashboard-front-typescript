@@ -10,7 +10,6 @@ export default function ScatterChart({
   const chartData = {
     datasets: [
       {
-        label: '',
         data: data,
         backgroundColor: color,
         borderWidth: 0,
