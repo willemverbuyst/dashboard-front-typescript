@@ -6,7 +6,8 @@ import {
   selectStudentSubjects,
   selectStudentToken,
 } from '../../store/student/selectors';
-
+import { getResultsForSubject } from '../../store/subjectDetailsStudent/actions';
+import { selectDetailsForSubject } from '../../store/subjectDetailsStudent/selectors';
 import { Layout, Button, Row, Col, Radio } from 'antd';
 
 const { Content } = Layout;
@@ -16,6 +17,7 @@ export default function StudentSubjectDetails() {
   const { subjectid } = useParams();
   const history = useHistory();
   const token = useSelector(selectStudentToken);
+  const results = useSelector(selectDetailsForSubject);
   const subjects = useSelector(selectStudentSubjects);
 
   useEffect(() => {
@@ -23,6 +25,12 @@ export default function StudentSubjectDetails() {
       history.push('/');
     }
   });
+
+  useEffect(() => {
+    dispatch(getResultsForSubject(subjectid));
+  }, [dispatch, subjectid]);
+
+  console.log(results);
 
   return (
     <Layout>
