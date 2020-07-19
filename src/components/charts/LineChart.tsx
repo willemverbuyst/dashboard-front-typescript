@@ -1,14 +1,14 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
-import { InputBarChartTest } from '../../types/modelsCharts';
+import { Line } from 'react-chartjs-2';
+import { InputLineChart } from '../../types/modelsCharts';
 
-export default function BarChartTest({
+export default function LineChart({
   labels,
   data,
   color,
   title,
   max,
-}: InputBarChartTest) {
+}: InputLineChart) {
   const chartData = {
     labels: labels,
     datasets: [
@@ -22,13 +22,12 @@ export default function BarChartTest({
   };
 
   return (
-    <Bar
+    <Line
       data={chartData}
       options={{
         tooltips: { enabled: false },
         legend: {
           display: false,
-          labels: { fontSize: 16 },
         },
         responsive: true,
         title: { text: title, display: true, padding: 15, fontSize: 14 },
@@ -39,8 +38,8 @@ export default function BarChartTest({
                 autoSkip: true,
                 maxTicksLimit: 10,
                 beginAtZero: true,
-                display: false,
-                suggestedMax: 20,
+                stepSize: 1,
+                suggestedMax: max,
               },
               gridLines: {
                 display: false,

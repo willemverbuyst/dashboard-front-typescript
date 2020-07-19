@@ -1,6 +1,6 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import { InputDoughnutChart } from '../../types/model';
+import { InputDoughnutChart } from '../../types/modelsCharts';
 
 export default function DoughnutChart({
   data,

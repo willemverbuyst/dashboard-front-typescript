@@ -1,6 +1,6 @@
 import React from 'react';
 import { Polar } from 'react-chartjs-2';
-import { InputPolarChart } from '../../types/model';
+import { InputPolarChart } from '../../types/modelsCharts';
 
 export default function PolarChart({
   labels,
