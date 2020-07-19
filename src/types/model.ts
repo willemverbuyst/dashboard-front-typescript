@@ -33,6 +33,10 @@ export type Result = {
   subject: number;
 };
 
+export type SubjectDetailsStudent = {
+  all: string[] | null;
+};
+
 export type SelectTeacher = {
   name: string;
   id: number;
