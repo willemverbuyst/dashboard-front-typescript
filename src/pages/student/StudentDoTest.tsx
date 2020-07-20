@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-
+import NavigationPrompt from 'react-router-navigation-prompt';
 import { useDispatch, useSelector } from 'react-redux';
 import MultipleChoiceQuestion from '../../components/MultipleChoiceQuestion';
 import {
@@ -11,7 +11,7 @@ import {
 import { getMcQuestionsForTest, submitTest } from '../../store/test/actions';
 import { select3mcQuestionsForSubject } from '../../store/test/selectors';
 import { AnswerTest } from '../../types/modelsTest';
-import { Layout, Button } from 'antd';
+import { Layout, Button, Modal } from 'antd';
 
 const { Content } = Layout;
 
@@ -32,6 +32,7 @@ export default function StudentDoTest() {
     answer3: 0,
   });
   const [testDone, setTestDone] = useState(false);
+  const [blockNavigation, setBlockNavigation] = useState(true);
 
   useEffect(() => {
     if (token === null) {
@@ -62,13 +63,14 @@ export default function StudentDoTest() {
   const onFinish = () => {
     if (studentId) {
       setTestDone(true);
-      console.log('FINISH:', mcQuestions);
       dispatch(submitTest(studentId, subjectid, mcQuestions));
       setMcQuestions({ ...mcQuestions, answer1: 0, answer2: 0, answer3: 0 });
+      setBlockNavigation(false);
     }
   };
 
   const doAnotherTest = () => {
+    setBlockNavigation(true);
     setTestDone(false);
     dispatch(getMcQuestionsForTest(subjectid));
   };
@@ -139,6 +141,36 @@ export default function StudentDoTest() {
 
   return (
     <Layout>
+      <NavigationPrompt
+        beforeConfirm={(clb) => {
+          studentId &&
+            dispatch(
+              submitTest(studentId, subjectid, {
+                question1: mcQuestions.question1,
+                question2: mcQuestions.question2,
+                question3: mcQuestions.question3,
+                answer1: 0,
+                answer2: 0,
+                answer3: 0,
+              })
+            );
+          clb();
+        }}
+        when={blockNavigation}
+      >
+        {({ onConfirm, onCancel }) => (
+          <Modal
+            visible
+            title="Are you sure you want to leave?"
+            onCancel={onCancel}
+            onOk={onConfirm}
+          >
+            <div>
+              If you leave this page your test score will be set to zero!
+            </div>
+          </Modal>
+        )}
+      </NavigationPrompt>
       <Layout style={{ padding: '24px', minHeight: '92vh' }}>
         <Content className="site-layout-background">{renderMCQ()}</Content>
       </Layout>
