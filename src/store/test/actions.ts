@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
-import { MC3questions } from '../../types/modelsTest';
+import { MC3questions, AnswerTest } from '../../types/modelsTest';
 import {
   FETCH_MC_QUESTIONS,
   REMOVE_MC_QUESTIONS,
@@ -54,37 +54,43 @@ export const getMcQuestionsForTest = (id: number) => {
   };
 };
 
-// export function submitTest(studentId, subjectId, q1, q2, q3, a1, a2, a3) {
-//   return async function thunk(dispatch, getState) {
-//     const token = getState().student.token;
-//     dispatch(appLoading());
-//     try {
-//       const response = await axios.post(
-//         `${apiUrl}/questions/3qtest`,
-//         {
-//           studentId,
-//           subjectId,
-//           q1,
-//           q2,
-//           q3,
-//           a1,
-//           a2,
-//           a3,
-//         },
-//         { headers: { Authorization: `Bearer ${token}` } }
-//       );
+export function submitTest(
+  studentId: number,
+  subjectId: number,
+  mcQuestions: AnswerTest
+) {
+  return async function thunk(dispatch: any, getState: GetStudentState) {
+    const token = getState().student.token;
+    dispatch(appLoading());
+    try {
+      const response = await axios.post(
+        `${apiUrl}/questions/3qtest`,
+        {
+          studentId,
+          subjectId,
+          q1: mcQuestions.question1,
+          q2: mcQuestions.question2,
+          q3: mcQuestions.question3,
+          a1: mcQuestions.answer1,
+          a2: mcQuestions.answer2,
+          a3: mcQuestions.answer3,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-//       dispatch(showMessageWithTimeout('success', true, response.data.message));
-//       dispatch(appDoneLoading());
-//     } catch (error) {
-//       if (error.response) {
-//         console.log(error.response.data.message);
-//         dispatch(setMessage('danger', true, error.response.data.message));
-//       } else {
-//         console.log(error.message);
-//         dispatch(setMessage('danger', true, error.message));
-//       }
-//       dispatch(appDoneLoading());
-//     }
-//   };
-// }
+      dispatch(
+        showMessageWithTimeout('success', true, response.data.message, 1500)
+      );
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage('error', true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage('error', true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+}

@@ -8,7 +8,7 @@ import {
   selectStudentSubjects,
   selectStudentToken,
 } from '../../store/student/selectors';
-import { getMcQuestionsForTest } from '../../store/test/actions';
+import { getMcQuestionsForTest, submitTest } from '../../store/test/actions';
 import { select3mcQuestionsForSubject } from '../../store/test/selectors';
 import { AnswerTest } from '../../types/modelsTest';
 import { Layout, Button } from 'antd';
@@ -60,8 +60,12 @@ export default function StudentDoTest() {
   };
 
   const onFinish = () => {
-    setTestDone(true);
-    console.log('FINISH:', mcQuestions);
+    if (studentId) {
+      setTestDone(true);
+      console.log('FINISH:', mcQuestions);
+      dispatch(submitTest(studentId, subjectid, mcQuestions));
+      setMcQuestions({ ...mcQuestions, answer1: 0, answer2: 0, answer3: 0 });
+    }
   };
 
   const doAnotherTest = () => {
