@@ -8,26 +8,30 @@ import {
   MC3questionsFetched,
 } from './types';
 import { GetStudentState } from '../student/types';
+import {
+  appLoading,
+  appDoneLoading,
+  setMessage,
+  showMessageWithTimeout,
+} from '../appState/actions';
 
-export function questionsFetched(
-  mc3questions: MC3questions
-): MC3questionsFetched {
+const questionsFetched = (mc3questions: MC3questions): MC3questionsFetched => {
   return {
     type: FETCH_MC_QUESTIONS,
     mc3questions,
   };
-}
+};
 
-export function removeQuestions() {
+export const removeQuestions = () => {
   return {
     type: REMOVE_MC_QUESTIONS,
   };
-}
+};
 
-export function getMcQuestionsForTest(id: number) {
-  return async function thunk(dispatch: Dispatch, getState: GetStudentState) {
+export const getMcQuestionsForTest = (id: number) => {
+  return async (dispatch: Dispatch, getState: GetStudentState) => {
     const token = getState().student.token;
-
+    dispatch(appLoading());
     dispatch(removeQuestions());
     try {
       const response = await axios.get(`${apiUrl}/questions/3qtest/${id}`, {
@@ -36,15 +40,19 @@ export function getMcQuestionsForTest(id: number) {
       const mc3questions = response.data;
 
       dispatch(questionsFetched(mc3questions));
+      dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
+        dispatch(setMessage('error', true, error.response.data.message));
       } else {
         console.log(error.message);
+        dispatch(setMessage('error', true, error.message));
       }
+      dispatch(appDoneLoading());
     }
   };
-}
+};
 
 // export function submitTest(studentId, subjectId, q1, q2, q3, a1, a2, a3) {
 //   return async function thunk(dispatch, getState) {

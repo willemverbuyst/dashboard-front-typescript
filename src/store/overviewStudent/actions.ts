@@ -9,24 +9,25 @@ import {
 import { selectStudentToken } from '../student/selectors';
 import { Results } from '../../types/model';
 import { GetStudentState } from '../student/types';
+import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 
-export function resultsFetched(results: Results): overviewStudentTypes {
+const resultsFetched = (results: Results): overviewStudentTypes => {
   return {
     type: FETCH_RESULTS_FOR_STUDENT_MAIN,
     results,
   };
-}
+};
 
-export function removeResults() {
+export const removeResults = () => {
   return {
     type: REMOVE_RESULTS_FOR_STUDENT_MAIN,
   };
-}
+};
 
-export function getResultsForStudentMain() {
-  return async function thunk(dispatch: Dispatch, getState: GetStudentState) {
+export const getResultsForStudentMain = () => {
+  return async (dispatch: Dispatch, getState: GetStudentState) => {
     const token = selectStudentToken(getState());
-
+    dispatch(appLoading());
     try {
       const response = await axios.get(`${apiUrl}/data/main`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -34,12 +35,16 @@ export function getResultsForStudentMain() {
       const results = response.data;
 
       dispatch(resultsFetched(results));
+      dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
+        dispatch(setMessage('error', true, error.response.data.message));
       } else {
         console.log(error.message);
+        dispatch(setMessage('error', true, error.message));
       }
+      dispatch(appDoneLoading());
     }
   };
-}
+};

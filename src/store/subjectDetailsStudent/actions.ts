@@ -8,25 +8,26 @@ import {
   StudentDetailsTypes,
 } from './types';
 import { GetStudentState } from '../student/types';
+import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 
-export function resultsFetched(
+const resultsFetched = (
   subjectDetails: SubjectDetailsStudent
-): StudentDetailsTypes {
+): StudentDetailsTypes => {
   return {
     type: FETCH_RESULTS_FOR_SUBJECT,
     subjectDetails,
   };
-}
-export function removeDetailsStudent() {
+};
+export const removeDetailsStudent = () => {
   return {
     type: REMOVE_RESULTS_FOR_SUBJECT,
   };
-}
+};
 
-export function getResultsForSubject(id: number) {
-  return async function thunk(dispatch: Dispatch, getState: GetStudentState) {
+export const getResultsForSubject = (id: number) => {
+  return async (dispatch: Dispatch, getState: GetStudentState) => {
     const token = getState().student.token;
-
+    dispatch(appLoading());
     try {
       const response = await axios.get(`${apiUrl}/data/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -34,12 +35,16 @@ export function getResultsForSubject(id: number) {
       const subjectDetails = response.data;
 
       dispatch(resultsFetched(subjectDetails));
+      dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
+        dispatch(setMessage('error', true, error.response.data.message));
       } else {
         console.log(error.message);
+        dispatch(setMessage('error', true, error.message));
       }
+      dispatch(appDoneLoading());
     }
   };
-}
+};

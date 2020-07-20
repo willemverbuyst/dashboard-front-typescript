@@ -23,7 +23,7 @@ import { removeResults } from '../overviewStudent/actions';
 import { removeDetailsStudent } from '../subjectDetailsStudent/actions';
 import { removeQuestions } from '../test/actions';
 
-export const loginSuccessStudent = (student: Student): StudentActionTypes => {
+const loginSuccessStudent = (student: Student): StudentActionTypes => {
   return {
     type: LOGIN_SUCCESS_STUDENT,
     student,
@@ -35,7 +35,7 @@ const tokenStudentStillValid = (student: Student): StudentActionTypes => ({
   student,
 });
 
-export const logOutStudent = (): StudentActionTypes => ({
+const logOutStudent = (): StudentActionTypes => ({
   type: LOG_OUT_STUDENT,
 });
 

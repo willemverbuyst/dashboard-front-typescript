@@ -5,25 +5,31 @@ import { FETCH_QUESTIONS, ADD_QUESTION, QuestionActionTypes } from './types';
 import { Questions, PostNewQuestion, AddNewQuestion } from '../../types/model';
 import { GetTeacherState } from '../teacher/types';
 import { selectTeacherToken } from '../teacher/selectors';
+import {
+  appLoading,
+  appDoneLoading,
+  setMessage,
+  showMessageWithTimeout,
+} from '../appState/actions';
 
-export const questionsFetched = (questions: Questions): QuestionActionTypes => {
+const questionsFetched = (questions: Questions): QuestionActionTypes => {
   return {
     type: FETCH_QUESTIONS,
     questions,
   };
 };
 
-export function addQuestionToList(question: AddNewQuestion) {
+const addQuestionToList = (question: AddNewQuestion) => {
   return {
     type: ADD_QUESTION,
     question,
   };
-}
+};
 
-export function getQuestionsForSubject(id: number) {
-  return async function thunk(dispatch: Dispatch, getState: GetTeacherState) {
+export const getQuestionsForSubject = (id: number) => {
+  return async (dispatch: Dispatch, getState: GetTeacherState) => {
     const token = selectTeacherToken(getState());
-
+    dispatch(appLoading());
     try {
       const response = await axios.get(`${apiUrl}/questions/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -31,23 +37,27 @@ export function getQuestionsForSubject(id: number) {
       const questions = response.data;
 
       dispatch(questionsFetched(questions));
+      dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
+        dispatch(setMessage('error', true, error.response.data.message));
       } else {
         console.log(error.message);
+        dispatch(setMessage('error', true, error.message));
       }
+      dispatch(appDoneLoading());
     }
   };
-}
+};
 
-export function createQuestion(newQuestion: PostNewQuestion) {
+export const createQuestion = (newQuestion: PostNewQuestion) => {
   const { subject, question, answer1, answer2, answer3, answer4 } = newQuestion;
-  return async function thunk(dispatch: Dispatch, getState: GetTeacherState) {
+  return async (dispatch: any, getState: GetTeacherState) => {
     const token = getState().teacher.token;
-
+    dispatch(appLoading());
     try {
-      await axios.post(
+      const response = await axios.post(
         `${apiUrl}/questions`,
         {
           subjectId: subject,
@@ -59,24 +69,30 @@ export function createQuestion(newQuestion: PostNewQuestion) {
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-
+      dispatch(
+        showMessageWithTimeout('success', true, response.data.message, 1500)
+      );
       dispatch(
         addQuestionToList({
           text: question,
           answers: [
             { text: answer1, correct: true },
             { text: answer2, correct: false },
-            { text: answer1, correct: false },
-            { text: answer1, correct: false },
+            { text: answer3, correct: false },
+            { text: answer4, correct: false },
           ],
         })
       );
+      dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
+        dispatch(setMessage('error', true, error.response.data.message));
       } else {
         console.log(error.message);
+        dispatch(setMessage('error', true, error.message));
       }
+      dispatch(appDoneLoading());
     }
   };
-}
+};
