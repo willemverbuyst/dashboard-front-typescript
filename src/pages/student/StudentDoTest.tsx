@@ -11,7 +11,7 @@ import {
 import { getMcQuestionsForTest } from '../../store/test/actions';
 import { select3mcQuestionsForSubject } from '../../store/test/selectors';
 import { AnswerTest } from '../../types/modelsTest';
-import { Layout } from 'antd';
+import { Layout, Button } from 'antd';
 
 const { Content } = Layout;
 
@@ -31,6 +31,7 @@ export default function StudentDoTest() {
     answer2: 0,
     answer3: 0,
   });
+  const [testDone, setTestDone] = useState(false);
 
   useEffect(() => {
     if (token === null) {
@@ -58,18 +59,77 @@ export default function StudentDoTest() {
     }
   };
 
+  const onFinish = () => {
+    setTestDone(true);
+    console.log('FINISH:', mcQuestions);
+  };
+
+  const doAnotherTest = () => {
+    setTestDone(false);
+    dispatch(getMcQuestionsForTest(subjectid));
+  };
+
+  const goToMain = () => {
+    history.push(`/students/${studentId}/subjects/${subjectid}`);
+  };
+
   const renderMCQ = () => {
     if (questions && subjects) {
-      return questions.map(({ text, answers, id }, i) => (
-        <MultipleChoiceQuestion
-          key={i}
-          text={text}
-          answers={answers}
-          onChange={onPick}
-          questionNumber={i + 1}
-          questionId={id}
-        />
-      ));
+      return (
+        <>
+          {questions.map(({ text, answers, id }, i) => (
+            <MultipleChoiceQuestion
+              key={i}
+              text={text}
+              answers={answers}
+              onChange={onPick}
+              questionNumber={i + 1}
+              questionId={id}
+            />
+          ))}
+          {!testDone ? (
+            <Button
+              style={{
+                width: 160,
+                backgroundColor: '#B81D9D',
+                border: 'none',
+                color: '#fff',
+              }}
+              onClick={onFinish}
+            >
+              Finish
+            </Button>
+          ) : null}
+          {testDone ? (
+            <>
+              <p>{'You want to take another test?'.toUpperCase()}</p>
+              <Button
+                style={{
+                  width: 160,
+                  backgroundColor: '#4BC0E7',
+                  border: 'none',
+                  color: '#fff',
+                  marginRight: 20,
+                }}
+                onClick={doAnotherTest}
+              >
+                yes
+              </Button>
+              <Button
+                style={{
+                  width: 160,
+                  backgroundColor: '#B81D9D',
+                  border: 'none',
+                  color: '#fff',
+                }}
+                onClick={goToMain}
+              >
+                no
+              </Button>
+            </>
+          ) : null}
+        </>
+      );
     }
   };
 
