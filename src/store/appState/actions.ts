@@ -13,7 +13,7 @@ export const appDoneLoading = () => ({ type: APP_DONE_LOADING });
 export const clearMessage = () => ({ type: CLEAR_MESSAGE });
 
 export const setMessage = (
-  variant: string,
+  variant: 'success' | 'info' | 'warning' | 'error' | undefined,
   dismissable: boolean,
   text: string
 ): AppStateTypes => {
@@ -28,7 +28,7 @@ export const setMessage = (
 };
 
 export const showMessageWithTimeout = (
-  variant: string,
+  variant: 'success' | 'info' | 'warning' | 'error' | undefined,
   dismissable: boolean,
   text: string,
   timeOutMilliSeconds: number

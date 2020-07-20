@@ -4,7 +4,7 @@ export type AppState = {
 };
 
 export type Message = {
-  variant: string;
+  variant: 'success' | 'info' | 'warning' | 'error' | undefined;
   dismissable: boolean;
   text: string;
 };
