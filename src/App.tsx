@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Layout } from 'antd';
 import BarAtTheTop from './components/BarAtTheTop';
 import AlertBox from './components/AlertBox';
+import Spinner from './components/Spinner';
 import Sidebar from './components/Sidebar';
 import Home from './pages/home';
 import Login from './pages/Login';
@@ -15,12 +16,14 @@ import TeacherMainPage from './pages/teacher/TeacherMain';
 import ListOfQuestions from './pages/teacher/ListOfQuestions';
 import AddQuestionForm from './pages/teacher/AddQuestionForm';
 import AddSubject from './pages/teacher/AddSubject';
+import { selectAppLoading } from './store/appState/selectors';
 import { getStudentWithStoredToken } from './store/student/actions';
 import { getTeacherWithStoredToken } from './store/teacher/actions';
 import './App.css';
 
 function App() {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectAppLoading);
 
   useEffect(() => {
     dispatch(getTeacherWithStoredToken());
@@ -32,6 +35,7 @@ function App() {
       <AlertBox />
       <Layout>
         <Sidebar />
+        {isLoading ? <Spinner /> : null}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
