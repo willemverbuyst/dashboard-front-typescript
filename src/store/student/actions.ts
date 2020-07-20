@@ -13,6 +13,12 @@ import {
   LoginCredentials,
   SignUpCredentials,
 } from '../../types/model';
+import {
+  appLoading,
+  appDoneLoading,
+  showMessageWithTimeout,
+  setMessage,
+} from '../appState/actions';
 import { removeResults } from '../overviewStudent/actions';
 
 export const loginSuccessStudent = (student: Student): StudentActionTypes => {
@@ -33,7 +39,8 @@ const tokenStudentStillValid = (student: Student): StudentActionTypes => ({
 
 export const loginStudent = (credentials: LoginCredentials) => {
   const { email, password, status } = credentials;
-  return async (dispatch: Dispatch, getState: GetStudentState) => {
+  return async (dispatch: any, getState: GetStudentState) => {
+    dispatch(appLoading());
     try {
       const response = await axios.post(`${apiUrl}/login`, {
         email,
@@ -42,12 +49,17 @@ export const loginStudent = (credentials: LoginCredentials) => {
       });
 
       dispatch(loginSuccessStudent(response.data));
+      dispatch(showMessageWithTimeout('success', false, 'Welcome back!', 1500));
+      dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
+        dispatch(setMessage('error', true, error.response.data.message));
       } else {
         console.log(error.message);
+        dispatch(setMessage('error', true, error.message));
       }
+      dispatch(appDoneLoading());
     }
   };
 };

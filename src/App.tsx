@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Layout } from 'antd';
 import BarAtTheTop from './components/BarAtTheTop';
+import AlertBox from './components/AlertBox';
 import Sidebar from './components/Sidebar';
 import Home from './pages/home';
 import Login from './pages/Login';
@@ -28,6 +29,7 @@ function App() {
   return (
     <>
       <BarAtTheTop />
+      <AlertBox />
       <Layout>
         <Sidebar />
         <Switch>
