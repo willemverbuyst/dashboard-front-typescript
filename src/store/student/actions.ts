@@ -20,6 +20,8 @@ import {
   setMessage,
 } from '../appState/actions';
 import { removeResults } from '../overviewStudent/actions';
+import { removeDetailsStudent } from '../subjectDetailsStudent/actions';
+import { removeQuestions } from '../test/actions';
 
 export const loginSuccessStudent = (student: Student): StudentActionTypes => {
   return {
@@ -28,13 +30,13 @@ export const loginSuccessStudent = (student: Student): StudentActionTypes => {
   };
 };
 
-export const logOutStudent = (): StudentActionTypes => ({
-  type: LOG_OUT_STUDENT,
-});
-
 const tokenStudentStillValid = (student: Student): StudentActionTypes => ({
   type: TOKEN_STILL_VALID_STUDENT,
   student,
+});
+
+export const logOutStudent = (): StudentActionTypes => ({
+  type: LOG_OUT_STUDENT,
 });
 
 export const loginStudent = (credentials: LoginCredentials) => {
@@ -64,25 +66,19 @@ export const loginStudent = (credentials: LoginCredentials) => {
   };
 };
 
-export const studentLoggingOut = () => {
-  return function thunk(dispatch: Dispatch, getState: GetStudentState) {
-    dispatch(logOutStudent());
-    dispatch(removeResults());
-  };
-};
-
 export const getStudentWithStoredToken = () => {
   return async (dispatch: Dispatch, getState: GetStudentState) => {
     const token = getState().student.token;
 
     if (token === null) return;
-
+    dispatch(appLoading());
     try {
       // if token check if valid
       const response = await axios.get(`${apiUrl}/student`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(tokenStudentStillValid(response.data));
+      dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
         console.log(error.response.message);
@@ -90,13 +86,24 @@ export const getStudentWithStoredToken = () => {
         console.log(error);
       }
       dispatch(logOutStudent());
+      dispatch(appDoneLoading());
     }
+  };
+};
+
+export const studentLoggingOut = () => {
+  return function thunk(dispatch: Dispatch, getState: GetStudentState) {
+    dispatch(logOutStudent());
+    dispatch(removeResults());
+    dispatch(removeDetailsStudent());
+    dispatch(removeQuestions());
   };
 };
 
 export const createStudent = (signUpCredentials: SignUpCredentials) => {
   const { status, name, email, password, teacherId } = signUpCredentials;
-  return async (dispatch: Dispatch, getState: GetStudentState) => {
+  return async (dispatch: any, getState: GetStudentState) => {
+    dispatch(appLoading());
     try {
       const response = await axios.post(`${apiUrl}/signup`, {
         isStudent: status,
@@ -107,12 +114,19 @@ export const createStudent = (signUpCredentials: SignUpCredentials) => {
       });
 
       dispatch(loginSuccessStudent(response.data));
+      dispatch(
+        showMessageWithTimeout('success', true, response.data.message, 1500)
+      );
+      dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
+        dispatch(setMessage('error', true, error.response.data.message));
       } else {
         console.log(error.message);
+        dispatch(setMessage('error', true, error.message));
       }
+      dispatch(appDoneLoading());
     }
   };
 };
