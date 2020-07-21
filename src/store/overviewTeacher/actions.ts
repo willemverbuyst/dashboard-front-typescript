@@ -42,7 +42,7 @@ export function removeOverviewTeacher(): overviewTeacherTypes {
 }
 
 export function getSubjectForOverview(id: number) {
-  return async function thunk(dispatch: any, getState: GetTeacherState) {
+  return async function thunk(dispatch: Dispatch, getState: GetTeacherState) {
     const token = getState().teacher.token;
     dispatch(appLoading());
     try {

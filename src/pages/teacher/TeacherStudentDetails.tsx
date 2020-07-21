@@ -38,26 +38,28 @@ export default function TeacherStudentDetails() {
     dispatch(getStudentForOverview(studentid));
   }, [dispatch, studentid]);
 
-  // const renderCharts = () => {
-  //   const sortedResults =
-  //     selectionAverage === 'name'
-  //       ? [...results].sort((a, b) => a.name.localeCompare(b.name))
-  //       : [...results].sort((a, b) => b.score - a.score);
+  const renderDoughnutCharts = () => {
+    if (results && subjects) {
+      const sortedResults =
+        selectionAverage === 'name'
+          ? [...results].sort((a, b) => a.name.localeCompare(b.name))
+          : [...results].sort((a, b) => b.score - a.score);
 
-  //   const filteredResults = selectSubjectAverage
-  //     ? sortedResults.filter((result) => result.name === selectSubjectAverage)
-  //     : sortedResults;
+      const filteredResults = selectSubjectAverage
+        ? sortedResults.filter((result) => result.name === selectSubjectAverage)
+        : sortedResults;
 
-  //   return filteredResults.map(({ score, name }, i) => (
-  //     <Col key={i} style={{ width: 350, paddingBottom: 80 }}>
-  //       <DoughnutChart
-  //         data={[score, 100 - score]}
-  //         color={['#8F1CB8', '#eee']}
-  //         title={`${name} ${score}%`}
-  //       />
-  //     </Col>
-  //   ));
-  // };
+      return filteredResults.map(({ score, name }, i) => (
+        <Col key={i} style={{ width: 350, paddingBottom: 80 }}>
+          <DoughnutChart
+            data={[score, 100 - score]}
+            color={['#8F1CB8', '#eee']}
+            title={`${name} ${score}%`}
+          />
+        </Col>
+      ));
+    }
+  };
 
   // const renderTestsBar = () => {
   //   const sortedResults =
@@ -101,9 +103,7 @@ export default function TeacherStudentDetails() {
               textBtn="All subjects"
             />
           ) : null} */}
-          {/* <Row justify={'space-around'}>
-            {results && subjects ? renderCharts() : null}
-          </Row> */}
+          <Row justify={'space-around'}>{renderDoughnutCharts()}</Row>
           {/* {results ? (
             <SortAndSelect
               title="TESTS DONE"

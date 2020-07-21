@@ -1,5 +1,12 @@
 export type Students = {
-  students: string[] | [];
+  students: Student[] | [];
+};
+
+export type Student = {
+  name: string;
+  score: number;
+  subjectId: number;
+  tests: number;
 };
 
 export type Subjects = {
@@ -11,7 +18,7 @@ export type Main = {
 };
 
 export type OverviewTeacher = {
-  students: string[] | null;
+  students: Student[] | null;
   subjects: string[] | null;
   main: string[] | [];
 };
