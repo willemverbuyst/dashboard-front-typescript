@@ -32,6 +32,8 @@ export default function TeacherStudentDetails() {
     }
   });
 
+  console.log(results);
+
   useEffect(() => {
     dispatch(getStudentForOverview(studentid));
   }, [dispatch, studentid]);
@@ -74,6 +76,7 @@ export default function TeacherStudentDetails() {
           color={['#8F1CB8']}
           labels={[`${name}: ${tests} tests`]}
           title={``}
+          max={20}
         />
       </Col>
     ));
@@ -83,7 +86,7 @@ export default function TeacherStudentDetails() {
     <Layout>
       <Layout style={{ padding: '24px', minHeight: '92vh' }}>
         <Content className="site-layout-background">
-          {results ? (
+          {/* {results ? (
             <SortAndSelect
               title="AVERAGE GRADES"
               radio1="Name"
@@ -97,11 +100,11 @@ export default function TeacherStudentDetails() {
               placeholder="Select a subject"
               textBtn="All subjects"
             />
-          ) : null}
+          ) : null} */}
           <Row justify={'space-around'}>
             {results && subjects ? renderCharts() : null}
           </Row>
-          {results ? (
+          {/* {results ? (
             <SortAndSelect
               title="TESTS DONE"
               radio1="Name"
@@ -115,7 +118,7 @@ export default function TeacherStudentDetails() {
               placeholder="Select a subject"
               textBtn="All subjects"
             />
-          ) : null}
+          ) : null} */}
           <Row justify={'space-around'}>
             {results && subjects ? renderTestsBar() : null}
           </Row>
