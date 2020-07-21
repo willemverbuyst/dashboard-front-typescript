@@ -1,5 +1,5 @@
 import {
-  Subjects,
+  Subject,
   Student,
   Main,
   OverviewTeacher,
@@ -18,7 +18,7 @@ export type GetState = () => StoreState;
 
 export type SubjectsFetched = {
   type: typeof FETCH_OVERVIEW_FOR_SUBJECT;
-  payload: Subjects;
+  payload: Subject[];
 };
 
 export type StudentsFetched = {
