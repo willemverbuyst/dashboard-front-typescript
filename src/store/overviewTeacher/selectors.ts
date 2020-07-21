@@ -2,11 +2,11 @@ import { StoreState } from './types';
 import { Store } from 'antd/lib/form/interface';
 
 export const selectSubjectOverview = (state: StoreState) => {
-  return state.subjects;
+  return state.overviewTeacher.subjects;
 };
 
 export const selectStudentOverview = (state: StoreState) => {
-  return state.students;
+  return state.overviewTeacher.students;
 };
 
 // export const selectMainOverview = (state: StoreState) => {

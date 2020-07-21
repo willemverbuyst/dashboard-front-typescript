@@ -1,4 +1,9 @@
-import { Subjects, Students, Main } from '../../types/modelsOverviewTeacher';
+import {
+  Subjects,
+  Students,
+  Main,
+  OverviewTeacher,
+} from '../../types/modelsOverviewTeacher';
 
 export const FETCH_OVERVIEW_FOR_SUBJECT = 'FETCH_OVERVIEW_FOR_SUBJECT';
 export const FETCH_OVERVIEW_FOR_STUDENT = 'FETCH_OVERVIEW_FOR_STUDENT';
@@ -6,9 +11,7 @@ export const FETCH_OVERVIEW_FOR_MAIN = 'FETCH_OVERVIEW_FOR_MAIN';
 export const REMOVE_OVERVIEW = 'REMOVE_OVERVIEW';
 
 export type StoreState = {
-  subjects: Subjects;
-  students: Students;
-  main: Main;
+  overviewTeacher: OverviewTeacher;
 };
 
 export type GetState = () => StoreState;

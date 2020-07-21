@@ -106,17 +106,3 @@ export type AddNewSubject = {
   name: string;
   id: number;
 };
-
-export type SortAndSelect = {
-  title: string
-radio1: string
-radio2: string
-onChangeRadio={setSelectionAverage}
-value={selectSubjectAverage || undefined}
-onChangeSelection={setSelectSubjectAverage}
-results={results}
-selectStudentData={selectSubjectAverage}
-onClick={() => setSelectSubjectAverage('')}
-placeholder: string
-textBtn:string
-}

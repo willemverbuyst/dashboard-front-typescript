@@ -38,49 +38,49 @@ export default function TeacherStudentDetails() {
     dispatch(getStudentForOverview(studentid));
   }, [dispatch, studentid]);
 
-  const renderCharts = () => {
-    const sortedResults =
-      selectionAverage === 'name'
-        ? [...results].sort((a, b) => a.name.localeCompare(b.name))
-        : [...results].sort((a, b) => b.score - a.score);
+  // const renderCharts = () => {
+  //   const sortedResults =
+  //     selectionAverage === 'name'
+  //       ? [...results].sort((a, b) => a.name.localeCompare(b.name))
+  //       : [...results].sort((a, b) => b.score - a.score);
 
-    const filteredResults = selectSubjectAverage
-      ? sortedResults.filter((result) => result.name === selectSubjectAverage)
-      : sortedResults;
+  //   const filteredResults = selectSubjectAverage
+  //     ? sortedResults.filter((result) => result.name === selectSubjectAverage)
+  //     : sortedResults;
 
-    return filteredResults.map(({ score, name }, i) => (
-      <Col key={i} style={{ width: 350, paddingBottom: 80 }}>
-        <DoughnutChart
-          data={[score, 100 - score]}
-          color={['#8F1CB8', '#eee']}
-          title={`${name} ${score}%`}
-        />
-      </Col>
-    ));
-  };
+  //   return filteredResults.map(({ score, name }, i) => (
+  //     <Col key={i} style={{ width: 350, paddingBottom: 80 }}>
+  //       <DoughnutChart
+  //         data={[score, 100 - score]}
+  //         color={['#8F1CB8', '#eee']}
+  //         title={`${name} ${score}%`}
+  //       />
+  //     </Col>
+  //   ));
+  // };
 
-  const renderTestsBar = () => {
-    const sortedResults =
-      selectionTests === 'name'
-        ? [...results].sort((a, b) => a.name.localeCompare(b.name))
-        : [...results].sort((a, b) => b.tests - a.tests);
+  // const renderTestsBar = () => {
+  //   const sortedResults =
+  //     selectionTests === 'name'
+  //       ? [...results].sort((a, b) => a.name.localeCompare(b.name))
+  //       : [...results].sort((a, b) => b.tests - a.tests);
 
-    const filteredResults = selectSubjectTests
-      ? sortedResults.filter((result) => result.name === selectSubjectTests)
-      : sortedResults;
+  //   const filteredResults = selectSubjectTests
+  //     ? sortedResults.filter((result) => result.name === selectSubjectTests)
+  //     : sortedResults;
 
-    return filteredResults.map(({ tests, name }, i) => (
-      <Col key={i} style={{ width: 350, paddingBottom: 80 }}>
-        <BarChartTest
-          data={[tests]}
-          color={['#8F1CB8']}
-          labels={[`${name}: ${tests} tests`]}
-          title={``}
-          max={20}
-        />
-      </Col>
-    ));
-  };
+  //   return filteredResults.map(({ tests, name }, i) => (
+  //     <Col key={i} style={{ width: 350, paddingBottom: 80 }}>
+  //       <BarChartTest
+  //         data={[tests]}
+  //         color={['#8F1CB8']}
+  //         labels={[`${name}: ${tests} tests`]}
+  //         title={``}
+  //         max={20}
+  //       />
+  //     </Col>
+  //   ));
+  // };
 
   return (
     <Layout>
@@ -101,9 +101,9 @@ export default function TeacherStudentDetails() {
               textBtn="All subjects"
             />
           ) : null} */}
-          <Row justify={'space-around'}>
+          {/* <Row justify={'space-around'}>
             {results && subjects ? renderCharts() : null}
-          </Row>
+          </Row> */}
           {/* {results ? (
             <SortAndSelect
               title="TESTS DONE"
@@ -119,9 +119,9 @@ export default function TeacherStudentDetails() {
               textBtn="All subjects"
             />
           ) : null} */}
-          <Row justify={'space-around'}>
+          {/* <Row justify={'space-around'}>
             {results && subjects ? renderTestsBar() : null}
-          </Row>
+          </Row> */}
         </Content>
       </Layout>
     </Layout>

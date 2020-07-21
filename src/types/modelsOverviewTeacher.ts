@@ -3,9 +3,15 @@ export type Students = {
 };
 
 export type Subjects = {
-  students: string[] | [];
+  subjects: string[] | [];
 };
 
 export type Main = {
-  students: string[] | [];
+  main: string[] | [];
+};
+
+export type OverviewTeacher = {
+  students: string[] | null;
+  subjects: string[] | null;
+  main: string[] | [];
 };
