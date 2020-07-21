@@ -14,35 +14,35 @@ import {
 import { Subject, Student, Main } from '../../types/modelsOverviewTeacher';
 import { GetTeacherState } from '../teacher/types';
 
-export function subjectsFetched(subjects: Subject[]): overviewTeacherTypes {
+export const subjectsFetched = (subjects: Subject[]): overviewTeacherTypes => {
   return {
     type: FETCH_OVERVIEW_FOR_SUBJECT,
     payload: subjects,
   };
-}
+};
 
-export function studentsFetched(results: Student[]): overviewTeacherTypes {
+export const studentsFetched = (results: Student[]): overviewTeacherTypes => {
   return {
     type: FETCH_OVERVIEW_FOR_STUDENT,
     payload: results,
   };
-}
+};
 
-export function mainFetched(results: Main): overviewTeacherTypes {
+export const mainFetched = (results: Main): overviewTeacherTypes => {
   return {
     type: FETCH_OVERVIEW_FOR_MAIN,
     payload: results,
   };
-}
+};
 
-export function removeOverviewTeacher(): overviewTeacherTypes {
+export const removeOverviewTeacher = (): overviewTeacherTypes => {
   return {
     type: REMOVE_OVERVIEW,
   };
-}
+};
 
-export function getSubjectForOverview(id: number) {
-  return async function thunk(dispatch: Dispatch, getState: GetTeacherState) {
+export const getSubjectForOverview = (id: number) => {
+  return async (dispatch: Dispatch, getState: GetTeacherState) => {
     const token = getState().teacher.token;
     dispatch(appLoading());
     try {
@@ -64,10 +64,10 @@ export function getSubjectForOverview(id: number) {
       dispatch(appDoneLoading());
     }
   };
-}
+};
 
-export function getStudentForOverview(id: number) {
-  return async function thunk(dispatch: any, getState: GetTeacherState) {
+export const getStudentForOverview = (id: number) => {
+  return async (dispatch: any, getState: GetTeacherState) => {
     const token = getState().teacher.token;
     dispatch(appLoading());
     try {
@@ -89,7 +89,7 @@ export function getStudentForOverview(id: number) {
       dispatch(appDoneLoading());
     }
   };
-}
+};
 
 // export function getMainOverview(id) {
 //   return async function thunk(dispatch: any, getState: GetTeacherState) {
