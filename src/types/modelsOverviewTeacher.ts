@@ -1,7 +1,3 @@
-export type Students = {
-  students: Student[] | [];
-};
-
 export type Student = {
   name: string;
   score: number;
@@ -10,7 +6,7 @@ export type Student = {
 };
 
 export type Subjects = {
-  subjects: string[] | [];
+  subjects: string[] | null;
 };
 
 export type Main = {

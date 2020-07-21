@@ -1,6 +1,6 @@
 import {
   Subjects,
-  Students,
+  Student,
   Main,
   OverviewTeacher,
 } from '../../types/modelsOverviewTeacher';
@@ -23,7 +23,7 @@ export type SubjectsFetched = {
 
 export type StudentsFetched = {
   type: typeof FETCH_OVERVIEW_FOR_STUDENT;
-  payload: Students;
+  payload: Student[];
 };
 
 export type MainFetched = {

@@ -1,5 +1,4 @@
 import { StoreState } from './types';
-import { Store } from 'antd/lib/form/interface';
 
 export const selectSubjectOverview = (state: StoreState) => {
   return state.overviewTeacher.subjects;

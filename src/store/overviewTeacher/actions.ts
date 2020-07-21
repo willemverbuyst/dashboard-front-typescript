@@ -11,7 +11,7 @@ import {
   GetState,
   overviewTeacherTypes,
 } from './types';
-import { Subjects, Students, Main } from '../../types/modelsOverviewTeacher';
+import { Subjects, Student, Main } from '../../types/modelsOverviewTeacher';
 import { GetTeacherState } from '../teacher/types';
 
 export function subjectsFetched(subjects: Subjects): overviewTeacherTypes {
@@ -21,7 +21,7 @@ export function subjectsFetched(subjects: Subjects): overviewTeacherTypes {
   };
 }
 
-export function studentsFetched(results: Students): overviewTeacherTypes {
+export function studentsFetched(results: Student[]): overviewTeacherTypes {
   return {
     type: FETCH_OVERVIEW_FOR_STUDENT,
     payload: results,
