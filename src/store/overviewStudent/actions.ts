@@ -18,7 +18,7 @@ const resultsFetched = (results: Results): overviewStudentTypes => {
   };
 };
 
-export const removeResults = () => {
+export const removeResults = (): overviewStudentTypes => {
   return {
     type: REMOVE_RESULTS_FOR_STUDENT_MAIN,
   };
