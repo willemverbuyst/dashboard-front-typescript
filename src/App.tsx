@@ -14,6 +14,7 @@ import StudentSubjectDetails from './pages/student/StudentSubjectDetails';
 import StudentDoTest from './pages/student/StudentDoTest';
 import TeacherMainPage from './pages/teacher/TeacherMain';
 import TeacherStudentDetails from './pages/teacher/TeacherStudentDetails';
+import TeacherSubjectDetails from './pages/teacher/TeacherSubjectDetails';
 import ListOfQuestions from './pages/teacher/ListOfQuestions';
 import AddQuestionForm from './pages/teacher/AddQuestionForm';
 import AddSubject from './pages/teacher/AddSubject';
@@ -30,6 +31,7 @@ function App() {
     dispatch(getTeacherWithStoredToken());
     dispatch(getStudentWithStoredToken());
   }, [dispatch]);
+
   return (
     <>
       <BarAtTheTop />
@@ -65,6 +67,11 @@ function App() {
             exact
             path="/teachers/:teacherid/students/:studentid"
             component={TeacherStudentDetails}
+          />
+          <Route
+            exact
+            path="/teachers/:teacherid/subjects/:subjectid"
+            component={TeacherSubjectDetails}
           />
           <Route
             exact
