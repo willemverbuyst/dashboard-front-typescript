@@ -32,8 +32,6 @@ export default function TeacherStudentDetails() {
     }
   });
 
-  console.log(results);
-
   useEffect(() => {
     dispatch(getStudentForOverview(studentid));
   }, [dispatch, studentid]);
@@ -61,28 +59,30 @@ export default function TeacherStudentDetails() {
     }
   };
 
-  // const renderTestsBar = () => {
-  //   const sortedResults =
-  //     selectionTests === 'name'
-  //       ? [...results].sort((a, b) => a.name.localeCompare(b.name))
-  //       : [...results].sort((a, b) => b.tests - a.tests);
+  const renderTestsBar = () => {
+    if (results && subjects) {
+      const sortedResults =
+        selectionTests === 'name'
+          ? [...results].sort((a, b) => a.name.localeCompare(b.name))
+          : [...results].sort((a, b) => b.tests - a.tests);
 
-  //   const filteredResults = selectSubjectTests
-  //     ? sortedResults.filter((result) => result.name === selectSubjectTests)
-  //     : sortedResults;
+      const filteredResults = selectSubjectTests
+        ? sortedResults.filter((result) => result.name === selectSubjectTests)
+        : sortedResults;
 
-  //   return filteredResults.map(({ tests, name }, i) => (
-  //     <Col key={i} style={{ width: 350, paddingBottom: 80 }}>
-  //       <BarChartTest
-  //         data={[tests]}
-  //         color={['#8F1CB8']}
-  //         labels={[`${name}: ${tests} tests`]}
-  //         title={``}
-  //         max={20}
-  //       />
-  //     </Col>
-  //   ));
-  // };
+      return filteredResults.map(({ tests, name }, i) => (
+        <Col key={i} style={{ width: 350, paddingBottom: 80 }}>
+          <BarChartTest
+            data={[tests]}
+            color={['#8F1CB8']}
+            labels={[`${name}: ${tests} tests`]}
+            title={``}
+            max={20}
+          />
+        </Col>
+      ));
+    }
+  };
 
   return (
     <Layout>
@@ -119,9 +119,7 @@ export default function TeacherStudentDetails() {
               textBtn="All subjects"
             />
           ) : null} */}
-          {/* <Row justify={'space-around'}>
-            {results && subjects ? renderTestsBar() : null}
-          </Row> */}
+          <Row justify={'space-around'}>{renderTestsBar()}</Row>
         </Content>
       </Layout>
     </Layout>
