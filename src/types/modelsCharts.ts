@@ -30,7 +30,7 @@ export type InputBarChartTest = {
 export type InputLineChart = {
   labels: string[];
   data: number[];
-  color: string[];
+  color: string;
   title: string;
   max: number;
 };
