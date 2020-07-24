@@ -43,7 +43,12 @@ export type InputPieChart = {
 };
 
 export type InputScatterChart = {
-  data: number[];
+  data: Coordinates[];
   color: string[];
   title: string;
+};
+
+export type Coordinates = {
+  x: string;
+  y: number;
 };
