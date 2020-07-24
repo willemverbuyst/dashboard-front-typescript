@@ -12,14 +12,26 @@ export type Subject = {
   tests: number;
 };
 
-export type Main = {
-  main: string[] | [];
-};
-
 export type OverviewTeacher = {
   students: Student[] | null;
   subjects: Subject[] | null;
-  main: string[] | [];
+  main: Main;
+};
+
+export type Main = {
+  scores: Score[] | null;
+  tests: Test[] | null;
+};
+
+export type Score = {
+  length: number;
+  result: number;
+};
+
+export type Test = {
+  subjectId: number;
+  result: number;
+  at: string;
 };
 
 export type SelectorProps = {

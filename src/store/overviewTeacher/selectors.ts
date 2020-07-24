@@ -8,10 +8,10 @@ export const selectStudentOverview = (state: StoreState) => {
   return state.overviewTeacher.students;
 };
 
-// export const selectMainOverview = (state: StoreState) => {
-//   return state.main.scores;
-// };
+export const selectMainOverview = (state: StoreState) => {
+  return state.overviewTeacher.main.scores;
+};
 
-// export const selectMainOverviewScatter = (state: StoreState) => {
-//   return state.main.tests;
-// };
+export const selectMainOverviewScatter = (state: StoreState) => {
+  return state.overviewTeacher.main.tests;
+};

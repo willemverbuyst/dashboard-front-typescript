@@ -9,7 +9,10 @@ import {
 const initialState = {
   subjects: null,
   students: null,
-  main: [],
+  main: {
+    scores: null,
+    tests: null,
+  },
 };
 
 export default (state = initialState, action: overviewTeacherTypes) => {

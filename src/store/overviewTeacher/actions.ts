@@ -8,7 +8,6 @@ import {
   FETCH_OVERVIEW_FOR_STUDENT,
   FETCH_OVERVIEW_FOR_MAIN,
   REMOVE_OVERVIEW,
-  GetState,
   overviewTeacherTypes,
 } from './types';
 import { Subject, Student, Main } from '../../types/modelsOverviewTeacher';
@@ -91,32 +90,32 @@ export const getStudentForOverview = (id: number) => {
   };
 };
 
-// export function getMainOverview(id) {
-//   return async function thunk(dispatch: any, getState: GetTeacherState) {
-//     const token = getState().teacher.token;
-//     dispatch(appLoading());
-//     const dataMain = getState().overViewTeacher.main;
-//     if (dataMain.length < 1) {
-//       try {
-//         const response = await axios.get(`${apiUrl}/data/teacher/${id}`, {
-//           headers: { Authorization: `Bearer ${token}` },
-//         });
-//         const results = response.data;
+export const getMainOverview = (id: number | null) => {
+  return async function thunk(dispatch: any, getState: GetTeacherState) {
+    const token = getState().teacher.token;
+    dispatch(appLoading());
+    // const dataMain = getState().overViewTeacher.main;
+    // if (dataMain.length < 1) {
+    try {
+      const response = await axios.get(`${apiUrl}/data/teacher/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const results = response.data;
 
-//         dispatch(mainFetched(results));
-//         dispatch(appDoneLoading());
-//       } catch (error) {
-//         if (error.response) {
-//           console.log(error.response.data.message);
-//           dispatch(setMessage('error', true, error.response.data.message));
-//         } else {
-//           console.log(error.message);
-//           dispatch(setMessage('error', true, error.message));
-//         }
-//         dispatch(appDoneLoading());
-//       }
-//     }
-//     dispatch(appDoneLoading());
-//     return;
-//   };
-// }
+      dispatch(mainFetched(results));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage('error', true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage('error', true, error.message));
+      }
+      dispatch(appDoneLoading());
+      // }
+    }
+    dispatch(appDoneLoading());
+    return;
+  };
+};

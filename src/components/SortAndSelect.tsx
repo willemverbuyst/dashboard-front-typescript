@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Radio, Select, Button } from 'antd';
-import { Student, SelectorProps } from '../types/modelsOverviewTeacher';
+import { SelectorProps } from '../types/modelsOverviewTeacher';
 
 const { Option } = Select;
 
