@@ -1,21 +1,8 @@
 import React from 'react';
 import { Row, Radio, Select, Button } from 'antd';
-import { Student } from '../types/modelsOverviewTeacher';
-const { Option } = Select;
+import { Student, SelectorProps } from '../types/modelsOverviewTeacher';
 
-type SelectorProps = {
-  title: string;
-  radio1: string;
-  radio2: string;
-  onChangeRadio: any;
-  value: string | undefined;
-  onChangeSelection: any;
-  results: Student[];
-  selectStudentData: string;
-  onClick: any;
-  placeholder: string;
-  textBtn: string;
-};
+const { Option } = Select;
 
 export default function SortAndSelect({
   title,

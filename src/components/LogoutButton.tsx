@@ -5,7 +5,6 @@ import { selectStudentToken } from '../store/student/selectors';
 import { selectTeacherToken } from '../store/teacher/selectors';
 import { studentLoggingOut } from '../store/student/actions';
 import { teacherLoggingOut } from '../store/teacher/actions';
-
 import { Button } from 'antd';
 
 export default function LogoutButton() {
@@ -21,7 +20,6 @@ export default function LogoutButton() {
     if (teacherToken) {
       dispatch(teacherLoggingOut());
     }
-
     history.push('/');
   };
 

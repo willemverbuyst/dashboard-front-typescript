@@ -4,6 +4,7 @@ import reducer from './rootReducer';
 
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const enhancer = composeEnhancers(applyMiddleware(ReduxThunk));
 
 const store = createStore(reducer, enhancer);
