@@ -1,6 +1,5 @@
 export type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
-// type InputEvent = React.ChangeEvent<HTMLInputElement>;
-// update = (e: InputEvent): void => this.props.login[e.target.name] = e.target.value;
+
 export type PickEvent = {
   onChange: (event: React.MouseEvent<HTMLButtonElement>) => string;
 };
