@@ -5,20 +5,25 @@ import {
   APP_DONE_LOADING,
   SET_MESSAGE,
   CLEAR_MESSAGE,
-  AppStateTypes,
+  AppLoading,
+  AppDoneLoading,
+  ClearMessage,
+  SetMessage,
 } from './types';
 
-export const appLoading = () => ({ type: APP_LOADING });
+export const appLoading = (): AppLoading => ({ type: APP_LOADING });
 
-export const appDoneLoading = () => ({ type: APP_DONE_LOADING });
+export const appDoneLoading = (): AppDoneLoading => ({
+  type: APP_DONE_LOADING,
+});
 
-export const clearMessage = () => ({ type: CLEAR_MESSAGE });
+export const clearMessage = (): ClearMessage => ({ type: CLEAR_MESSAGE });
 
 export const setMessage = (
   variant: 'success' | 'info' | 'warning' | 'error' | undefined,
   dismissable: boolean,
   text: string
-): AppStateTypes => {
+): SetMessage => {
   return {
     type: SET_MESSAGE,
     payload: {
