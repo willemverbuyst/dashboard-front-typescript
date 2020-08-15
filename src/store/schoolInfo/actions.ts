@@ -5,7 +5,7 @@ import { FETCH_TEACHERS, GetState } from './types';
 import { SelectTeacher } from '../../types/model';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 
-const teachersFetched = (teachers: SelectTeacher[]) => {
+export const teachersFetched = (teachers: SelectTeacher[]) => {
   return {
     type: FETCH_TEACHERS,
     teachers,
