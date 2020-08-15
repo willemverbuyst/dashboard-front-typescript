@@ -2,10 +2,10 @@ import axios from 'axios';
 import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
 import { FETCH_TEACHERS, GetState } from './types';
-import { Teachers } from '../../types/model';
+import { SelectTeacher } from '../../types/model';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 
-const teacherssFetched = (teachers: Teachers) => {
+const teachersFetched = (teachers: SelectTeacher[]) => {
   return {
     type: FETCH_TEACHERS,
     teachers,
@@ -21,7 +21,7 @@ export const fetchAllTeachers = async (
     const response = await axios.get(`${apiUrl}/school/teachers`, {});
     const teachers = response.data;
 
-    dispatch(teacherssFetched(teachers));
+    dispatch(teachersFetched(teachers));
     dispatch(appDoneLoading());
   } catch (error) {
     if (error.response) {
