@@ -1,7 +1,7 @@
 import reducer from '../reducer';
 import { FETCH_TEACHERS } from '../types';
 
-describe('userReducer', () => {
+describe('schoolInfoReducer', () => {
   const initialState = {
     all: null,
   };

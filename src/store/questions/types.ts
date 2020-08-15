@@ -1,4 +1,4 @@
-import { Questions, AddNewQuestion } from '../../types/model';
+import { Question, Questions, AddNewQuestion } from '../../types/model';
 
 export const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
 // export const REMOVE_QUESTIONS = 'REMOVE_QUESTIONS';
@@ -12,7 +12,7 @@ export type GetState = () => StoreState;
 
 export type questionsFetched = {
   type: typeof FETCH_QUESTIONS;
-  questions: Questions;
+  questions: Question[];
 };
 
 export type addQuestionToList = {

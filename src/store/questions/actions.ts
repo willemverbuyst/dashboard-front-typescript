@@ -2,7 +2,7 @@ import axios from 'axios';
 import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
 import { FETCH_QUESTIONS, ADD_QUESTION, QuestionActionTypes } from './types';
-import { Questions, PostNewQuestion, AddNewQuestion } from '../../types/model';
+import { Question, PostNewQuestion, AddNewQuestion } from '../../types/model';
 import { GetTeacherState } from '../teacher/types';
 import { selectTeacherToken } from '../teacher/selectors';
 import {
@@ -12,7 +12,7 @@ import {
   showMessageWithTimeout,
 } from '../appState/actions';
 
-const questionsFetched = (questions: Questions): QuestionActionTypes => {
+const questionsFetched = (questions: Question[]): QuestionActionTypes => {
   return {
     type: FETCH_QUESTIONS,
     questions,
