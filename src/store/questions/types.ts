@@ -10,14 +10,14 @@ export type StoreState = {
 
 export type GetState = () => StoreState;
 
-export type questionsFetched = {
+export type QuestionsFetched = {
   type: typeof FETCH_QUESTIONS;
   questions: Question[];
 };
 
-export type addQuestionToList = {
+export type AddQuestionToList = {
   type: typeof ADD_QUESTION;
   question: AddNewQuestion;
 };
 
-export type QuestionActionTypes = questionsFetched | addQuestionToList;
+export type QuestionActionTypes = QuestionsFetched | AddQuestionToList;
