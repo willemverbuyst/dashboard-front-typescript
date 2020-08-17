@@ -35,32 +35,31 @@ export const addQuestionToList = (
   };
 };
 
-export const getQuestionsForSubject = (id: number) => {
-  return async (dispatch: Dispatch, getState: GetState) => {
+export const getQuestionsForSubject = (id: number) => async (
+  dispatch: Dispatch,
+  getState: GetState
+) => {
+  dispatch(appLoading());
+  try {
     const token = localStorage.getItem('teacher_token');
-    if (token === null) {
-      return;
-    }
-    dispatch(appLoading());
-    try {
-      const response = await axios.get(`${apiUrl}/questions/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const questions = response.data;
 
-      dispatch(questionsFetched(questions));
-      dispatch(appDoneLoading());
-    } catch (error) {
-      if (error.response) {
-        console.log(error.response.data.message);
-        dispatch(setMessage('error', true, error.response.data.message));
-      } else {
-        console.log(error.message);
-        dispatch(setMessage('error', true, error.message));
-      }
-      dispatch(appDoneLoading());
+    const response = await axios.get(`${apiUrl}/questions/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const questions = response.data;
+
+    dispatch(questionsFetched(questions));
+    dispatch(appDoneLoading());
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.data.message);
+      dispatch(setMessage('error', true, error.response.data.message));
+    } else {
+      console.log(error.message);
+      dispatch(setMessage('error', true, error.message));
     }
-  };
+    dispatch(appDoneLoading());
+  }
 };
 
 export const createQuestion = (newQuestion: PostNewQuestion) => {

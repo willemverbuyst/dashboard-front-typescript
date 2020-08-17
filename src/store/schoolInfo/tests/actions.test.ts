@@ -3,15 +3,17 @@ import { fetchAllTeachers, storeTeachers } from '../actions';
 import { appLoading, appDoneLoading } from '../../appState/actions';
 import { STORE_TEACHERS } from '../types';
 
+const mockAxios = axios as jest.Mocked<typeof axios>;
+
 it('calls axios and returns teachers', async () => {
   const dispatch = jest.fn();
   const getState = jest.fn();
   const teachers = [{ name: 'test', id: 3 }];
   const response = { data: teachers };
-  const mockAxios = axios as jest.Mocked<typeof axios>;
+
   mockAxios.get.mockImplementationOnce(() => Promise.resolve(response));
 
-  await fetchAllTeachers(dispatch, getState);
+  await fetchAllTeachers(dispatch, getState());
 
   expect(mockAxios.get).toHaveBeenCalledTimes(1);
   expect(dispatch).toHaveBeenCalledWith(appLoading());

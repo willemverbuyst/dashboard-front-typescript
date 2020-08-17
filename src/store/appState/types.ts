@@ -1,4 +1,4 @@
-import { AppState, Message } from '../../types/modelsAppState';
+import { AppState, Message } from '../../types/models-app-state';
 
 export const APP_LOADING = 'APP_LOADING';
 export const APP_DONE_LOADING = 'APP_DONE_LOADING';
