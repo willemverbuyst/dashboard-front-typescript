@@ -7,7 +7,10 @@ import {
   LOG_OUT_TEACHER,
   ADD_SUBJECT,
   GetTeacherState,
-  TeacherActionTypes,
+  LoginSuccessTeacher,
+  LogOutTeacher,
+  TokenTeacherStillValid,
+  AddSubject,
 } from './types';
 import {
   Teacher,
@@ -22,23 +25,23 @@ import {
   setMessage,
 } from '../appState/actions';
 
-const loginSuccessTeacher = (teacher: Teacher): TeacherActionTypes => {
+const loginSuccessTeacher = (teacher: Teacher): LoginSuccessTeacher => {
   return {
     type: LOGIN_SUCCESS_TEACHER,
     teacher,
   };
 };
 
-const logOutTeacher = (): TeacherActionTypes => ({
+const logOutTeacher = (): LogOutTeacher => ({
   type: LOG_OUT_TEACHER,
 });
 
-const tokenTeacherStillValid = (teacher: Teacher): TeacherActionTypes => ({
+const tokenTeacherStillValid = (teacher: Teacher): TokenTeacherStillValid => ({
   type: TOKEN_STILL_VALID_TEACHER,
   teacher,
 });
 
-const addSubject = (subject: AddNewSubject) => ({
+const addSubject = (subject: AddNewSubject): AddSubject => ({
   type: ADD_SUBJECT,
   subject,
 });

@@ -1,4 +1,4 @@
-import { MC3questions } from '../../types/modelsTest';
+import { MC3questions } from '../../types/test-models';
 import { FETCH_MC_QUESTIONS, REMOVE_MC_QUESTIONS, TestTypes } from './types';
 
 const initialState: MC3questions = {

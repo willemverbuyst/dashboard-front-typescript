@@ -8,6 +8,8 @@ import {
 import { appLoading, appDoneLoading } from '../../appState/actions';
 import { FETCH_QUESTIONS, ADD_QUESTION } from '../types';
 
+const mockAxios = axios as jest.Mocked<typeof axios>;
+
 describe('questionsFetched', () => {
   const questions = [
     {
@@ -60,60 +62,31 @@ describe('addQuestionToList ', () => {
   });
 });
 
-// describe('getQuestionsForSubject', () => {
-//   test('calls axios and returns questions', async () => {
-//     const subjectId = 1;
-//     const dispatch = jest.fn();
-//     const getState = jest.fn();
-//     const questions = [
-//       {
-//         text: 'test',
-//         answers: [
-//           {
-//             text: 'test_answer',
-//             correct: true,
-//           },
-//         ],
-//       },
-//     ];
-//     const response = { data: questions };
-//     const mockAxios = axios as jest.Mocked<typeof axios>;
-//     mockAxios.get.mockImplementationOnce(() => Promise.resolve(response));
+describe('getQuestionsForSubject', () => {
+  test('calls axios and returns questions', async () => {
+    const subjectId = 1;
+    const dispatch = jest.fn();
+    const getState = jest.fn().mockReturnValueOnce([]);
+    const questions = [
+      {
+        text: 'test',
+        answers: [
+          {
+            text: 'test_answer',
+            correct: true,
+          },
+        ],
+      },
+    ];
+    const response = { data: questions };
+    mockAxios.get.mockImplementationOnce(() => Promise.resolve(response));
 
-//     await getQuestionsForSubject(subjectId)(dispatch, getState);
+    await getQuestionsForSubject(subjectId)(dispatch, getState);
 
-//     expect(mockAxios.get).toHaveBeenCalledTimes(1);
-//     expect(dispatch).toHaveBeenCalledWith(appLoading());
-//     expect(dispatch).toHaveBeenCalledWith(questionsFetched(questions));
-//     expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
-//     expect(dispatch).toHaveBeenCalledTimes(3);
-//   });
-// });
-
-it('calls axios and returns questions', async () => {
-  const id = 1;
-  const dispatch = jest.fn();
-  const getState = jest.fn();
-  const questions = [
-    {
-      text: 'test',
-      answers: [
-        {
-          text: 'test_answer',
-          correct: true,
-        },
-      ],
-    },
-  ];
-  console.log('anything');
-  const response = { data: questions };
-  const mockAxios = axios as jest.Mocked<typeof axios>;
-  mockAxios.get.mockImplementationOnce(() => Promise.resolve(response));
-  await getQuestionsForSubject(id)(dispatch, getState);
-
-  // expect(mockAxios.get('1')).toHaveBeenCalledTimes(1);
-  expect(dispatch).toHaveBeenCalledWith(appLoading());
-  expect(dispatch).toHaveBeenCalledWith(questionsFetched(questions));
-  expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
-  expect(dispatch).toHaveBeenCalledTimes(3);
+    expect(mockAxios.get).toHaveBeenCalledTimes(1);
+    expect(dispatch).toHaveBeenCalledWith(appLoading());
+    expect(dispatch).toHaveBeenCalledWith(questionsFetched(questions));
+    expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
+    expect(dispatch).toHaveBeenCalledTimes(3);
+  });
 });

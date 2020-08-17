@@ -1,5 +1,9 @@
-import { Questions } from '../../types/model';
-import { QuestionActionTypes, FETCH_QUESTIONS, ADD_QUESTION } from './types';
+import {
+  FETCH_QUESTIONS,
+  ADD_QUESTION,
+  QuestionActionTypes,
+  Questions,
+} from './types';
 
 const initialState: Questions = {
   all: null,

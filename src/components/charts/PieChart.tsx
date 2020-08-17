@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
-import { InputPieChart } from '../../types/modelsCharts';
+import { InputPieChart } from '../../types/charts-models';
 
 export default function PieChart({
   labels,

@@ -11,12 +11,12 @@ import {
   selectTeacherId,
   selectTeacherSubjects,
 } from '../../store/teacher/selectors';
-import { getMainOverview } from '../../store/overviewTeacher/actions';
 import {
   selectMainOverview,
   selectMainOverviewScatter,
 } from '../../store/overviewTeacher/selectors';
-import { Coordinates } from '../../types/modelsCharts';
+import { getMainOverview } from '../../store/overviewTeacher/actions';
+import { Coordinates } from '../../types/charts-models';
 import { Layout, Row, Col } from 'antd';
 
 const { Content } = Layout;

@@ -2,39 +2,44 @@ import axios from 'axios';
 import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
-
 import {
   FETCH_OVERVIEW_FOR_SUBJECT,
   FETCH_OVERVIEW_FOR_STUDENT,
   FETCH_OVERVIEW_FOR_MAIN,
   REMOVE_OVERVIEW,
-  overviewTeacherTypes,
+  SubjectsFetched,
+  StudentsFetched,
+  MainFetched,
+  RemoveOverviewTeacher,
+  Subject,
+  Student,
+  Main,
 } from './types';
-import { Subject, Student, Main } from '../../types/modelsOverviewTeacher';
+
 import { GetTeacherState } from '../teacher/types';
 
-export const subjectsFetched = (subjects: Subject[]): overviewTeacherTypes => {
+export const subjectsFetched = (subjects: Subject[]): SubjectsFetched => {
   return {
     type: FETCH_OVERVIEW_FOR_SUBJECT,
     payload: subjects,
   };
 };
 
-export const studentsFetched = (results: Student[]): overviewTeacherTypes => {
+export const studentsFetched = (results: Student[]): StudentsFetched => {
   return {
     type: FETCH_OVERVIEW_FOR_STUDENT,
     payload: results,
   };
 };
 
-export const mainFetched = (results: Main): overviewTeacherTypes => {
+export const mainFetched = (results: Main): MainFetched => {
   return {
     type: FETCH_OVERVIEW_FOR_MAIN,
     payload: results,
   };
 };
 
-export const removeOverviewTeacher = (): overviewTeacherTypes => {
+export const removeOverviewTeacher = (): RemoveOverviewTeacher => {
   return {
     type: REMOVE_OVERVIEW,
   };

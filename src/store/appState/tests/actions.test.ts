@@ -13,70 +13,46 @@ import {
 } from '../types';
 
 describe('appState', () => {
-  describe('if given set message with text, variant and dismissable', () => {
+  describe('if given action set message with text, variant and dismissable', () => {
+    const variant = 'success';
+    const dismissable = true;
+    const text = 'test_text';
+    const expected = {
+      type: SET_MESSAGE,
+      payload: { variant, dismissable, text },
+    };
     test('should return an object containing type SET_MESSAGE and payload variant, dismissable and text', () => {
-      const variant = 'success';
-      const dismissable = true;
-      const text = 'test_text';
-      const expected = {
-        type: SET_MESSAGE,
-        payload: { variant, dismissable, text },
-      };
       expect(setMessage(variant, dismissable, text)).toEqual(expected);
-    });
-    test('should return an action object with type SET_MESSAGE and payload the same as message, variant passed', () => {
-      const variant = 'success';
-      const dismissable = true;
-      const text = 'test_text';
-      const expected = {
-        type: SET_MESSAGE,
-        payload: { variant, dismissable, text },
-      };
       expect(setMessage(variant, dismissable, text).payload).toEqual(
         expected.payload
       );
     });
   });
-  describe('if given clear message', () => {
+  describe('if given action clear message', () => {
+    const expected = {
+      type: CLEAR_MESSAGE,
+    };
     test('should return an action object with type CLEAR_MESSAGE and no payload', () => {
-      const expected = {
-        type: CLEAR_MESSAGE,
-      };
       expect(clearMessage()).toEqual(expected);
-    });
-    test('should return an action object with type CLEAR_MESSAGE', () => {
-      const expected = {
-        type: CLEAR_MESSAGE,
-      };
       expect(clearMessage().type).toBe(CLEAR_MESSAGE);
     });
   });
-  describe('if given apploading', () => {
+  describe('if given action app loading', () => {
+    const expected = {
+      type: APP_LOADING,
+    };
     test('should return an action type APP_LOADING', () => {
-      const expected = {
-        type: APP_LOADING,
-      };
       expect(appLoading()).toEqual(expected);
-    });
-    test('should return an action type LOADING and no payload', () => {
-      const expected = {
-        type: APP_LOADING,
-      };
       expect(appLoading().type).not.toBeUndefined();
     });
   });
-  describe('if given appDoneloading', () => {
+  describe('if given action app done loading', () => {
+    const expected = {
+      type: APP_DONE_LOADING,
+    };
     test('should return an action type APP_DONE_LOADING', () => {
-      const expected = {
-        type: APP_DONE_LOADING,
-      };
       expect(appDoneLoading()).toEqual(expected);
-    });
-    test('should return an action type LOADING and no payload', () => {
-      const expected = {
-        type: APP_DONE_LOADING,
-      };
-      expect(appDoneLoading().type).toBe(APP_DONE_LOADING);
+      expect(appDoneLoading().type).toBe(expected.type);
     });
   });
 });

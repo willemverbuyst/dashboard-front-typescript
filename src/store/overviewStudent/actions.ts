@@ -4,21 +4,22 @@ import { Dispatch } from 'redux';
 import {
   FETCH_RESULTS_FOR_STUDENT_MAIN,
   REMOVE_RESULTS_FOR_STUDENT_MAIN,
-  overviewStudentTypes,
+  ResultsFetched,
+  RemoveResults,
+  Result,
 } from './types';
 import { selectStudentToken } from '../student/selectors';
-import { Results } from '../../types/model';
 import { GetStudentState } from '../student/types';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 
-const resultsFetched = (results: Results): overviewStudentTypes => {
+const resultsFetched = (results: Result[]): ResultsFetched => {
   return {
     type: FETCH_RESULTS_FOR_STUDENT_MAIN,
     results,
   };
 };
 
-export const removeResults = (): overviewStudentTypes => {
+export const removeResults = (): RemoveResults => {
   return {
     type: REMOVE_RESULTS_FOR_STUDENT_MAIN,
   };

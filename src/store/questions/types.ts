@@ -1,8 +1,7 @@
-import { Question, Questions, AddNewQuestion } from '../../types/model';
-
+// ACTIONS
 export const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
-// export const REMOVE_QUESTIONS = 'REMOVE_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
+// export const REMOVE_QUESTIONS = 'REMOVE_QUESTIONS';
 
 export type StoreState = {
   questions: Questions;
@@ -21,3 +20,23 @@ export type AddQuestionToList = {
 };
 
 export type QuestionActionTypes = QuestionsFetched | AddQuestionToList;
+
+// REDUCER
+export type Questions = {
+  all: Question[] | null;
+};
+
+export type Question = {
+  text: string;
+  answers: Answer[];
+};
+
+export type Answer = {
+  text: string;
+  correct: boolean;
+};
+
+export type AddNewQuestion = {
+  text: string;
+  answers: Answer[];
+};

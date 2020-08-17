@@ -6,13 +6,12 @@ import {
   TOKEN_STILL_VALID_STUDENT,
   LOG_OUT_STUDENT,
   GetStudentState,
-  StudentActionTypes,
-} from './types';
-import {
+  LoginSuccessStudent,
+  LogOutStudent,
+  TokenStudentStillValid,
   Student,
-  LoginCredentials,
-  SignUpCredentials,
-} from '../../types/model';
+} from './types';
+import { LoginCredentials, SignUpCredentials } from '../../types/model';
 import {
   appLoading,
   appDoneLoading,
@@ -23,19 +22,19 @@ import { removeResults } from '../overviewStudent/actions';
 import { removeDetailsStudent } from '../subjectDetailsStudent/actions';
 import { removeQuestions } from '../test/actions';
 
-const loginSuccessStudent = (student: Student): StudentActionTypes => {
+const loginSuccessStudent = (student: Student): LoginSuccessStudent => {
   return {
     type: LOGIN_SUCCESS_STUDENT,
     student,
   };
 };
 
-const tokenStudentStillValid = (student: Student): StudentActionTypes => ({
+const tokenStudentStillValid = (student: Student): TokenStudentStillValid => ({
   type: TOKEN_STILL_VALID_STUDENT,
   student,
 });
 
-const logOutStudent = (): StudentActionTypes => ({
+const logOutStudent = (): LogOutStudent => ({
   type: LOG_OUT_STUDENT,
 });
 

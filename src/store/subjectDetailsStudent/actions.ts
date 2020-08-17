@@ -5,20 +5,21 @@ import { SubjectDetailsStudent } from '../../types/model';
 import {
   FETCH_RESULTS_FOR_SUBJECT,
   REMOVE_RESULTS_FOR_SUBJECT,
-  StudentDetailsTypes,
+  ResultsFetched,
+  RemoveDetailsStudent,
 } from './types';
 import { GetStudentState } from '../student/types';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 
 const resultsFetched = (
   subjectDetails: SubjectDetailsStudent
-): StudentDetailsTypes => {
+): ResultsFetched => {
   return {
     type: FETCH_RESULTS_FOR_SUBJECT,
     subjectDetails,
   };
 };
-export const removeDetailsStudent = () => {
+export const removeDetailsStudent = (): RemoveDetailsStudent => {
   return {
     type: REMOVE_RESULTS_FOR_SUBJECT,
   };

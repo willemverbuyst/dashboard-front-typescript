@@ -11,27 +11,27 @@ export type StoreState = {
 
 export type GetTeacherState = () => StoreState;
 
-export type logOutTeacher = {
+export type LogOutTeacher = {
   type: typeof LOG_OUT_TEACHER;
 };
 
-export type loginSuccessTeacher = {
+export type LoginSuccessTeacher = {
   type: typeof LOGIN_SUCCESS_TEACHER;
   teacher: Teacher;
 };
 
-export type tokenTeacherStillValid = {
+export type TokenTeacherStillValid = {
   type: typeof TOKEN_STILL_VALID_TEACHER;
   teacher: Teacher;
 };
 
-export type addSubject = {
+export type AddSubject = {
   type: typeof ADD_SUBJECT;
   subject: AddNewSubject;
 };
 
 export type TeacherActionTypes =
-  | loginSuccessTeacher
-  | logOutTeacher
-  | tokenTeacherStillValid
-  | addSubject;
+  | LoginSuccessTeacher
+  | LogOutTeacher
+  | TokenTeacherStillValid
+  | AddSubject;

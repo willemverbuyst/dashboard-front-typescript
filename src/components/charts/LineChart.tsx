@@ -1,6 +1,6 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { InputLineChart } from '../../types/modelsCharts';
+import { InputLineChart } from '../../types/charts-models';
 
 export default function LineChart({
   labels,

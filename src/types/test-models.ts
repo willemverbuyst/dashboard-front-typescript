@@ -3,10 +3,10 @@ export type MC3questions = {
 };
 
 export type MCquestion = {
-  answers: MCanswer[];
   id: number;
   text: string;
   subjectId: number;
+  answers: MCanswer[];
 };
 
 export type MCanswer = {

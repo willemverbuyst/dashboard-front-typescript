@@ -3,10 +3,11 @@ import {
   APP_DONE_LOADING,
   SET_MESSAGE,
   CLEAR_MESSAGE,
+  AppState,
   AppStateTypes,
 } from './types';
 
-const initialState = {
+const initialState: AppState = {
   loading: false,
   message: null,
 };
