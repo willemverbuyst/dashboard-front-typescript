@@ -11,7 +11,6 @@ export default (state = initialState, action: QuestionActionTypes) => {
       return { ...state, all: action.questions };
 
     case ADD_QUESTION:
-      console.log(action);
       if (state.all) {
         return { ...state, all: [...state.all, action.question] };
       } else {

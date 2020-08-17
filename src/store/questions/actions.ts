@@ -1,8 +1,15 @@
 import axios from 'axios';
 import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
-import { FETCH_QUESTIONS, ADD_QUESTION, QuestionActionTypes } from './types';
-import { Questions, PostNewQuestion, AddNewQuestion } from '../../types/model';
+import {
+  FETCH_QUESTIONS,
+  ADD_QUESTION,
+  QuestionActionTypes,
+  QuestionsFetched,
+  AddQuestionToList,
+  GetState,
+} from './types';
+import { Question, PostNewQuestion, AddNewQuestion } from '../../types/model';
 import { GetTeacherState } from '../teacher/types';
 import { selectTeacherToken } from '../teacher/selectors';
 import {
@@ -12,14 +19,16 @@ import {
   showMessageWithTimeout,
 } from '../appState/actions';
 
-const questionsFetched = (questions: Questions): QuestionActionTypes => {
+export const questionsFetched = (questions: Question[]): QuestionsFetched => {
   return {
     type: FETCH_QUESTIONS,
     questions,
   };
 };
 
-const addQuestionToList = (question: AddNewQuestion) => {
+export const addQuestionToList = (
+  question: AddNewQuestion
+): AddQuestionToList => {
   return {
     type: ADD_QUESTION,
     question,
@@ -27,8 +36,11 @@ const addQuestionToList = (question: AddNewQuestion) => {
 };
 
 export const getQuestionsForSubject = (id: number) => {
-  return async (dispatch: Dispatch, getState: GetTeacherState) => {
-    const token = selectTeacherToken(getState());
+  return async (dispatch: Dispatch, getState: GetState) => {
+    const token = localStorage.getItem('teacher_token');
+    if (token === null) {
+      return;
+    }
     dispatch(appLoading());
     try {
       const response = await axios.get(`${apiUrl}/questions/${id}`, {

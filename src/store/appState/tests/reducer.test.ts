@@ -10,7 +10,7 @@ import {
   SetMessage,
 } from '../types';
 
-describe('userReducer', () => {
+describe('appStateReducer', () => {
   const initialState = {
     loading: false,
     message: null,
