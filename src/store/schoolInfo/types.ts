@@ -1,5 +1,4 @@
-import { TeacherOption, TeacherOptions } from '../../types/school-info-models';
-
+// ACTION
 export const STORE_TEACHERS = 'STORE_TEACHERS';
 
 export type StoreState = {
@@ -14,3 +13,13 @@ export type StoreTeachers = {
 };
 
 export type SchoolInfoActionTypes = StoreTeachers;
+
+// REDUCER
+export type TeacherOptions = {
+  all: TeacherOption[] | null;
+};
+
+export type TeacherOption = {
+  name: string;
+  id: number;
+};

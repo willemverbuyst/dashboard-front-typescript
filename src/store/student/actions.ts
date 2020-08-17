@@ -9,12 +9,9 @@ import {
   LoginSuccessStudent,
   LogOutStudent,
   TokenStudentStillValid,
-} from './types';
-import {
   Student,
-  LoginCredentials,
-  SignUpCredentials,
-} from '../../types/model';
+} from './types';
+import { LoginCredentials, SignUpCredentials } from '../../types/model';
 import {
   appLoading,
   appDoneLoading,

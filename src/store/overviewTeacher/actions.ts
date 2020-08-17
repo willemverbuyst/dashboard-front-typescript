@@ -11,8 +11,11 @@ import {
   StudentsFetched,
   MainFetched,
   RemoveOverviewTeacher,
+  Subject,
+  Student,
+  Main,
 } from './types';
-import { Subject, Student, Main } from '../../types/overview-teacher-models';
+
 import { GetTeacherState } from '../teacher/types';
 
 export const subjectsFetched = (subjects: Subject[]): SubjectsFetched => {

@@ -6,9 +6,9 @@ import {
   REMOVE_RESULTS_FOR_STUDENT_MAIN,
   ResultsFetched,
   RemoveResults,
+  Result,
 } from './types';
 import { selectStudentToken } from '../student/selectors';
-import { Result } from '../../types/model';
 import { GetStudentState } from '../student/types';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 

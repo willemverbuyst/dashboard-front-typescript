@@ -1,9 +1,9 @@
-import { Student } from '../../types/model';
 import {
-  StudentActionTypes,
   LOGIN_SUCCESS_STUDENT,
   TOKEN_STILL_VALID_STUDENT,
   LOG_OUT_STUDENT,
+  StudentActionTypes,
+  Student,
 } from './types';
 
 const token = localStorage.getItem('student_token');

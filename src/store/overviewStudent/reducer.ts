@@ -1,16 +1,15 @@
-import { Results } from '../../types/model';
-
 import {
   FETCH_RESULTS_FOR_STUDENT_MAIN,
   REMOVE_RESULTS_FOR_STUDENT_MAIN,
-  overviewStudentTypes,
+  OverviewStudentTypes,
+  OverviewStudent,
 } from './types';
 
-const initialState: Results = {
+const initialState: OverviewStudent = {
   results: null,
 };
 
-export default (state = initialState, action: overviewStudentTypes) => {
+export default (state = initialState, action: OverviewStudentTypes) => {
   switch (action.type) {
     case FETCH_RESULTS_FOR_STUDENT_MAIN:
       return { ...state, results: action.results };

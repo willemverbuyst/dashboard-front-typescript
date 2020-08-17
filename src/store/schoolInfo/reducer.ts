@@ -1,5 +1,4 @@
-import { TeacherOptions } from '../../types/school-info-models';
-import { STORE_TEACHERS, StoreTeachers } from './types';
+import { STORE_TEACHERS, StoreTeachers, TeacherOptions } from './types';
 
 const initialState: TeacherOptions = {
   all: null,

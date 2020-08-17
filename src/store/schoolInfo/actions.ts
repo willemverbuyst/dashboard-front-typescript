@@ -1,8 +1,12 @@
 import axios from 'axios';
 import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
-import { STORE_TEACHERS, GetState, StoreTeachers } from './types';
-import { TeacherOption } from '../../types/school-info-models';
+import {
+  STORE_TEACHERS,
+  GetState,
+  StoreTeachers,
+  TeacherOption,
+} from './types';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 
 export const storeTeachers = (teachers: TeacherOption[]): StoreTeachers => {

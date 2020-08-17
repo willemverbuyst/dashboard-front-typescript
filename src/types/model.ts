@@ -21,12 +21,6 @@ export type Teacher = {
   students: Students[] | null;
 };
 
-export type Result = {
-  at: string;
-  result: number;
-  subject: number;
-};
-
 export type SubjectDetailsStudent = {
   all: SubjectDetailStudent[] | null;
 };
@@ -91,4 +85,18 @@ export type SignUpCredentials = {
 export type AddNewSubject = {
   name: string;
   id: number;
+};
+
+export type SelectorProps = {
+  title: string;
+  radio1: string;
+  radio2: string;
+  onChangeRadio: any;
+  value: string | undefined;
+  onChangeSelection: any;
+  results: Student[];
+  selectStudentData: string;
+  onClick: any;
+  placeholder: string;
+  textBtn: string;
 };
