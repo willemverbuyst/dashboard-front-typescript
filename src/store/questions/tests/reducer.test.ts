@@ -5,25 +5,25 @@ import {
   QuestionsFetched,
   AddQuestionToList,
 } from '../types';
-import { AddNewQuestion } from '../../../types/model';
 
 describe('questionsReducer', () => {
   const initialState = {
     all: null,
   };
+  const questions = [
+    {
+      text: 'test',
+      answers: [
+        {
+          text: 'test_answer',
+          correct: true,
+        },
+      ],
+    },
+  ];
   const action: QuestionsFetched = {
     type: FETCH_QUESTIONS,
-    questions: [
-      {
-        text: 'test',
-        answers: [
-          {
-            text: 'test_answer',
-            correct: true,
-          },
-        ],
-      },
-    ],
+    questions,
   };
   describe('if given no state and FETCH_QUESTIONS action', () => {
     test('returns the new state with questions', () => {
@@ -53,42 +53,24 @@ describe('questionsReducer', () => {
       },
     ],
   };
+  const question = {
+    text: 'test',
+    answers: [
+      {
+        text: 'test_answer',
+        correct: true,
+      },
+    ],
+  };
   const action: AddQuestionToList = {
     type: ADD_QUESTION,
-    question: {
-      text: 'test',
-      answers: [
-        {
-          text: 'test_answer',
-          correct: true,
-        },
-      ],
-    },
+    question,
   };
   describe('if given state and ADD_QUESTIONS action', () => {
     test('returns the new state with questions', () => {
       const newState = reducer(initialState, action);
       expect(newState).toEqual({
-        all: [
-          {
-            text: 'test',
-            answers: [
-              {
-                text: 'test_answer',
-                correct: true,
-              },
-            ],
-          },
-          {
-            text: 'test',
-            answers: [
-              {
-                text: 'test_answer',
-                correct: true,
-              },
-            ],
-          },
-        ],
+        all: [...initialState.all, question],
       });
     });
   });
