@@ -1,13 +1,13 @@
-import { Teachers } from '../../types/model';
-import { FETCH_TEACHERS, teachersFetched } from './types';
+import { TeacherOptions } from '../../types/school-info-model';
+import { STORE_TEACHERS, StoreTeachers } from './types';
 
-const initialState: Teachers = {
+const initialState: TeacherOptions = {
   all: null,
 };
 
-export default (state = initialState, action: teachersFetched) => {
+export default (state = initialState, action: StoreTeachers) => {
   switch (action.type) {
-    case FETCH_TEACHERS:
+    case STORE_TEACHERS:
       return { ...state, all: action.teachers };
 
     default:
