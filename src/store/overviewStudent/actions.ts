@@ -8,11 +8,11 @@ import {
   RemoveResults,
 } from './types';
 import { selectStudentToken } from '../student/selectors';
-import { Results } from '../../types/model';
+import { Result } from '../../types/model';
 import { GetStudentState } from '../student/types';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 
-const resultsFetched = (results: Results): ResultsFetched => {
+const resultsFetched = (results: Result[]): ResultsFetched => {
   return {
     type: FETCH_RESULTS_FOR_STUDENT_MAIN,
     results,

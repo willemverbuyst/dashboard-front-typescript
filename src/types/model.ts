@@ -21,10 +21,6 @@ export type Teacher = {
   students: Students[] | null;
 };
 
-export type Results = {
-  results: Result[] | null;
-};
-
 export type Result = {
   at: string;
   result: number;
