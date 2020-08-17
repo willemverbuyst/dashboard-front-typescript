@@ -10,21 +10,21 @@ export type StoreState = {
 
 export type GetStudentState = () => StoreState;
 
-export type logOutStudent = {
+export type LogOutStudent = {
   type: typeof LOG_OUT_STUDENT;
 };
 
-export type loginSuccessStudent = {
+export type LoginSuccessStudent = {
   type: typeof LOGIN_SUCCESS_STUDENT;
   student: Student;
 };
 
-export type tokenStudentStillValid = {
+export type TokenStudentStillValid = {
   type: typeof TOKEN_STILL_VALID_STUDENT;
   student: Student;
 };
 
 export type StudentActionTypes =
-  | loginSuccessStudent
-  | logOutStudent
-  | tokenStudentStillValid;
+  | LoginSuccessStudent
+  | LogOutStudent
+  | TokenStudentStillValid;

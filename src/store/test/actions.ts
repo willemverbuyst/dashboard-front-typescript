@@ -5,7 +5,8 @@ import { MC3questions, AnswerTest } from '../../types/test-models';
 import {
   FETCH_MC_QUESTIONS,
   REMOVE_MC_QUESTIONS,
-  MC3questionsFetched,
+  MC3QuestionsFetched,
+  RemoveQuestions,
 } from './types';
 import { GetStudentState } from '../student/types';
 import {
@@ -15,14 +16,14 @@ import {
   showMessageWithTimeout,
 } from '../appState/actions';
 
-const questionsFetched = (mc3questions: MC3questions): MC3questionsFetched => {
+const questionsFetched = (mc3questions: MC3questions): MC3QuestionsFetched => {
   return {
     type: FETCH_MC_QUESTIONS,
     mc3questions,
   };
 };
 
-export const removeQuestions = () => {
+export const removeQuestions = (): RemoveQuestions => {
   return {
     type: REMOVE_MC_QUESTIONS,
   };

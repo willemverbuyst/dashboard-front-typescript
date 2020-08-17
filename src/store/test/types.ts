@@ -9,14 +9,13 @@ export type StoreState = {
 
 export type GetState = () => StoreState;
 
-export type MC3questionsFetched = {
+export type MC3QuestionsFetched = {
   type: typeof FETCH_MC_QUESTIONS;
   mc3questions: MC3questions;
 };
 
 export type RemoveQuestions = {
   type: typeof REMOVE_MC_QUESTIONS;
-  mc3questions: MC3questions;
 };
 
-export type TestTypes = MC3questionsFetched | RemoveQuestions;
+export type TestTypes = MC3QuestionsFetched | RemoveQuestions;

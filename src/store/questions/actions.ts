@@ -4,7 +4,6 @@ import { Dispatch } from 'redux';
 import {
   FETCH_QUESTIONS,
   ADD_QUESTION,
-  QuestionActionTypes,
   QuestionsFetched,
   AddQuestionToList,
   GetState,
