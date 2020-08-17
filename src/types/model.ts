@@ -21,10 +21,6 @@ export type Teacher = {
   students: Students[] | null;
 };
 
-export type Teachers = {
-  all: SelectTeacher[] | null;
-};
-
 export type Results = {
   results: Result[] | null;
 };
@@ -42,11 +38,6 @@ export type SubjectDetailsStudent = {
 export type SubjectDetailStudent = {
   at: string;
   result: number;
-};
-
-export type SelectTeacher = {
-  name: string;
-  id: number;
 };
 
 export type Subjects = {

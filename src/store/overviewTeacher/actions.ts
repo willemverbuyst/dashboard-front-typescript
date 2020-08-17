@@ -2,7 +2,6 @@ import axios from 'axios';
 import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
-
 import {
   FETCH_OVERVIEW_FOR_SUBJECT,
   FETCH_OVERVIEW_FOR_STUDENT,
@@ -10,7 +9,7 @@ import {
   REMOVE_OVERVIEW,
   overviewTeacherTypes,
 } from './types';
-import { Subject, Student, Main } from '../../types/modelsOverviewTeacher';
+import { Subject, Student, Main } from '../../types/overview-teacher-models';
 import { GetTeacherState } from '../teacher/types';
 
 export const subjectsFetched = (subjects: Subject[]): overviewTeacherTypes => {

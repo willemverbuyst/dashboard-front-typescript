@@ -1,4 +1,4 @@
-import { TeacherOption, TeacherOptions } from '../../types/school-info-model';
+import { TeacherOption, TeacherOptions } from '../../types/school-info-models';
 
 export const STORE_TEACHERS = 'STORE_TEACHERS';
 

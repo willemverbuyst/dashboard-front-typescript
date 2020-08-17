@@ -1,6 +1,6 @@
 import React from 'react';
 import { Radio, Form, Row, Col } from 'antd';
-import { MCquestionDisplay } from '../types/modelsTest';
+import { MCquestionDisplay } from '../types/test-models';
 
 export default function MultipleChoiceQuestion({
   text,

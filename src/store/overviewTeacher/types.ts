@@ -3,7 +3,7 @@ import {
   Student,
   Main,
   OverviewTeacher,
-} from '../../types/modelsOverviewTeacher';
+} from '../../types/overview-teacher-models';
 
 export const FETCH_OVERVIEW_FOR_SUBJECT = 'FETCH_OVERVIEW_FOR_SUBJECT';
 export const FETCH_OVERVIEW_FOR_STUDENT = 'FETCH_OVERVIEW_FOR_STUDENT';

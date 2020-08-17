@@ -10,7 +10,7 @@ import {
 } from '../../store/student/selectors';
 import { getMcQuestionsForTest, submitTest } from '../../store/test/actions';
 import { select3mcQuestionsForSubject } from '../../store/test/selectors';
-import { AnswerTest } from '../../types/modelsTest';
+import { AnswerTest } from '../../types/test-models';
 import { Layout, Button, Modal } from 'antd';
 
 const { Content } = Layout;

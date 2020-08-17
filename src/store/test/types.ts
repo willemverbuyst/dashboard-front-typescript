@@ -1,4 +1,4 @@
-import { MC3questions } from '../../types/modelsTest';
+import { MC3questions } from '../../types/test-models';
 
 export const FETCH_MC_QUESTIONS = 'FETCH_MC_QUESTIONS';
 export const REMOVE_MC_QUESTIONS = 'REMOVE_MC_QUESTIONS';
