@@ -1,5 +1,4 @@
-import { Teacher, AddNewSubject } from '../../types/model';
-
+// ACTIONS
 export const LOGIN_SUCCESS_TEACHER = 'LOGIN_SUCCESS_TEACHER';
 export const TOKEN_STILL_VALID_TEACHER = 'TOKEN_STILL_VALID_TEACHER';
 export const LOG_OUT_TEACHER = 'LOG_OUT_TEACHER';
@@ -30,8 +29,33 @@ export type AddSubject = {
   subject: AddNewSubject;
 };
 
+export type AddNewSubject = {
+  name: string;
+  id: number;
+};
+
 export type TeacherActionTypes =
   | LoginSuccessTeacher
   | LogOutTeacher
   | TokenTeacherStillValid
   | AddSubject;
+
+// REDUCER
+export type Teacher = {
+  id: number | null;
+  name: string | null;
+  email: string | null;
+  token: string | null;
+  subjects: Subjects[] | null;
+  students: Students[] | null;
+};
+
+export type Subjects = {
+  name: string;
+  id: number;
+};
+
+export type Students = {
+  name: string;
+  id: number;
+};

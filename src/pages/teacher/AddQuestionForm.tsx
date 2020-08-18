@@ -7,7 +7,7 @@ import {
   selectTeacherId,
 } from '../../store/teacher/selectors';
 import { createQuestion } from '../../store/questions/actions';
-import { PostNewQuestion } from '../../types/model';
+import { PostNewQuestion } from '../../models/model';
 import { Layout, Form, Input, Button, Select, Row, Col } from 'antd';
 
 const { Content } = Layout;

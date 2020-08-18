@@ -16,7 +16,7 @@ import {
   selectMainOverviewScatter,
 } from '../../store/overviewTeacher/selectors';
 import { getMainOverview } from '../../store/overviewTeacher/actions';
-import { Coordinates } from '../../types/charts-models';
+import { Coordinates } from '../../models/charts.models';
 import { Layout, Row, Col } from 'antd';
 
 const { Content } = Layout;

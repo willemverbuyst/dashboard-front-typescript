@@ -8,7 +8,7 @@ import {
   AddQuestionToList,
   GetState,
 } from './types';
-import { Question, PostNewQuestion, AddNewQuestion } from '../../types/model';
+import { Question, PostNewQuestion, AddNewQuestion } from '../../models/model';
 import { GetTeacherState } from '../teacher/types';
 import { selectTeacherToken } from '../teacher/selectors';
 import {

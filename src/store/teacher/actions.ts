@@ -11,13 +11,13 @@ import {
   LogOutTeacher,
   TokenTeacherStillValid,
   AddSubject,
+  AddNewSubject,
 } from './types';
 import {
   Teacher,
   LoginCredentials,
-  AddNewSubject,
   SignUpCredentials,
-} from '../../types/model';
+} from '../../models/model';
 import {
   appLoading,
   appDoneLoading,

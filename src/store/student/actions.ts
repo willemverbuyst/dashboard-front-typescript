@@ -11,7 +11,7 @@ import {
   TokenStudentStillValid,
   Student,
 } from './types';
-import { LoginCredentials, SignUpCredentials } from '../../types/model';
+import { LoginCredentials, SignUpCredentials } from '../../models/model';
 import {
   appLoading,
   appDoneLoading,

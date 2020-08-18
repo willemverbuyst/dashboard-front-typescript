@@ -1,14 +1,3 @@
-export type MC3questions = {
-  all: MCquestion[] | null;
-};
-
-export type MCquestion = {
-  id: number;
-  text: string;
-  subjectId: number;
-  answers: MCanswer[];
-};
-
 export type MCanswer = {
   id: number;
   text: string;

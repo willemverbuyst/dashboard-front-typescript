@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
-import { SubjectDetailsStudent } from '../../types/model';
+import { SubjectDetailsStudent } from '../../models/model';
 import {
   FETCH_RESULTS_FOR_SUBJECT,
   REMOVE_RESULTS_FOR_SUBJECT,

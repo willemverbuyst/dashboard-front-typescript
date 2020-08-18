@@ -2,8 +2,8 @@ import {
   LOGIN_SUCCESS_STUDENT,
   TOKEN_STILL_VALID_STUDENT,
   LOG_OUT_STUDENT,
-  StudentActionTypes,
   Student,
+  StudentActionTypes,
 } from './types';
 
 const token = localStorage.getItem('student_token');

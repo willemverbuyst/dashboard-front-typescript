@@ -82,11 +82,6 @@ export type SignUpCredentials = {
   teacherId: number;
 };
 
-export type AddNewSubject = {
-  name: string;
-  id: number;
-};
-
 export type SelectorProps = {
   title: string;
   radio1: string;
