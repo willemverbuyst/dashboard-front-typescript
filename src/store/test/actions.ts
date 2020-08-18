@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
-import { AnswerTest } from '../../models/test.models';
+import { TestResult } from '../../models/test.models';
 import {
   FETCH_MC_QUESTIONS,
   REMOVE_MC_QUESTIONS,
@@ -59,7 +59,7 @@ export const getMcQuestionsForTest = (id: number) => {
 export function submitTest(
   studentId: number,
   subjectId: number,
-  mcQuestions: AnswerTest
+  mcQuestions: TestResult
 ) {
   return async function thunk(dispatch: any, getState: GetStudentState) {
     const token = getState().student.token;

@@ -7,7 +7,7 @@ export type MCanswer = {
   questionId: number;
 };
 
-export type AnswerTest = {
+export type TestResult = {
   question1: number;
   question2: number;
   question3: number;

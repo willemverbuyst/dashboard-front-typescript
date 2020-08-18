@@ -10,7 +10,7 @@ import {
 } from '../../store/student/selectors';
 import { getMcQuestionsForTest, submitTest } from '../../store/test/actions';
 import { select3mcQuestionsForSubject } from '../../store/test/selectors';
-import { AnswerTest } from '../../models/test.models';
+import { TestResult } from '../../models/test.models';
 import { Layout, Button, Modal } from 'antd';
 
 const { Content } = Layout;
@@ -23,7 +23,7 @@ export default function StudentDoTest() {
   const token = useSelector(selectStudentToken);
   const questions = useSelector(select3mcQuestionsForSubject);
   const subjects = useSelector(selectStudentSubjects);
-  const [mcQuestions, setMcQuestions] = useState<AnswerTest>({
+  const [MCResults, setMCResults] = useState<TestResult>({
     question1: 0,
     question2: 0,
     question3: 0,
@@ -47,24 +47,24 @@ export default function StudentDoTest() {
   const onPick = (event: any, questionNumber: number, questionId: number) => {
     if (questionNumber === 1) {
       event === 1 || event % 4 === 1
-        ? setMcQuestions({ ...mcQuestions, question1: questionId, answer1: 1 })
-        : setMcQuestions({ ...mcQuestions, question1: questionId, answer1: 0 });
+        ? setMCResults({ ...MCResults, question1: questionId, answer1: 1 })
+        : setMCResults({ ...MCResults, question1: questionId, answer1: 0 });
     } else if (questionNumber === 2) {
       event === 1 || event % 4 === 1
-        ? setMcQuestions({ ...mcQuestions, question2: questionId, answer2: 1 })
-        : setMcQuestions({ ...mcQuestions, question2: questionId, answer2: 0 });
+        ? setMCResults({ ...MCResults, question2: questionId, answer2: 1 })
+        : setMCResults({ ...MCResults, question2: questionId, answer2: 0 });
     } else {
       event === 1 || event % 4 === 1
-        ? setMcQuestions({ ...mcQuestions, question3: questionId, answer3: 1 })
-        : setMcQuestions({ ...mcQuestions, question3: questionId, answer3: 0 });
+        ? setMCResults({ ...MCResults, question3: questionId, answer3: 1 })
+        : setMCResults({ ...MCResults, question3: questionId, answer3: 0 });
     }
   };
 
   const onFinish = () => {
     if (studentId) {
       setTestDone(true);
-      dispatch(submitTest(studentId, subjectid, mcQuestions));
-      setMcQuestions({ ...mcQuestions, answer1: 0, answer2: 0, answer3: 0 });
+      dispatch(submitTest(studentId, subjectid, MCResults));
+      setMCResults({ ...MCResults, answer1: 0, answer2: 0, answer3: 0 });
       setBlockNavigation(false);
     }
   };
@@ -146,9 +146,9 @@ export default function StudentDoTest() {
           studentId &&
             dispatch(
               submitTest(studentId, subjectid, {
-                question1: mcQuestions.question1,
-                question2: mcQuestions.question2,
-                question3: mcQuestions.question3,
+                question1: MCResults.question1,
+                question2: MCResults.question2,
+                question3: MCResults.question3,
                 answer1: 0,
                 answer2: 0,
                 answer3: 0,
