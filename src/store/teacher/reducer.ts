@@ -1,10 +1,10 @@
-import { Teacher } from '../../types/model';
 import {
-  TeacherActionTypes,
   LOGIN_SUCCESS_TEACHER,
   TOKEN_STILL_VALID_TEACHER,
   LOG_OUT_TEACHER,
   ADD_SUBJECT,
+  Teacher,
+  TeacherActionTypes,
 } from './types';
 
 const token = localStorage.getItem('teacher_token');

@@ -1,4 +1,4 @@
-import { STORE_TEACHERS, StoreTeachers, TeacherOptions } from './types';
+import { STORE_TEACHERS, TeacherOptions, StoreTeachers } from './types';
 
 const initialState: TeacherOptions = {
   all: null,

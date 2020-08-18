@@ -1,8 +1,8 @@
 import {
   FETCH_QUESTIONS,
   ADD_QUESTION,
-  QuestionActionTypes,
   Questions,
+  QuestionActionTypes,
 } from './types';
 
 const initialState: Questions = {

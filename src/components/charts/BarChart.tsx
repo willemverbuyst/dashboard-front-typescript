@@ -1,6 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import { InputBarChart } from '../../types/charts-models';
+import { InputBarChart } from '../../models/charts.models';
 
 export default function BarChart({
   labels,

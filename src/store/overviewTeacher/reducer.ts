@@ -3,8 +3,8 @@ import {
   FETCH_OVERVIEW_FOR_STUDENT,
   FETCH_OVERVIEW_FOR_MAIN,
   REMOVE_OVERVIEW,
-  overviewTeacherTypes,
   OverviewTeacher,
+  overviewTeacherTypes,
 } from './types';
 
 const initialState: OverviewTeacher = {

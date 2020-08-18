@@ -1,6 +1,6 @@
 import React from 'react';
 import { Scatter } from 'react-chartjs-2';
-import { InputScatterChart } from '../../types/charts-models';
+import { InputScatterChart } from '../../models/charts.models';
 
 export default function ScatterChart({
   data,

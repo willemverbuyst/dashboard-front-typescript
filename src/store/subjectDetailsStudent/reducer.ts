@@ -1,7 +1,7 @@
-import { SubjectDetailsStudent } from '../../types/model';
 import {
   FETCH_RESULTS_FOR_SUBJECT,
   REMOVE_RESULTS_FOR_SUBJECT,
+  SubjectDetailsStudent,
   StudentDetailsTypes,
 } from './types';
 

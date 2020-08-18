@@ -3,7 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginStudent } from '../store/student/actions';
 import { loginTeacher } from '../store/teacher/actions';
-import { ButtonEvent, LoginCredentials } from '../types/model';
+import { ButtonEvent } from '../models/events.model';
+import { LoginCredentials } from '../models/credentials.model';
 import { selectStudentId } from '../store/student/selectors';
 import { selectTeacherId } from '../store/teacher/selectors';
 

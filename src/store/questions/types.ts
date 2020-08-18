@@ -16,14 +16,21 @@ export type QuestionsFetched = {
 
 export type AddQuestionToList = {
   type: typeof ADD_QUESTION;
-  question: AddNewQuestion;
+  question: newQuestion;
 };
 
-export type QuestionActionTypes = QuestionsFetched | AddQuestionToList;
+export type PostNewQuestion = {
+  subject: number;
+  question: string;
+  answer1: string;
+  answer2: string;
+  answer3: string;
+  answer4: string;
+};
 
-// REDUCER
-export type Questions = {
-  all: Question[] | null;
+export type newQuestion = {
+  text: string;
+  answers: Answer[];
 };
 
 export type Question = {
@@ -36,7 +43,9 @@ export type Answer = {
   correct: boolean;
 };
 
-export type AddNewQuestion = {
-  text: string;
-  answers: Answer[];
+// REDUCER
+export type Questions = {
+  all: Question[] | null;
 };
+
+export type QuestionActionTypes = QuestionsFetched | AddQuestionToList;
