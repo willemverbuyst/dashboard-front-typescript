@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
-import { SubjectDetailsStudent } from '../../models/model';
 import {
   FETCH_RESULTS_FOR_SUBJECT,
   REMOVE_RESULTS_FOR_SUBJECT,
   ResultsFetched,
   RemoveDetailsStudent,
+  SubjectDetailsStudent,
 } from './types';
 import { GetStudentState } from '../student/types';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
