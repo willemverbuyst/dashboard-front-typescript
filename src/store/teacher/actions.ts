@@ -11,13 +11,13 @@ import {
   LogOutTeacher,
   TokenTeacherStillValid,
   AddSubject,
-  AddNewSubject,
+  newSubject,
+  Teacher,
 } from './types';
 import {
-  Teacher,
   LoginCredentials,
   SignUpCredentials,
-} from '../../models/model';
+} from '../../models/credentials.model';
 import {
   appLoading,
   appDoneLoading,
@@ -41,7 +41,7 @@ const tokenTeacherStillValid = (teacher: Teacher): TokenTeacherStillValid => ({
   teacher,
 });
 
-const addSubject = (subject: AddNewSubject): AddSubject => ({
+const addSubject = (subject: newSubject): AddSubject => ({
   type: ADD_SUBJECT,
   subject,
 });

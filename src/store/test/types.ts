@@ -10,7 +10,7 @@ export type GetState = () => StoreState;
 
 export type MC3QuestionsFetched = {
   type: typeof FETCH_MC_QUESTIONS;
-  mc3questions: MCquestion[];
+  mc3questions: MCQuestion[];
 };
 
 export type RemoveQuestions = {
@@ -21,17 +21,17 @@ export type TestTypes = MC3QuestionsFetched | RemoveQuestions;
 
 // REDUCER
 export type MCTest = {
-  all: MCquestion[] | null;
+  all: MCQuestion[] | null;
 };
 
-export type MCquestion = {
+export type MCQuestion = {
   id: number;
   text: string;
   subjectId: number;
-  answers: MCanswer[];
+  answers: MCAnswer[];
 };
 
-export type MCanswer = {
+export type MCAnswer = {
   id: number;
   text: string;
   correct: boolean;

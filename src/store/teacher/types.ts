@@ -26,10 +26,10 @@ export type TokenTeacherStillValid = {
 
 export type AddSubject = {
   type: typeof ADD_SUBJECT;
-  subject: AddNewSubject;
+  subject: newSubject;
 };
 
-export type AddNewSubject = {
+export type newSubject = {
   name: string;
   id: number;
 };

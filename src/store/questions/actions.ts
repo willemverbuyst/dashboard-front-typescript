@@ -4,13 +4,14 @@ import { Dispatch } from 'redux';
 import {
   FETCH_QUESTIONS,
   ADD_QUESTION,
+  GetState,
   QuestionsFetched,
   AddQuestionToList,
-  GetState,
+  PostNewQuestion,
+  newQuestion,
+  Question,
 } from './types';
-import { Question, PostNewQuestion, AddNewQuestion } from '../../models/model';
 import { GetTeacherState } from '../teacher/types';
-import { selectTeacherToken } from '../teacher/selectors';
 import {
   appLoading,
   appDoneLoading,
@@ -25,9 +26,7 @@ export const questionsFetched = (questions: Question[]): QuestionsFetched => {
   };
 };
 
-export const addQuestionToList = (
-  question: AddNewQuestion
-): AddQuestionToList => {
+export const addQuestionToList = (question: newQuestion): AddQuestionToList => {
   return {
     type: ADD_QUESTION,
     question,

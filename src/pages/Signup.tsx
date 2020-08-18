@@ -6,7 +6,7 @@ import { selectAllTeachers } from '../store/schoolInfo/selectors';
 import { createStudent } from '../store/student/actions';
 import { createTeacher } from '../store/teacher/actions';
 import { Layout, Form, Input, Button, Radio, Select, Row, Col } from 'antd';
-import { SignUpCredentials } from '../models/model';
+import { SignUpCredentials } from '../models/credentials.model';
 
 const { Content } = Layout;
 const { Option } = Select;

@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { apiUrl } from '../../config/constants';
 import { Dispatch } from 'redux';
-import { MC3questions, AnswerTest } from '../../models/test-models';
+import { AnswerTest } from '../../models/test.models';
 import {
   FETCH_MC_QUESTIONS,
   REMOVE_MC_QUESTIONS,
   MC3QuestionsFetched,
   RemoveQuestions,
+  MCQuestion,
 } from './types';
 import { GetStudentState } from '../student/types';
 import {
@@ -16,7 +17,7 @@ import {
   showMessageWithTimeout,
 } from '../appState/actions';
 
-const questionsFetched = (mc3questions: MC3questions): MC3QuestionsFetched => {
+const questionsFetched = (mc3questions: MCQuestion[]): MC3QuestionsFetched => {
   return {
     type: FETCH_MC_QUESTIONS,
     mc3questions,
