@@ -1,6 +1,6 @@
 import { apiUrl } from '../../config/constants';
 import axios from 'axios';
-import { Dispatch } from 'redux';
+import { Dispatch, AnyAction } from 'redux';
 import {
   LOGIN_SUCCESS_STUDENT,
   TOKEN_STILL_VALID_STUDENT,
@@ -25,27 +25,29 @@ import { removeResults } from '../overviewStudent/actions';
 import { removeDetailsStudent } from '../subjectDetailsStudent/actions';
 import { removeQuestions } from '../test/actions';
 
-const loginSuccessStudent = (student: Student): LoginSuccessStudent => {
+export const loginSuccessStudent = (student: Student): LoginSuccessStudent => {
   return {
     type: LOGIN_SUCCESS_STUDENT,
     student,
   };
 };
 
-const tokenStudentStillValid = (student: Student): TokenStudentStillValid => ({
+export const tokenStudentStillValid = (
+  student: Student
+): TokenStudentStillValid => ({
   type: TOKEN_STILL_VALID_STUDENT,
   student,
 });
 
-const logOutStudent = (): LogOutStudent => ({
+export const logOutStudent = (): LogOutStudent => ({
   type: LOG_OUT_STUDENT,
 });
 
-export const loginStudent = (credentials: LoginCredentials) => {
-  const { email, password, status } = credentials;
-  return async (dispatch: any, getState: GetStudentState) => {
+export const studentLoggingIn = (credentials: LoginCredentials) => {
+  return async (dispatch: Dispatch, getState: GetStudentState) => {
     dispatch(appLoading());
     try {
+      const { email, password, status } = credentials;
       const response = await axios.post(`${apiUrl}/login`, {
         email,
         password,
@@ -53,11 +55,14 @@ export const loginStudent = (credentials: LoginCredentials) => {
       });
 
       dispatch(loginSuccessStudent(response.data));
-      dispatch(showMessageWithTimeout('success', false, 'Welcome back!', 1500));
+      dispatch<any>(
+        showMessageWithTimeout('success', false, 'Welcome back!', 1500)
+      );
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
+
         dispatch(setMessage('error', true, error.response.data.message));
       } else {
         console.log(error.message);
