@@ -1,11 +1,11 @@
 import { apiUrl } from '../../config/constants';
 import axios from 'axios';
-import { Dispatch, AnyAction } from 'redux';
+import { Dispatch } from 'redux';
 import {
   LOGIN_SUCCESS_STUDENT,
   TOKEN_STILL_VALID_STUDENT,
   LOG_OUT_STUDENT,
-  GetStudentState,
+  GetState,
   LoginSuccessStudent,
   LogOutStudent,
   TokenStudentStillValid,
@@ -44,7 +44,7 @@ export const logOutStudent = (): LogOutStudent => ({
 });
 
 export const studentLoggingIn = (credentials: LoginCredentials) => {
-  return async (dispatch: Dispatch, getState: GetStudentState) => {
+  return async (dispatch: Dispatch, getState: GetState) => {
     dispatch(appLoading());
     try {
       const { email, password, status } = credentials;
@@ -74,13 +74,11 @@ export const studentLoggingIn = (credentials: LoginCredentials) => {
 };
 
 export const getStudentWithStoredToken = () => {
-  return async (dispatch: Dispatch, getState: GetStudentState) => {
-    const token = getState().student.token;
-
-    if (token === null) return;
+  return async (dispatch: Dispatch, getState: GetState) => {
     dispatch(appLoading());
     try {
       // if token check if valid
+      const token = localStorage.getItem('student_token');
       const response = await axios.get(`${apiUrl}/student`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -99,7 +97,7 @@ export const getStudentWithStoredToken = () => {
 };
 
 export const studentLoggingOut = () => {
-  return function thunk(dispatch: Dispatch, getState: GetStudentState) {
+  return function thunk(dispatch: Dispatch, getState: GetState) {
     dispatch(logOutStudent());
     dispatch(removeResults());
     dispatch(removeDetailsStudent());
@@ -109,7 +107,7 @@ export const studentLoggingOut = () => {
 
 export const createStudent = (signUpCredentials: SignUpCredentials) => {
   const { status, name, email, password, teacherId } = signUpCredentials;
-  return async (dispatch: any, getState: GetStudentState) => {
+  return async (dispatch: Dispatch, getState: GetState) => {
     dispatch(appLoading());
     try {
       const response = await axios.post(`${apiUrl}/signup`, {
@@ -121,7 +119,7 @@ export const createStudent = (signUpCredentials: SignUpCredentials) => {
       });
 
       dispatch(loginSuccessStudent(response.data));
-      dispatch(
+      dispatch<any>(
         showMessageWithTimeout('success', true, response.data.message, 1500)
       );
       dispatch(appDoneLoading());

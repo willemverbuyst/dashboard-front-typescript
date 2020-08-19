@@ -41,6 +41,10 @@ const student = {
   ],
 };
 
+beforeEach(() => {
+  jest.resetAllMocks();
+});
+
 describe('if given action LOG_OUT_STUDENT', () => {
   const action: LogOutStudent = {
     type: LOG_OUT_STUDENT,
@@ -70,7 +74,7 @@ describe('if given action TOKEN_STILL_VALID_STUDENT', () => {
   });
 });
 
-describe('studentLoggingIn', () => {
+describe('student logging in', () => {
   it('calls axios and returns student', async () => {
     const credentials = {
       email: 'test@test',
@@ -126,12 +130,32 @@ describe('student signing in', () => {
 
     await createStudent(credentials)(dispatch, getState);
 
-    // todo: reset the mockAxios
-    // expect(mockAxios.post).toHaveBeenCalledTimes(1);
+    expect(mockAxios.post).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith(appLoading());
     expect(dispatch).toHaveBeenCalledWith(loginSuccessStudent(student));
     expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
     expect(dispatch).toHaveBeenCalledTimes(4);
+    // expect(dispatch).toHaveBeenCalledWith(
+    //   showMessageWithTimeout('success', false, 'Welcome back!', 1500)
+    // );
+  });
+});
+
+describe('student with valid token', () => {
+  it('returns student', async () => {
+    const dispatch = jest.fn();
+    const getState = jest.fn();
+    const response = { data: student };
+
+    mockAxios.get.mockImplementationOnce(() => Promise.resolve(response));
+
+    await getStudentWithStoredToken()(dispatch, getState);
+
+    expect(mockAxios.get).toHaveBeenCalledTimes(1);
+    expect(dispatch).toHaveBeenCalledWith(appLoading());
+    expect(dispatch).toHaveBeenCalledWith(tokenStudentStillValid(student));
+    expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
+    expect(dispatch).toHaveBeenCalledTimes(3);
     // expect(dispatch).toHaveBeenCalledWith(
     //   showMessageWithTimeout('success', false, 'Welcome back!', 1500)
     // );
