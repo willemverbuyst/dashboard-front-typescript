@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginStudent } from '../store/student/actions';
+import { studentLoggingIn } from '../store/student/actions';
 import { loginTeacher } from '../store/teacher/actions';
 import { ButtonEvent } from '../models/events.model';
 import { LoginCredentials } from '../models/credentials.model';
@@ -35,7 +35,7 @@ export default function Login() {
   const submitForm = (e: ButtonEvent): void => {
     e.preventDefault();
     loginCredentials.status === 1
-      ? dispatch(loginStudent(loginCredentials))
+      ? dispatch(studentLoggingIn(loginCredentials))
       : dispatch(loginTeacher(loginCredentials));
 
     setLoginCredentials({
