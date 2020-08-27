@@ -21,10 +21,12 @@ describe('questionsReducer', () => {
       ],
     },
   ];
+
   const action: QuestionsFetched = {
     type: FETCH_QUESTIONS,
     questions,
   };
+
   describe('if given no state and FETCH_QUESTIONS action', () => {
     test('returns the new state with questions', () => {
       const newState = reducer(undefined, action);

@@ -16,7 +16,7 @@ let initialState = {
   subjects: null,
 };
 
-describe('studentReducer logout', () => {
+describe('student logging out', () => {
   const action: LogOutStudent = {
     type: LOG_OUT_STUDENT,
   };
@@ -35,18 +35,19 @@ describe('studentReducer logout', () => {
   });
 });
 
-describe('studentReducer login', () => {
-  const subject = {
-    name: 'test_subject',
-    id: 1,
-  };
-  const student = {
-    id: 1,
-    name: 'test_name',
-    email: 'test@test.com',
-    token: 'test_token',
-    subjects: [subject],
-  };
+const subject = {
+  name: 'test_subject',
+  id: 1,
+};
+const student = {
+  id: 1,
+  name: 'test_name',
+  email: 'test@test.com',
+  token: 'test_token',
+  subjects: [subject],
+};
+
+describe('student logging in', () => {
   const action: LoginSuccessStudent = {
     type: LOGIN_SUCCESS_STUDENT,
     student,
@@ -63,18 +64,7 @@ describe('studentReducer login', () => {
   });
 });
 
-describe('studentReducer studentWithToken', () => {
-  const subject = {
-    name: 'test_subject',
-    id: 1,
-  };
-  const student = {
-    id: 1,
-    name: 'test_name',
-    email: 'test@test.com',
-    token: 'test_token',
-    subjects: [subject],
-  };
+describe('student with token', () => {
   const action: TokenStudentStillValid = {
     type: TOKEN_STILL_VALID_STUDENT,
     student,

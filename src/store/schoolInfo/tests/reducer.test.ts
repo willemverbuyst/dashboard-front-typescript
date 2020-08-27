@@ -1,11 +1,11 @@
 import reducer from '../reducer';
 import { STORE_TEACHERS } from '../types';
 
-describe('schoolInfoReducer', () => {
+describe('When student signs up', () => {
   const initialState = {
     all: null,
   };
-  describe('if given no state and FETCH_TEACHERS action', () => {
+  describe('with initial state and FETCH_TEACHERS action', () => {
     test('returns the new state with teachers', () => {
       const newState = reducer(undefined, {
         type: STORE_TEACHERS,
