@@ -1,11 +1,11 @@
 import {
   FETCH_RESULTS_FOR_SUBJECT,
   REMOVE_RESULTS_FOR_SUBJECT,
-  SubjectDetailsStudent,
+  SubjectDetailsStudentState,
   StudentDetailsTypes,
 } from './types';
 
-const initialState: SubjectDetailsStudent = {
+const initialState: SubjectDetailsStudentState = {
   all: null,
 };
 

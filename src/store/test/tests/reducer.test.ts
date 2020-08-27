@@ -5,10 +5,10 @@ import {
   REMOVE_MC_QUESTIONS,
   MC3QuestionsFetched,
   RemoveQuestions,
-  MCTest,
+  TestState,
 } from '../types';
 
-const initialState: MCTest = {
+const initialState: TestState = {
   all: null,
 };
 

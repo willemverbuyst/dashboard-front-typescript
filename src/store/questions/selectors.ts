@@ -1,5 +1,5 @@
-import { StoreState } from './types';
+import { QuestionsState } from './types';
 
-export const selectAllQuestionsForSubject = (state: StoreState) => {
-  return state.questions.all;
+export const selectAllQuestionsForSubject = (state: QuestionsState) => {
+  return state.all;
 };

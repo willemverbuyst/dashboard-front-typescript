@@ -1,22 +1,21 @@
-// ACTIONS
 export const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
 // export const REMOVE_QUESTIONS = 'REMOVE_QUESTIONS';
 
-export type StoreState = {
-  questions: Questions;
+export type QuestionsState = {
+  all: Question[] | null;
 };
 
-export type GetState = () => StoreState;
+export type GetState = () => QuestionsState;
 
-export type QuestionsFetched = {
-  type: typeof FETCH_QUESTIONS;
-  questions: Question[];
+export type newQuestion = {
+  text: string;
+  answers: Answer[];
 };
 
-export type AddQuestionToList = {
-  type: typeof ADD_QUESTION;
-  question: newQuestion;
+export type Answer = {
+  text: string;
+  correct: boolean;
 };
 
 export type PostNewQuestion = {
@@ -28,24 +27,19 @@ export type PostNewQuestion = {
   answer4: string;
 };
 
-export type newQuestion = {
-  text: string;
-  answers: Answer[];
-};
-
 export type Question = {
   text: string;
   answers: Answer[];
 };
 
-export type Answer = {
-  text: string;
-  correct: boolean;
+export type QuestionsFetched = {
+  type: typeof FETCH_QUESTIONS;
+  questions: Question[];
 };
 
-// REDUCER
-export type Questions = {
-  all: Question[] | null;
+export type AddQuestionToList = {
+  type: typeof ADD_QUESTION;
+  question: newQuestion;
 };
 
 export type QuestionActionTypes = QuestionsFetched | AddQuestionToList;

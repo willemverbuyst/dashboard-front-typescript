@@ -1,17 +1,17 @@
-import { StoreState } from './types';
+import { OverViewTeacherState } from './types';
 
-export const selectSubjectOverview = (state: StoreState) => {
+export const selectSubjectOverview = (state: OverViewTeacherState) => {
   return state.overviewTeacher.subjects;
 };
 
-export const selectStudentOverview = (state: StoreState) => {
+export const selectStudentOverview = (state: OverViewTeacherState) => {
   return state.overviewTeacher.students;
 };
 
-export const selectMainOverview = (state: StoreState) => {
+export const selectMainOverview = (state: OverViewTeacherState) => {
   return state.overviewTeacher.main.scores;
 };
 
-export const selectMainOverviewScatter = (state: StoreState) => {
+export const selectMainOverviewScatter = (state: OverViewTeacherState) => {
   return state.overviewTeacher.main.tests;
 };

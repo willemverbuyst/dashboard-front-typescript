@@ -1,41 +1,14 @@
-// ACTIONS
 export const FETCH_OVERVIEW_FOR_SUBJECT = 'FETCH_OVERVIEW_FOR_SUBJECT';
 export const FETCH_OVERVIEW_FOR_STUDENT = 'FETCH_OVERVIEW_FOR_STUDENT';
 export const FETCH_OVERVIEW_FOR_MAIN = 'FETCH_OVERVIEW_FOR_MAIN';
 export const REMOVE_OVERVIEW = 'REMOVE_OVERVIEW';
 
-export type StoreState = {
+export type OverViewTeacherState = {
   overviewTeacher: OverviewTeacher;
 };
 
-export type GetState = () => StoreState;
+export type GetState = () => OverViewTeacherState;
 
-export type SubjectsFetched = {
-  type: typeof FETCH_OVERVIEW_FOR_SUBJECT;
-  payload: Subject[];
-};
-
-export type StudentsFetched = {
-  type: typeof FETCH_OVERVIEW_FOR_STUDENT;
-  payload: Student[];
-};
-
-export type MainFetched = {
-  type: typeof FETCH_OVERVIEW_FOR_MAIN;
-  payload: Main;
-};
-
-export type RemoveOverviewTeacher = {
-  type: typeof REMOVE_OVERVIEW;
-};
-
-export type overviewTeacherTypes =
-  | SubjectsFetched
-  | StudentsFetched
-  | MainFetched
-  | RemoveOverviewTeacher;
-
-// REDUCER
 export type OverviewTeacher = {
   students: Student[] | null;
   subjects: Subject[] | null;
@@ -71,3 +44,28 @@ export type Test = {
   result: number;
   at: string;
 };
+
+export type SubjectsFetched = {
+  type: typeof FETCH_OVERVIEW_FOR_SUBJECT;
+  payload: Subject[];
+};
+
+export type StudentsFetched = {
+  type: typeof FETCH_OVERVIEW_FOR_STUDENT;
+  payload: Student[];
+};
+
+export type MainFetched = {
+  type: typeof FETCH_OVERVIEW_FOR_MAIN;
+  payload: Main;
+};
+
+export type RemoveOverviewTeacher = {
+  type: typeof REMOVE_OVERVIEW;
+};
+
+export type overviewTeacherTypes =
+  | SubjectsFetched
+  | StudentsFetched
+  | MainFetched
+  | RemoveOverviewTeacher;

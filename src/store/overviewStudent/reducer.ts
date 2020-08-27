@@ -1,11 +1,11 @@
 import {
   FETCH_RESULTS_FOR_STUDENT_MAIN,
   REMOVE_RESULTS_FOR_STUDENT_MAIN,
-  OverviewStudent,
+  OverviewStudentState,
   OverviewStudentTypes,
 } from './types';
 
-const initialState: OverviewStudent = {
+const initialState: OverviewStudentState = {
   results: null,
 };
 

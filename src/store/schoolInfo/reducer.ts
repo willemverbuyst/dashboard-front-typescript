@@ -1,6 +1,6 @@
-import { STORE_TEACHERS, TeacherOptions, StoreTeachers } from './types';
+import { STORE_TEACHERS, SchoolInfoState, StoreTeachers } from './types';
 
-const initialState: TeacherOptions = {
+const initialState: SchoolInfoState = {
   all: null,
 };
 

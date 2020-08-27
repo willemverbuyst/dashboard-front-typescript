@@ -32,7 +32,7 @@ describe('When results are fetched', () => {
   });
 });
 
-describe('When all is not null', () => {
+describe('When result array is not null', () => {
   test('and dispatch REMOVE_RESULTS_FOR_SUBJECT action', () => {
     const newState = reducer(
       { ...initialState, all: subjectDetails },

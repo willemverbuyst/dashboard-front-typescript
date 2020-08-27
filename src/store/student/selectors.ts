@@ -1,10 +1,10 @@
-import { StoreState } from './types';
+import { StudentState } from './types';
 
-export const selectStudentToken = (state: StoreState) => state.student.token;
+export const selectStudentToken = (state: StudentState) => state.student.token;
 
-export const selectStudentId = (state: StoreState) => state.student.id;
+export const selectStudentId = (state: StudentState) => state.student.id;
 
-export const selectStudentName = (state: StoreState) => state.student.name;
+export const selectStudentName = (state: StudentState) => state.student.name;
 
-export const selectStudentSubjects = (state: StoreState) =>
+export const selectStudentSubjects = (state: StudentState) =>
   state.student.subjects;

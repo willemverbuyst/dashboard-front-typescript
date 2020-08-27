@@ -1,11 +1,11 @@
 import {
   FETCH_QUESTIONS,
   ADD_QUESTION,
-  Questions,
+  QuestionsState,
   QuestionActionTypes,
 } from './types';
 
-const initialState: Questions = {
+const initialState: QuestionsState = {
   all: null,
 };
 

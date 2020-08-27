@@ -1,11 +1,11 @@
 import {
   FETCH_MC_QUESTIONS,
   REMOVE_MC_QUESTIONS,
-  MCTest,
+  TestState,
   TestTypes,
 } from './types';
 
-const initialState: MCTest = {
+const initialState: TestState = {
   all: null,
 };
 

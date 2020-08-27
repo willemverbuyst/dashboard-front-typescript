@@ -1,11 +1,15 @@
-// ACTION
 export const STORE_TEACHERS = 'STORE_TEACHERS';
 
-export type StoreState = {
-  schoolInfo: TeacherOptions;
+export type SchoolInfoState = {
+  all: TeacherOption[] | null;
 };
 
-export type GetState = () => StoreState;
+export type GetState = () => SchoolInfoState;
+
+export type TeacherOption = {
+  name: string;
+  id: number;
+};
 
 export type StoreTeachers = {
   type: typeof STORE_TEACHERS;
@@ -13,13 +17,3 @@ export type StoreTeachers = {
 };
 
 export type SchoolInfoActionTypes = StoreTeachers;
-
-// REDUCER
-export type TeacherOptions = {
-  all: TeacherOption[] | null;
-};
-
-export type TeacherOption = {
-  name: string;
-  id: number;
-};
