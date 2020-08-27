@@ -6,13 +6,13 @@ import {
   REMOVE_RESULTS_FOR_SUBJECT,
   ResultsFetched,
   RemoveDetailsStudent,
-  SubjectDetailsStudent,
+  SubjectDetailStudent,
 } from './types';
 import { GetStudentState } from '../student/types';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 
 const resultsFetched = (
-  subjectDetails: SubjectDetailsStudent
+  subjectDetails: SubjectDetailStudent[]
 ): ResultsFetched => {
   return {
     type: FETCH_RESULTS_FOR_SUBJECT,

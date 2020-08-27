@@ -3,14 +3,14 @@ export const FETCH_RESULTS_FOR_SUBJECT = 'FETCH_RESULTS_FOR_SUBJECT';
 export const REMOVE_RESULTS_FOR_SUBJECT = 'REMOVE_RESULTS_FOR_SUBJECT';
 
 export type StoreState = {
-  subjectDetailsStudent: SubjectDetailsStudent;
+  all: SubjectDetailStudent[] | null;
 };
 
 export type GetState = () => StoreState;
 
 export type ResultsFetched = {
   type: typeof FETCH_RESULTS_FOR_SUBJECT;
-  subjectDetails: SubjectDetailsStudent;
+  subjectDetails: SubjectDetailStudent[];
 };
 
 export type RemoveDetailsStudent = {
@@ -20,9 +20,6 @@ export type RemoveDetailsStudent = {
 export type StudentDetailsTypes = ResultsFetched | RemoveDetailsStudent;
 
 // REDUCER
-export type SubjectDetailsStudent = {
-  all: SubjectDetailStudent[] | null;
-};
 
 export type SubjectDetailStudent = {
   at: string;
