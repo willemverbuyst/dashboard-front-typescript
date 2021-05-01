@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import BarChart from '../../../components/charts/BarChart';
 import {
   selectTeacherToken,
   selectTeacherId,
@@ -12,7 +11,8 @@ import {
   selectMainOverviewScatter,
 } from '../../../store/overviewTeacher/selectors';
 import { getMainOverview } from '../../../store/overviewTeacher/actions';
-import { Layout, Row, Col } from 'antd';
+import { Layout, Row } from 'antd';
+import BarChartMain from './barChartMain';
 import LineChartMain from './LineChartMain';
 import PieChartMain from './PieChartMain';
 import ScatterChartMain from './ScatterChartMain';
@@ -38,37 +38,14 @@ export default function TeacherMain() {
     dispatch(getMainOverview(id));
   }, [dispatch, id]);
 
-  const renderChartsMain = () => {
-    if (mainPageData && subjects) {
-      const data = mainPageData.map(({ result }) => result);
-      const color = [];
-      for (let i = 0; i < data.length; i++) color.push('#FF5C84');
-      const labels = subjects.map(({ name }) => name);
-
-      return (
-        <Col style={{ width: 450, paddingBottom: 80 }}>
-          <BarChart
-            data={data}
-            color={color}
-            labels={labels}
-            title={`AVERAGES PER SUBJECT`}
-            max={100}
-          />
-        </Col>
-      );
-    } else {
-      return <p>YOU DON'T HAVE ENOUGH DATA YET TO DISPLAY AVERAGE</p>;
-    }
-  };
-
   return (
     <Layout>
       <Layout style={{ padding: '24px', minHeight: '92vh' }}>
         <Content className="site-layout-background">
-          {tests && subjects ? (
+          {mainPageData && tests && subjects ? (
             <>
               <Row justify="space-around">
-                {renderChartsMain()}
+                <BarChartMain scores={mainPageData} subjects={subjects} />
                 <PieChartMain tests={tests} />
               </Row>
               <Row justify="space-around">

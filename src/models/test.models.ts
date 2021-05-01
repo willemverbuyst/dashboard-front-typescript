@@ -6,6 +6,11 @@ export interface ITest {
   at: string;
 }
 
+export interface IScore {
+  length: number;
+  result: number;
+}
+
 export type MCanswer = {
   id: number;
   text: string;
