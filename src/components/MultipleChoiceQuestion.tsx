@@ -1,14 +1,34 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Radio, Form, Row, Col } from 'antd';
 import { MCquestionDisplay } from '../models/test.models';
 
-export default function MultipleChoiceQuestion({
+const MultipleChoiceQuestion: React.FC<MCquestionDisplay> = ({
   text,
   answers,
   questionNumber,
   questionId,
   onChange,
-}: MCquestionDisplay) {
+}: MCquestionDisplay): ReactElement => {
+  const generateOptions = (): ReactElement => {
+    return (
+      <>
+        {answers.map(({ text, id }, i) => (
+          <Radio
+            key={i}
+            style={{
+              display: 'block',
+              height: '30px',
+              lineHeight: '30px',
+            }}
+            value={id}
+          >
+            {text}
+          </Radio>
+        ))}
+      </>
+    );
+  };
+
   return (
     <>
       <Row>
@@ -22,23 +42,13 @@ export default function MultipleChoiceQuestion({
                 onChange(e.target.value, questionNumber, questionId)
               }
             >
-              {answers.map(({ text, id }, i) => (
-                <Radio
-                  key={i}
-                  style={{
-                    display: 'block',
-                    height: '30px',
-                    lineHeight: '30px',
-                  }}
-                  value={id}
-                >
-                  {text}
-                </Radio>
-              ))}
+              {generateOptions()}
             </Radio.Group>
           </Form.Item>
         </Col>
       </Row>
     </>
   );
-}
+};
+
+export default MultipleChoiceQuestion;

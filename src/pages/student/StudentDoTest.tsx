@@ -19,7 +19,7 @@ export default function StudentDoTest() {
   const dispatch = useDispatch();
   const history = useHistory();
   const studentId = useSelector(selectStudentId);
-  const { subjectid } = useParams();
+  const { subjectid } = useParams<{ subjectid: string }>();
   const token = useSelector(selectStudentToken);
   const questions = useSelector(select3mcQuestionsForSubject);
   const subjects = useSelector(selectStudentSubjects);
@@ -41,7 +41,7 @@ export default function StudentDoTest() {
   });
 
   useEffect(() => {
-    dispatch(getMcQuestionsForTest(subjectid));
+    dispatch(getMcQuestionsForTest(Number(subjectid)));
   }, [dispatch, subjectid]);
 
   const onPick = (event: any, questionNumber: number, questionId: number) => {
@@ -63,7 +63,7 @@ export default function StudentDoTest() {
   const onFinish = () => {
     if (studentId) {
       setTestDone(true);
-      dispatch(submitTest(studentId, subjectid, MCResults));
+      dispatch(submitTest(studentId, Number(subjectid), MCResults));
       setMCResults({ ...MCResults, answer1: 0, answer2: 0, answer3: 0 });
       setBlockNavigation(false);
     }
@@ -72,7 +72,7 @@ export default function StudentDoTest() {
   const doAnotherTest = () => {
     setBlockNavigation(true);
     setTestDone(false);
-    dispatch(getMcQuestionsForTest(subjectid));
+    dispatch(getMcQuestionsForTest(Number(subjectid)));
   };
 
   const goToMain = () => {
@@ -145,7 +145,7 @@ export default function StudentDoTest() {
         beforeConfirm={(clb) => {
           studentId &&
             dispatch(
-              submitTest(studentId, subjectid, {
+              submitTest(studentId, Number(subjectid), {
                 question1: MCResults.question1,
                 question2: MCResults.question2,
                 question3: MCResults.question3,
