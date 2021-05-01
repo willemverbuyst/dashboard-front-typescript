@@ -1,6 +1,6 @@
-import { QuestionsState } from './types';
+import { IQuestion } from '../../models/test.models';
+import { StoreState } from '../types';
 
-export const selectAllQuestionsForSubject = (state: QuestionsState) => {
-  console.log(state.all);
-  return state.all;
-};
+export const selectAllQuestionsForSubject = (
+  state: StoreState
+): IQuestion[] | null => state.questionsState.all;

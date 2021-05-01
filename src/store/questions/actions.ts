@@ -9,7 +9,6 @@ import {
   AddQuestionToList,
   PostNewQuestion,
   newQuestion,
-  Question,
 } from './types';
 import { GetTeacherState } from '../teacher/types';
 import {
@@ -18,8 +17,9 @@ import {
   setMessage,
   showMessageWithTimeout,
 } from '../appState/actions';
+import { IQuestion } from '../../models/test.models';
 
-export const questionsFetched = (questions: Question[]): QuestionsFetched => {
+export const questionsFetched = (questions: IQuestion[]): QuestionsFetched => {
   return {
     type: FETCH_QUESTIONS,
     questions,
@@ -35,7 +35,7 @@ export const addQuestionToList = (question: newQuestion): AddQuestionToList => {
 
 export const getQuestionsForSubject = (id: number) => async (
   dispatch: Dispatch,
-  getState: GetState
+  _getState: GetState
 ) => {
   dispatch(appLoading());
   try {
@@ -62,8 +62,8 @@ export const getQuestionsForSubject = (id: number) => async (
 
 export const createQuestion = (newQuestion: PostNewQuestion) => {
   const { subject, question, answer1, answer2, answer3, answer4 } = newQuestion;
-  return async (dispatch: any, getState: GetTeacherState) => {
-    const token = getState().teacher.token;
+  return async (dispatch: any, _getState: GetTeacherState) => {
+    const token = localStorage.getItem('teacher_token');
     dispatch(appLoading());
     try {
       const response = await axios.post(

@@ -1,9 +1,11 @@
+import { IQuestion } from '../../models/test.models';
+
 export const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
 // export const REMOVE_QUESTIONS = 'REMOVE_QUESTIONS';
 
 export type QuestionsState = {
-  all: Question[] | null;
+  all: IQuestion[] | null;
 };
 
 export type GetState = () => QuestionsState;
@@ -27,14 +29,9 @@ export type PostNewQuestion = {
   answer4: string;
 };
 
-export type Question = {
-  text: string;
-  answers: Answer[];
-};
-
 export type QuestionsFetched = {
   type: typeof FETCH_QUESTIONS;
-  questions: Question[];
+  questions: IQuestion[];
 };
 
 export type AddQuestionToList = {
