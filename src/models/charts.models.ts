@@ -24,7 +24,6 @@ export type InputBarChartTest = {
   data: number[];
   color: string[];
   title: string;
-  max: number;
 };
 
 export type InputLineChart = {

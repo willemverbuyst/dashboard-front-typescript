@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Line } from 'react-chartjs-2';
 import { InputLineChart } from '../../models/charts.models';
 
-export default function LineChart({
+const LineChart: React.FC<InputLineChart> = ({
   labels,
   data,
   color,
   title,
   max,
-}: InputLineChart) {
+}: InputLineChart): ReactElement => {
   const chartData = {
     labels: labels,
     datasets: [
@@ -56,4 +56,6 @@ export default function LineChart({
       }}
     />
   );
-}
+};
+
+export default LineChart;

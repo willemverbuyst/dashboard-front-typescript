@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Scatter } from 'react-chartjs-2';
 import { InputScatterChart } from '../../models/charts.models';
 
-export default function ScatterChart({
+const ScatterChart: React.FC<InputScatterChart> = ({
   data,
   color,
   title,
-}: InputScatterChart) {
+}: InputScatterChart): ReactElement => {
   const chartData = {
     datasets: [
       {
@@ -54,4 +54,6 @@ export default function ScatterChart({
       }}
     />
   );
-}
+};
+
+export default ScatterChart;

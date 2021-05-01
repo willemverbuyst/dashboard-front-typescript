@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { InputDoughnutChart } from '../../models/charts.models';
 
-export default function DoughnutChart({
+const DoughnutChart: React.FC<InputDoughnutChart> = ({
   data,
   color,
   title = '',
-}: InputDoughnutChart) {
+}: InputDoughnutChart): ReactElement => {
   const chartData = {
     datasets: [
       {
@@ -30,4 +30,6 @@ export default function DoughnutChart({
       }}
     />
   );
-}
+};
+
+export default DoughnutChart;

@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { InputBarChartTest } from '../../models/charts.models';
 
-export default function BarChartTest({
+const BarChartTest: React.FC<InputBarChartTest> = ({
   labels,
   data,
   color,
   title,
-  max,
-}: InputBarChartTest) {
+}: InputBarChartTest): ReactElement => {
   const chartData = {
     labels: labels,
     datasets: [
@@ -57,4 +56,6 @@ export default function BarChartTest({
       }}
     />
   );
-}
+};
+
+export default BarChartTest;

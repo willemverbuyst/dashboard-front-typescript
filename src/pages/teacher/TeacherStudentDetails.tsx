@@ -18,7 +18,7 @@ export default function TeacherStudentDetails() {
   const dispatch = useDispatch();
   const history = useHistory();
   const token = useSelector(selectTeacherToken);
-  const { studentid } = useParams();
+  const { studentid } = useParams<{ studentid: string }>();
   const results = useSelector(selectStudentOverview);
   const subjects = useSelector(selectTeacherSubjects);
   const [selectionAverage, setSelectionAverage] = useState('name');
@@ -33,7 +33,7 @@ export default function TeacherStudentDetails() {
   });
 
   useEffect(() => {
-    dispatch(getStudentForOverview(studentid));
+    dispatch(getStudentForOverview(Number(studentid)));
   }, [dispatch, studentid]);
 
   const renderDoughnutCharts = () => {
@@ -77,7 +77,6 @@ export default function TeacherStudentDetails() {
             color={['#8F1CB8']}
             labels={[`${name}: ${tests} tests`]}
             title={``}
-            max={20}
           />
         </Col>
       ));

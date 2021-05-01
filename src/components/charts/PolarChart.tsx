@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Polar } from 'react-chartjs-2';
 import { InputPolarChart } from '../../models/charts.models';
 
-export default function PolarChart({
+const PolarChart: React.FC<InputPolarChart> = ({
   labels,
   color,
   data,
   title,
-}: InputPolarChart) {
+}: InputPolarChart): ReactElement => {
   const chartData = {
     labels: labels,
     datasets: [
@@ -37,4 +37,6 @@ export default function PolarChart({
       }}
     />
   );
-}
+};
+
+export default PolarChart;

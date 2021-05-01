@@ -19,7 +19,7 @@ export default function TeacherSubjectDetails() {
   const dispatch = useDispatch();
   const history = useHistory();
   const token = useSelector(selectTeacherToken);
-  const { subjectid } = useParams();
+  const { subjectid } = useParams<{ subjectid: string }>();
   const results = useSelector(selectSubjectOverview);
   const students = useSelector(selectTeacherStudents);
   const [selectionAverage, setSelectionAverage] = useState('name');
@@ -34,7 +34,7 @@ export default function TeacherSubjectDetails() {
   });
 
   useEffect(() => {
-    dispatch(getSubjectForOverview(subjectid));
+    dispatch(getSubjectForOverview(Number(subjectid)));
   }, [dispatch, subjectid]);
 
   const renderCharts = () => {
@@ -78,7 +78,6 @@ export default function TeacherSubjectDetails() {
             color={['#008080']}
             labels={[`${name}: ${tests} tests`]}
             title={''}
-            max={20}
           />
         </Col>
       ));
