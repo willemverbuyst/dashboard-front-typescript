@@ -1,17 +1,15 @@
+import { IScore, ITest } from '../../models/test.models';
 import { StoreState } from '../types';
+import { Student, Subject } from './types';
 
-export const selectSubjectOverview = (state: OverViewTeacherState) => {
-  return state.overviewTeacher.subjects;
-};
+export const selectSubjectOverview = (state: StoreState): Subject[] | null =>
+  state.overviewTeacherState.subjects;
 
-export const selectStudentOverview = (state: OverViewTeacherState) => {
-  return state.overviewTeacher.students;
-};
+export const selectStudentOverview = (state: StoreState): Student[] | null =>
+  state.overviewTeacherState.students;
 
-export const selectMainOverview = (state: OverViewTeacherState) => {
-  return state.overviewTeacher.main.scores;
-};
+export const selectMainOverview = (state: StoreState): IScore[] | null =>
+  state.overviewTeacherState.main.scores;
 
-export const selectMainOverviewScatter = (state: OverViewTeacherState) => {
-  return state.overviewTeacher.main.tests;
-};
+export const selectMainOverviewScatter = (state: StoreState): ITest[] | null =>
+  state.overviewTeacherState.main.tests;

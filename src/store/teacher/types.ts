@@ -17,11 +17,6 @@ export type TeacherState = {
 
 export type GetTeacherState = () => TeacherState;
 
-export type newSubject = {
-  name: string;
-  id: number;
-};
-
 export type LogOutTeacher = {
   type: typeof LOG_OUT_TEACHER;
 };
@@ -38,7 +33,7 @@ export type TokenTeacherStillValid = {
 
 export type AddSubject = {
   type: typeof ADD_SUBJECT;
-  subject: newSubject;
+  subject: ISubject;
 };
 
 export type TeacherActionTypes =

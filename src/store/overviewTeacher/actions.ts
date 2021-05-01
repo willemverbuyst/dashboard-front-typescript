@@ -46,8 +46,8 @@ export const removeOverviewTeacher = (): RemoveOverviewTeacher => {
 };
 
 export const getSubjectForOverview = (id: number) => {
-  return async (dispatch: Dispatch, getState: GetTeacherState) => {
-    const token = getState().teacher.token;
+  return async (dispatch: Dispatch, _getState: GetTeacherState) => {
+    const token = localStorage.getItem('teacher_token');
     dispatch(appLoading());
     try {
       const response = await axios.get(`${apiUrl}/data/subjects/${id}`, {
@@ -71,8 +71,8 @@ export const getSubjectForOverview = (id: number) => {
 };
 
 export const getStudentForOverview = (id: number) => {
-  return async (dispatch: any, getState: GetTeacherState) => {
-    const token = getState().teacher.token;
+  return async (dispatch: any, _getState: GetTeacherState) => {
+    const token = localStorage.getItem('teacher_token');
     dispatch(appLoading());
     try {
       const response = await axios.get(`${apiUrl}/data/students/${id}`, {
@@ -96,8 +96,8 @@ export const getStudentForOverview = (id: number) => {
 };
 
 export const getMainOverview = (id: number | null) => {
-  return async function thunk(dispatch: any, getState: GetTeacherState) {
-    const token = getState().teacher.token;
+  return async function thunk(dispatch: any, _getState: GetTeacherState) {
+    const token = localStorage.getItem('teacher_token');
     dispatch(appLoading());
     // const dataMain = getState().overViewTeacher.main;
     // if (dataMain.length < 1) {

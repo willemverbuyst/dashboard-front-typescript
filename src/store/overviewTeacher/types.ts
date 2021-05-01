@@ -1,3 +1,5 @@
+import { IScore, ITest } from '../../models/test.models';
+
 export const FETCH_OVERVIEW_FOR_SUBJECT = 'FETCH_OVERVIEW_FOR_SUBJECT';
 export const FETCH_OVERVIEW_FOR_STUDENT = 'FETCH_OVERVIEW_FOR_STUDENT';
 export const FETCH_OVERVIEW_FOR_MAIN = 'FETCH_OVERVIEW_FOR_MAIN';
@@ -26,19 +28,8 @@ export type Subject = {
 };
 
 export type Main = {
-  scores: Score[] | null;
-  tests: Test[] | null;
-};
-
-export type Score = {
-  length: number;
-  result: number;
-};
-
-export type Test = {
-  subjectId: number;
-  result: number;
-  at: string;
+  scores: IScore[] | null;
+  tests: ITest[] | null;
 };
 
 export type SubjectsFetched = {

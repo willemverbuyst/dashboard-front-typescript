@@ -11,7 +11,6 @@ import {
   LogOutTeacher,
   TokenTeacherStillValid,
   AddSubject,
-  newSubject,
 } from './types';
 import {
   LoginCredentials,
@@ -24,6 +23,7 @@ import {
   setMessage,
 } from '../appState/actions';
 import { ITeacher } from '../../models/users.models';
+import { ISubject } from '../../models/subject.models';
 
 const loginSuccessTeacher = (teacher: ITeacher): LoginSuccessTeacher => {
   return {
@@ -41,7 +41,7 @@ const tokenTeacherStillValid = (teacher: ITeacher): TokenTeacherStillValid => ({
   teacher,
 });
 
-const addSubject = (subject: newSubject): AddSubject => ({
+const addSubject = (subject: ISubject): AddSubject => ({
   type: ADD_SUBJECT,
   subject,
 });
@@ -80,7 +80,7 @@ export const teacherLoggingOut = () => {
 };
 
 export const getTeacherWithStoredToken = () => {
-  return async (dispatch: Dispatch, getState: GetTeacherState) => {
+  return async (dispatch: Dispatch, _getState: GetTeacherState) => {
     const token = localStorage.getItem('teacher_token');
 
     if (token === null) return;
