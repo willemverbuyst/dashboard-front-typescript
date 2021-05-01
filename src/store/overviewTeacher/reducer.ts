@@ -25,10 +25,6 @@ export default (
       return { ...state, students: action.payload };
 
     case FETCH_OVERVIEW_FOR_MAIN:
-      console.log({
-        ...state,
-        main: { scores: action.payload.scores, tests: action.payload.tests },
-      });
       return {
         ...state,
         main: { scores: action.payload.scores, tests: action.payload.tests },

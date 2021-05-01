@@ -11,9 +11,5 @@ export const selectStudentOverview = (state: StoreState): Student[] | null =>
 export const selectMainOverview = (state: StoreState): IScore[] | null =>
   state.overviewTeacherState.main.scores;
 
-export const selectMainOverviewScatter = (
-  state: StoreState
-): ITest[] | null => {
-  console.log('called tests', state.overviewTeacherState.main?.tests);
-  return state.overviewTeacherState.main.tests;
-};
+export const selectMainOverviewScatter = (state: StoreState): ITest[] | null =>
+  state.overviewTeacherState.main.tests;
