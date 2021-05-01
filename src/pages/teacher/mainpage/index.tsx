@@ -29,6 +29,8 @@ const MainPage: React.FC = (): ReactElement => {
   const subjects = useSelector(selectTeacherSubjects);
   const tests = useSelector(selectMainOverviewScatter);
 
+  console.log(id, 'id', tests);
+
   useEffect(() => {
     if (token === null) {
       history.push('/');

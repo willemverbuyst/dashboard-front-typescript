@@ -10,13 +10,13 @@ import {
 const initialState: OverviewTeacherState = {
   subjects: null,
   students: null,
-  main: {
-    scores: null,
-    tests: null,
-  },
+  main: { scores: null, tests: null },
 };
 
-export default (state = initialState, action: overviewTeacherTypes) => {
+export default (
+  state = initialState,
+  action: overviewTeacherTypes
+): OverviewTeacherState => {
   switch (action.type) {
     case FETCH_OVERVIEW_FOR_SUBJECT:
       return { ...state, subjects: action.payload };
@@ -25,7 +25,14 @@ export default (state = initialState, action: overviewTeacherTypes) => {
       return { ...state, students: action.payload };
 
     case FETCH_OVERVIEW_FOR_MAIN:
-      return { ...state, main: action.payload };
+      console.log({
+        ...state,
+        main: { scores: action.payload.scores, tests: action.payload.tests },
+      });
+      return {
+        ...state,
+        main: { scores: action.payload.scores, tests: action.payload.tests },
+      };
 
     case REMOVE_OVERVIEW:
       return initialState;

@@ -1,4 +1,4 @@
-import { IStudent } from '../../models/users.models';
+import { IStudent, ITeacher } from '../../models/users.models';
 import { ISubject } from '../../models/subject.models';
 
 export const LOGIN_SUCCESS_TEACHER = 'LOGIN_SUCCESS_TEACHER';
@@ -7,10 +7,6 @@ export const LOG_OUT_TEACHER = 'LOG_OUT_TEACHER';
 export const ADD_SUBJECT = 'ADD_SUBJECT';
 
 export type TeacherState = {
-  teacher: Teacher;
-};
-
-export type Teacher = {
   id: number | null;
   name: string | null;
   email: string | null;
@@ -25,12 +21,12 @@ export type LogOutTeacher = {
 
 export type LoginSuccessTeacher = {
   type: typeof LOGIN_SUCCESS_TEACHER;
-  teacher: Teacher;
+  teacher: ITeacher;
 };
 
 export type TokenTeacherStillValid = {
   type: typeof TOKEN_STILL_VALID_TEACHER;
-  teacher: Teacher;
+  teacher: ITeacher;
 };
 
 export type AddSubject = {
