@@ -26,7 +26,6 @@ function App() {
       <BarAtTheTop />
       <AlertBox />
       <Layout>
-        "hi"
         <Sidebar />
         {isLoading ? <Spinner /> : null}
         <AppRouter />
