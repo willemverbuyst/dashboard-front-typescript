@@ -1,5 +1,4 @@
-import { SchoolInfoState } from './types';
+import { StoreState } from '../types';
 
-export const selectAllTeachers = (state: SchoolInfoState) => {
-  return state.all;
-};
+export const selectAllTeachers = (state: StoreState) =>
+  state.schoolInfoState.all;

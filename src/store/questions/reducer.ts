@@ -9,7 +9,10 @@ const initialState: QuestionsState = {
   all: null,
 };
 
-export default (state = initialState, action: QuestionActionTypes) => {
+export default (
+  state = initialState,
+  action: QuestionActionTypes
+): QuestionsState => {
   switch (action.type) {
     case FETCH_QUESTIONS:
       return { ...state, all: action.questions };
@@ -18,7 +21,7 @@ export default (state = initialState, action: QuestionActionTypes) => {
       if (state.all) {
         return { ...state, all: [...state.all, action.question] };
       } else {
-        return { ...state, all: action.question };
+        return { ...state, all: [action.question] };
       }
 
     // case REMOVE_QUESTIONS:
