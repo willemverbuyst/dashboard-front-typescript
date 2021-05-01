@@ -48,7 +48,7 @@ const addSubject = (subject: newSubject): AddSubject => ({
 
 export const loginTeacher = (credentials: LoginCredentials) => {
   const { email, password, status } = credentials;
-  return async (dispatch: any, getState: GetTeacherState) => {
+  return async (dispatch: any, _getState: GetTeacherState) => {
     dispatch(appLoading());
     try {
       const response = await axios.post(`${apiUrl}/login`, {
@@ -74,7 +74,7 @@ export const loginTeacher = (credentials: LoginCredentials) => {
 };
 
 export const teacherLoggingOut = () => {
-  return (dispatch: Dispatch, getState: GetTeacherState) => {
+  return (dispatch: Dispatch, _getState: GetTeacherState) => {
     dispatch(logOutTeacher());
   };
 };
@@ -106,7 +106,7 @@ export const getTeacherWithStoredToken = () => {
 
 export const createTeacher = (signUpCredentials: SignUpCredentials) => {
   const { status, name, email, password } = signUpCredentials;
-  return async (dispatch: any, getState: GetTeacherState) => {
+  return async (dispatch: any, _getState: GetTeacherState) => {
     dispatch(appLoading());
     try {
       const response = await axios.post(`${apiUrl}/signup`, {

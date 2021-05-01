@@ -7,18 +7,13 @@ import { Alert } from 'antd';
 export default function AlertBox() {
   const message = useSelector(selectMessage);
   const dispatch = useDispatch();
-  const showMessage = message !== null;
 
-  if (!showMessage) return null;
-
-  return (
-    message && (
-      <Alert
-        type={message.variant}
-        closable={message.dismissable}
-        onClose={() => dispatch(clearMessage())}
-        message={message.text}
-      />
-    )
-  );
+  return message ? (
+    <Alert
+      type={message.variant}
+      closable={message.dismissable}
+      onClose={() => dispatch(clearMessage())}
+      message={message.text}
+    />
+  ) : null;
 }
