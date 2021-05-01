@@ -11,6 +11,16 @@ export interface IScore {
   result: number;
 }
 
+export interface IAnswer {
+  text: string;
+  correct: boolean;
+}
+
+export interface IQuestion {
+  text: string;
+  answers: IAnswer[];
+}
+
 export type MCanswer = {
   id: number;
   text: string;

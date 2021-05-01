@@ -20,7 +20,7 @@ import Spinner from '../../../components/Spinner';
 
 const { Content } = Layout;
 
-const TeacherMain: React.FC = (): ReactElement => {
+const MainPage: React.FC = (): ReactElement => {
   const dispatch = useDispatch();
   const history = useHistory();
   const token = useSelector(selectTeacherToken);
@@ -65,4 +65,4 @@ const TeacherMain: React.FC = (): ReactElement => {
   );
 };
 
-export default TeacherMain;
+export default MainPage;

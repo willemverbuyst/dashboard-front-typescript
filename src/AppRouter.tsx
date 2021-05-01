@@ -6,13 +6,12 @@ import Signup from './pages/Signup';
 import StudentMainPage from './pages/student/StudentMain';
 import StudentSubjectDetails from './pages/student/StudentSubjectDetails';
 import StudentDoTest from './pages/student/StudentDoTest';
-import TeacherMainPage from './pages/teacher/mainpage/Main';
+import TeacherMainPage from './pages/teacher/mainpage';
 import TeacherStudentDetails from './pages/teacher/TeacherStudentDetails';
 import TeacherSubjectDetails from './pages/teacher/TeacherSubjectDetails';
-import ListOfQuestions from './pages/teacher/ListOfQuestions';
+import ListOfQuestions from './pages/teacher/questions';
 import AddQuestionForm from './pages/teacher/AddQuestionForm';
 import AddSubject from './pages/teacher/AddSubject';
-import './App.css';
 import * as ROUTES from './constants/routes';
 
 const AppRouter = (): JSX.Element => {
