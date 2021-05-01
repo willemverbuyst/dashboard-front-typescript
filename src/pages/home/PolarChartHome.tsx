@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Polar } from 'react-chartjs-2';
 
-export default function HomePolarChart() {
+const PolarChartHome = (): ReactElement => {
   const chartData = {
     labels: ['Please', 'log', 'in'],
     datasets: [
@@ -32,4 +32,6 @@ export default function HomePolarChart() {
       }}
     />
   );
-}
+};
+
+export default PolarChartHome;

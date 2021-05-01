@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectStudentId } from '../../store/student/selectors';
 import { selectTeacherId } from '../../store/teacher/selectors';
-import HomeBarChart from './HomeBarChart';
-import HomePolarChart from './HomePolarChart';
-import HomeLineChart from './HomeLineChart';
+import HomeBarChart from './BarChartHome';
+import HomeLineChart from './LineChartHome';
+import HomePolarChart from './PolarChartHome';
 import { Layout, Row, Col } from 'antd';
 
 const { Content } = Layout;
 
-export default function Home() {
+const Home = (): ReactElement => {
   const history = useHistory();
   const studentId = useSelector(selectStudentId);
   const teacherId = useSelector(selectTeacherId);
@@ -56,4 +56,6 @@ export default function Home() {
       </Layout>
     </Layout>
   );
-}
+};
+
+export default Home;

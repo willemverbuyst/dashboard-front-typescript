@@ -1,21 +1,21 @@
-import React from 'react';
-import { Line } from 'react-chartjs-2';
+import React, { ReactElement } from 'react';
+import { Bar } from 'react-chartjs-2';
 
-export default function LineChartHome() {
+const BarChartHome = (): ReactElement => {
   const chartData = {
-    labels: ['to', 'see', 'your', 'progress'],
+    labels: ['Welcome', 'to', 'your', 'dashboard'],
     datasets: [
       {
         label: '',
-        data: [45, 67, 56, 80],
-        backgroundColor: ['#A026FF'],
-        borderWidth: 3,
+        data: [80, 56, 67, 45],
+        backgroundColor: ['#FF2694', '#FF2694', '#FF2694', '#FF2694'],
+        borderWidth: 0,
       },
     ],
   };
 
   return (
-    <Line
+    <Bar
       data={chartData}
       options={{
         tooltips: { enabled: false },
@@ -54,4 +54,6 @@ export default function LineChartHome() {
       }}
     />
   );
-}
+};
+
+export default BarChartHome;
