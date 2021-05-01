@@ -2,13 +2,13 @@ import {
   LOGIN_SUCCESS_STUDENT,
   TOKEN_STILL_VALID_STUDENT,
   LOG_OUT_STUDENT,
-  Student,
   StudentActionTypes,
+  StudentState,
 } from './types';
 
 const token = localStorage.getItem('student_token');
 
-const initialState: Student = {
+const initialState: StudentState = {
   id: null,
   name: null,
   email: null,
@@ -16,7 +16,10 @@ const initialState: Student = {
   subjects: null,
 };
 
-export default (state = initialState, action: StudentActionTypes) => {
+export default (
+  state = initialState,
+  action: StudentActionTypes
+): StudentState => {
   switch (action.type) {
     case LOGIN_SUCCESS_STUDENT:
       const userToken = action.student.token;

@@ -3,7 +3,11 @@ export const TOKEN_STILL_VALID_STUDENT = 'TOKEN_STILL_VALID_STUDENT';
 export const LOG_OUT_STUDENT = 'LOG_OUT_STUDENT';
 
 export type StudentState = {
-  student: Student;
+  id: number | null;
+  name: string | null;
+  email: string | null;
+  token: string | null;
+  subjects: Subject[] | null;
 };
 
 export type Student = {
