@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { apiUrl } from '../../constants/environment';
 import { Dispatch } from 'redux';
-import { TestResult } from '../../models/test.models';
+import { IMultipleChoiceQuestion, TestResult } from '../../models/test.models';
 import {
   FETCH_MC_QUESTIONS,
   REMOVE_MC_QUESTIONS,
   MC3QuestionsFetched,
   RemoveQuestions,
-  MCQuestion,
 } from './types';
 import { GetStudentState } from '../student/types';
 import {
@@ -17,7 +16,9 @@ import {
   showMessageWithTimeout,
 } from '../appState/actions';
 
-const questionsFetched = (mc3questions: MCQuestion[]): MC3QuestionsFetched => {
+const questionsFetched = (
+  mc3questions: IMultipleChoiceQuestion[]
+): MC3QuestionsFetched => {
   return {
     type: FETCH_MC_QUESTIONS,
     mc3questions,

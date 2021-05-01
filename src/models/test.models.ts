@@ -21,6 +21,20 @@ export interface IQuestion {
   answers: IAnswer[];
 }
 
+export interface IMultipleChoiceAnswer {
+  id: number;
+  text: string;
+  correct: boolean;
+  questionId: number;
+}
+
+export interface IMultipleChoiceQuestion {
+  id: number;
+  text: string;
+  subjectId: number;
+  answers: IMultipleChoiceAnswer[];
+}
+
 export type MCanswer = {
   id: number;
   text: string;
