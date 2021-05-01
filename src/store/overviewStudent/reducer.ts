@@ -9,7 +9,10 @@ const initialState: OverviewStudentState = {
   results: null,
 };
 
-export default (state = initialState, action: OverviewStudentTypes) => {
+export default (
+  state = initialState,
+  action: OverviewStudentTypes
+): OverviewStudentState => {
   switch (action.type) {
     case FETCH_RESULTS_FOR_STUDENT_MAIN:
       return { ...state, results: action.results };
