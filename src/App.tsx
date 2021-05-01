@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Layout } from 'antd';
-import BarAtTheTop from './components/BarAtTheTop';
+import BarAtTheTop from './components/barAtTheTop/BarAtTheTop';
 import AlertBox from './components/AlertBox';
 import Spinner from './components/Spinner';
 import Sidebar from './components/Sidebar';

@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
-import { selectStudentName } from '../store/student/selectors';
-import { selectTeacherName } from '../store/teacher/selectors';
+import { selectStudentName } from '../../store/student/selectors';
+import { selectTeacherName } from '../../store/teacher/selectors';
 import { Layout } from 'antd';
-import { renderDate } from '../helpers/date.functions';
+import { renderDate } from '../../helpers/date.functions';
 
 const { Header } = Layout;
 

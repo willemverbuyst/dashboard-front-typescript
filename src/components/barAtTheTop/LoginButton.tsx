@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'antd';
 
-export default function LogoutButton() {
+const LogoutButton = (): ReactElement => {
   const history = useHistory();
 
-  const goTo = () => {
+  const goTo = (): void => {
     history.push('/login');
   };
 
   return <Button onClick={goTo}>Login</Button>;
-}
+};
+
+export default LogoutButton;

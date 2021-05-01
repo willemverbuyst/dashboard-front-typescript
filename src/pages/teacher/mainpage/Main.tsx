@@ -12,7 +12,7 @@ import {
 } from '../../../store/overviewTeacher/selectors';
 import { getMainOverview } from '../../../store/overviewTeacher/actions';
 import { Layout, Row } from 'antd';
-import BarChartMain from './barChartMain';
+import BarChartMain from './BarChartMain';
 import LineChartMain from './LineChartMain';
 import PieChartMain from './PieChartMain';
 import ScatterChartMain from './ScatterChartMain';
