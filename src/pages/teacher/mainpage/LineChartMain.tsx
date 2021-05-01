@@ -20,13 +20,17 @@ const LineChartMain: React.FC<IProps> = ({ tests }: IProps): ReactElement => {
 
   return (
     <Col style={{ width: 450, paddingBottom: 80 }}>
-      <LineChart
-        data={data}
-        color="#B81D9D"
-        title={'TESTS OVER TIME'}
-        labels={labels}
-        max={Math.max(...data)}
-      />
+      {tests.length ? (
+        <LineChart
+          data={data}
+          color="#B81D9D"
+          title={'TESTS OVER TIME'}
+          labels={labels}
+          max={Math.max(...data)}
+        />
+      ) : (
+        <p>THERE IS NOT ENOUGH DATA YET TO DISPLAY PIE CHART</p>
+      )}
     </Col>
   );
 };

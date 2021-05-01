@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -16,10 +16,11 @@ import BarChartMain from './barChartMain';
 import LineChartMain from './LineChartMain';
 import PieChartMain from './PieChartMain';
 import ScatterChartMain from './ScatterChartMain';
+import Spinner from '../../../components/Spinner';
 
 const { Content } = Layout;
 
-export default function TeacherMain() {
+const TeacherMain: React.FC = (): ReactElement => {
   const dispatch = useDispatch();
   const history = useHistory();
   const token = useSelector(selectTeacherToken);
@@ -38,24 +39,30 @@ export default function TeacherMain() {
     dispatch(getMainOverview(id));
   }, [dispatch, id]);
 
+  const renderCharts = (): JSX.Element => {
+    return mainPageData && tests && subjects ? (
+      <>
+        <Row justify="space-around">
+          <BarChartMain scores={mainPageData} subjects={subjects} />
+          <PieChartMain tests={tests} />
+        </Row>
+        <Row justify="space-around">
+          <LineChartMain tests={tests} />
+          <ScatterChartMain tests={tests} />
+        </Row>
+      </>
+    ) : (
+      <Spinner />
+    );
+  };
+
   return (
     <Layout>
       <Layout style={{ padding: '24px', minHeight: '92vh' }}>
-        <Content className="site-layout-background">
-          {mainPageData && tests && subjects ? (
-            <>
-              <Row justify="space-around">
-                <BarChartMain scores={mainPageData} subjects={subjects} />
-                <PieChartMain tests={tests} />
-              </Row>
-              <Row justify="space-around">
-                <LineChartMain tests={tests} />
-                <ScatterChartMain tests={tests} />
-              </Row>
-            </>
-          ) : null}
-        </Content>
+        <Content className="site-layout-background">{renderCharts()}</Content>
       </Layout>
     </Layout>
   );
-}
+};
+
+export default TeacherMain;

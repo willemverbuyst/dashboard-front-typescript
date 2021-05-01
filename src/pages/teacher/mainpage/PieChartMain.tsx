@@ -16,12 +16,16 @@ const PieChartMain: React.FC<IProps> = ({ tests }: IProps): ReactElement => {
 
   return (
     <Col style={{ width: 450, paddingBottom: 80 }}>
-      <PieChart
-        data={Object.values(counts)}
-        color={['#EEE', '#B81D9D', '#D222E1', '#8F1CB8']}
-        title={'TESTS'}
-        labels={Object.keys(counts)}
-      />
+      {tests.length ? (
+        <PieChart
+          data={Object.values(counts)}
+          color={['#EEE', '#B81D9D', '#D222E1', '#8F1CB8']}
+          title={'TESTS'}
+          labels={Object.keys(counts)}
+        />
+      ) : (
+        <p>THERE IS NOT ENOUGH DATA YET TO DISPLAY PIE CHART</p>
+      )}
     </Col>
   );
 };

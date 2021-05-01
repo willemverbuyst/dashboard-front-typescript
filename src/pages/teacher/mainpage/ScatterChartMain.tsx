@@ -21,13 +21,17 @@ const ScatterChartMain: React.FC<IProps> = ({
 
   return (
     <Col style={{ width: 450, paddingBottom: 80 }}>
-      <ScatterChart
-        data={data}
-        color={color}
-        title={
-          'AT WHAT TIME OF THE DAY STUDENTS TAKE TESTS AND WHAT IS THEIR SCORE'
-        }
-      />
+      {tests.length ? (
+        <ScatterChart
+          data={data}
+          color={color}
+          title={
+            'AT WHAT TIME OF THE DAY STUDENTS TAKE TESTS AND WHAT IS THEIR SCORE'
+          }
+        />
+      ) : (
+        <p>THERE IS NOT ENOUGH DATA YET TO DISPLAY SCATTER CHART</p>
+      )}
     </Col>
   );
 };
