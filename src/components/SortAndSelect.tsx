@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Row, Radio, Select, Button } from 'antd';
 import { SelectorProps } from '../models/overview-teacher-models';
 
 const { Option } = Select;
 
-export default function SortAndSelect({
+const SortAndSelect: React.FC<SelectorProps> = ({
   title,
   radio1,
   radio2,
@@ -16,7 +16,7 @@ export default function SortAndSelect({
   onClick,
   placeholder,
   textBtn,
-}: SelectorProps) {
+}: SelectorProps): ReactElement => {
   return (
     <Row style={{ paddingBottom: 35 }}>
       {title}
@@ -52,4 +52,6 @@ export default function SortAndSelect({
       ) : null}
     </Row>
   );
-}
+};
+
+export default SortAndSelect;
