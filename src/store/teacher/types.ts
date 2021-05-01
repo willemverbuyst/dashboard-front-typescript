@@ -1,4 +1,4 @@
-import { ITeacher } from '../../models/users.models';
+import { IStudent, ITeacher } from '../../models/users.models';
 import { ISubject } from '../../models/subject.models';
 
 export const LOGIN_SUCCESS_TEACHER = 'LOGIN_SUCCESS_TEACHER';
@@ -12,15 +12,10 @@ export type TeacherState = {
   email: string | null;
   token: string | null;
   subjects: ISubject[] | null;
-  students: ISubject[] | null;
+  students: IStudent[] | null;
 };
 
 export type GetTeacherState = () => TeacherState;
-
-export type Students = {
-  name: string;
-  id: number;
-};
 
 export type newSubject = {
   name: string;

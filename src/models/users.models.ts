@@ -1,17 +1,15 @@
+import { ISubject } from './subject.models';
+
 export interface ITeacher {
   id: number;
   name: string;
   email: string;
   token: string;
-  subjects: Subjects;
-  students: Students;
+  subjects: ISubject[];
+  students: IStudent[];
 }
-export type Subjects = {
-  name: string;
-  id: number;
-};
 
-export type Students = {
+export interface IStudent {
   name: string;
   id: number;
-};
+}
