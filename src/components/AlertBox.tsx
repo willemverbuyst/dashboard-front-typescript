@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectMessage } from '../store/appState/selectors';
 import { clearMessage } from '../store/appState/actions';
 import { Alert } from 'antd';
 
-export default function AlertBox() {
-  const message = useSelector(selectMessage);
+const AlertBox = (): ReactElement | null => {
   const dispatch = useDispatch();
+  const message = useSelector(selectMessage);
 
   return message ? (
     <Alert
@@ -16,4 +16,6 @@ export default function AlertBox() {
       message={message.text}
     />
   ) : null;
-}
+};
+
+export default AlertBox;
