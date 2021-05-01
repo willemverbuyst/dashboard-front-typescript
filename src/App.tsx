@@ -12,7 +12,7 @@ import Signup from './pages/Signup';
 import StudentMainPage from './pages/student/StudentMain';
 import StudentSubjectDetails from './pages/student/StudentSubjectDetails';
 import StudentDoTest from './pages/student/StudentDoTest';
-import TeacherMainPage from './pages/teacher/TeacherMain';
+import TeacherMainPage from './pages/teacher/mainpage/Main';
 import TeacherStudentDetails from './pages/teacher/TeacherStudentDetails';
 import TeacherSubjectDetails from './pages/teacher/TeacherSubjectDetails';
 import ListOfQuestions from './pages/teacher/ListOfQuestions';

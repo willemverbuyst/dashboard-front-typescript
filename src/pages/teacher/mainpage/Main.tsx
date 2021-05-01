@@ -2,21 +2,21 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import BarChart from '../../components/charts/BarChart';
-import PieChart from '../../components/charts/PieChart';
-import ScatterChart from '../../components/charts/ScatterChart';
-import LineChart from '../../components/charts/LineChart';
+import BarChart from '../../../components/charts/BarChart';
+import PieChart from '../../../components/charts/PieChart';
+import ScatterChart from '../../../components/charts/ScatterChart';
+import LineChartMain from './LineChartMain';
 import {
   selectTeacherToken,
   selectTeacherId,
   selectTeacherSubjects,
-} from '../../store/teacher/selectors';
+} from '../../../store/teacher/selectors';
 import {
   selectMainOverview,
   selectMainOverviewScatter,
-} from '../../store/overviewTeacher/selectors';
-import { getMainOverview } from '../../store/overviewTeacher/actions';
-import { Coordinates } from '../../models/charts.models';
+} from '../../../store/overviewTeacher/selectors';
+import { getMainOverview } from '../../../store/overviewTeacher/actions';
+import { Coordinates } from '../../../models/charts.models';
 import { Layout, Row, Col } from 'antd';
 
 const { Content } = Layout;
@@ -109,31 +109,6 @@ export default function TeacherMain() {
     }
   };
 
-  const renderLineChart = () => {
-    if (tests && subjects) {
-      // https://stackoverflow.com/questions/19395257/how-to-count-duplicate-value-in-an-array-in-javascript
-      const testDates = tests.map((test) => moment(test.at).format('ll'));
-      const reducedTests = testDates.reduce(function (prev, cur) {
-        prev[cur] = (prev[cur] || 0) + 1;
-        return prev;
-      }, {});
-      const labels = Object.keys(reducedTests);
-      const data: number[] = Object.values(reducedTests);
-
-      return (
-        <Col style={{ width: 450, paddingBottom: 80 }}>
-          <LineChart
-            data={data}
-            color="#B81D9D"
-            title={'TESTS OVER TIME'}
-            labels={labels}
-            max={Math.max(...data)}
-          />
-        </Col>
-      );
-    }
-  };
-
   return (
     <Layout>
       <Layout style={{ padding: '24px', minHeight: '92vh' }}>
@@ -144,7 +119,11 @@ export default function TeacherMain() {
           </Row>
           <Row justify="space-around">
             {renderScatterChart()}
-            {renderLineChart()}
+            {tests && subjects ? (
+              <LineChartMain tests={tests} subjects={subjects} />
+            ) : (
+              <></>
+            )}
           </Row>
         </Content>
       </Layout>
