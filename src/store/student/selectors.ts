@@ -1,11 +1,14 @@
 import { StoreState } from '../types';
+import { Subject } from './types';
 
-export const selectStudentToken = (state: StoreState) =>
+export const selectStudentToken = (state: StoreState): string | null =>
   state.studentState.token;
 
-export const selectStudentId = (state: StoreState) => state.studentState.id;
+export const selectStudentId = (state: StoreState): number | null =>
+  state.studentState.id;
 
-export const selectStudentName = (state: StoreState) => state.studentState.name;
+export const selectStudentName = (state: StoreState): string | null =>
+  state.studentState.name;
 
-export const selectStudentSubjects = (state: StoreState) =>
+export const selectStudentSubjects = (state: StoreState): Subject[] | null =>
   state.studentState.subjects;
