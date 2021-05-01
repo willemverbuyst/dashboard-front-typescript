@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import BarChart from '../../../components/charts/BarChart';
 import PieChart from '../../../components/charts/PieChart';
-import ScatterChart from '../../../components/charts/ScatterChart';
+
 import LineChartMain from './LineChartMain';
 import {
   selectTeacherToken,
@@ -16,8 +15,8 @@ import {
   selectMainOverviewScatter,
 } from '../../../store/overviewTeacher/selectors';
 import { getMainOverview } from '../../../store/overviewTeacher/actions';
-import { Coordinates } from '../../../models/charts.models';
 import { Layout, Row, Col } from 'antd';
+import ScatterChartMain from './ScatterChartMain';
 
 const { Content } = Layout;
 
@@ -86,29 +85,6 @@ export default function TeacherMain() {
     }
   };
 
-  const renderScatterChart = () => {
-    if (tests && subjects) {
-      const color: string[] = [];
-      const data: Coordinates[] = [];
-      tests.forEach(({ result, at }) => {
-        color.push('#4BC0E7');
-        data.push({ x: moment(at).format(), y: result });
-      });
-
-      return (
-        <Col style={{ width: 450, paddingBottom: 80 }}>
-          <ScatterChart
-            data={data}
-            color={color}
-            title={
-              'AT WHAT TIME OF THE DAY STUDENTS TAKE TESTS AND WHAT IS THEIR SCORE'
-            }
-          />
-        </Col>
-      );
-    }
-  };
-
   return (
     <Layout>
       <Layout style={{ padding: '24px', minHeight: '92vh' }}>
@@ -118,8 +94,14 @@ export default function TeacherMain() {
             {renderPieChart()}
           </Row>
           <Row justify="space-around">
-            {renderScatterChart()}
-            {tests && subjects ? <LineChartMain tests={tests} /> : <></>}
+            {tests && subjects ? (
+              <>
+                <LineChartMain tests={tests} />
+                <ScatterChartMain tests={tests} />
+              </>
+            ) : (
+              <></>
+            )}
           </Row>
         </Content>
       </Layout>
