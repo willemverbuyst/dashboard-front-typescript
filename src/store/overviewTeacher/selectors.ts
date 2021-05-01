@@ -1,4 +1,4 @@
-import { OverViewTeacherState } from './types';
+import { StoreState } from '../types';
 
 export const selectSubjectOverview = (state: OverViewTeacherState) => {
   return state.overviewTeacher.subjects;

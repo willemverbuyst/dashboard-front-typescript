@@ -12,7 +12,6 @@ import {
   TokenTeacherStillValid,
   AddSubject,
   newSubject,
-  Teacher,
 } from './types';
 import {
   LoginCredentials,
@@ -24,8 +23,9 @@ import {
   showMessageWithTimeout,
   setMessage,
 } from '../appState/actions';
+import { ITeacher } from '../../models/users.models';
 
-const loginSuccessTeacher = (teacher: Teacher): LoginSuccessTeacher => {
+const loginSuccessTeacher = (teacher: ITeacher): LoginSuccessTeacher => {
   return {
     type: LOGIN_SUCCESS_TEACHER,
     teacher,
@@ -36,7 +36,7 @@ const logOutTeacher = (): LogOutTeacher => ({
   type: LOG_OUT_TEACHER,
 });
 
-const tokenTeacherStillValid = (teacher: Teacher): TokenTeacherStillValid => ({
+const tokenTeacherStillValid = (teacher: ITeacher): TokenTeacherStillValid => ({
   type: TOKEN_STILL_VALID_TEACHER,
   teacher,
 });
@@ -81,7 +81,7 @@ export const teacherLoggingOut = () => {
 
 export const getTeacherWithStoredToken = () => {
   return async (dispatch: Dispatch, getState: GetTeacherState) => {
-    const token = getState().teacher.token;
+    const token = localStorage.getItem('teacher_token');
 
     if (token === null) return;
     dispatch(appLoading());
@@ -136,7 +136,7 @@ export const createTeacher = (signUpCredentials: SignUpCredentials) => {
 
 export const createSubject = (subject: string) => {
   return async (dispatch: any, getState: GetTeacherState) => {
-    const token = getState().teacher.token;
+    const token = localStorage.getItem('teacher_token');
     dispatch(appLoading());
     try {
       const response = await axios.post(

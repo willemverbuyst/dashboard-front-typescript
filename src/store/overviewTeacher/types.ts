@@ -4,16 +4,12 @@ export const FETCH_OVERVIEW_FOR_MAIN = 'FETCH_OVERVIEW_FOR_MAIN';
 export const REMOVE_OVERVIEW = 'REMOVE_OVERVIEW';
 
 export type OverviewTeacherState = {
-  overviewTeacher: OverviewTeacher;
-};
-
-export type GetState = () => OverviewTeacherState;
-
-export type OverviewTeacher = {
   students: Student[] | null;
   subjects: Subject[] | null;
   main: Main;
 };
+
+export type GetState = () => OverviewTeacherState;
 
 export type Student = {
   name: string;

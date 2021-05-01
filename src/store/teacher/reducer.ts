@@ -3,13 +3,13 @@ import {
   TOKEN_STILL_VALID_TEACHER,
   LOG_OUT_TEACHER,
   ADD_SUBJECT,
-  Teacher,
+  TeacherState,
   TeacherActionTypes,
 } from './types';
 
 const token = localStorage.getItem('teacher_token');
 
-const initialState: Teacher = {
+const initialState: TeacherState = {
   id: null,
   name: null,
   email: null,
