@@ -1,4 +1,4 @@
-import { apiUrl } from '../../config/constants';
+import { apiUrl } from '../../constants/environment';
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import {

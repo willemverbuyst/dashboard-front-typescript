@@ -22,6 +22,7 @@ import { selectAppLoading } from './store/appState/selectors';
 import { getStudentWithStoredToken } from './store/student/actions';
 import { getTeacherWithStoredToken } from './store/teacher/actions';
 import './App.css';
+import * as ROUTES from './constants/routes';
 
 function App() {
   const dispatch = useDispatch();
@@ -40,52 +41,40 @@ function App() {
         <Sidebar />
         {isLoading ? <Spinner /> : null}
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
+          <Route exact path={ROUTES.HOME} component={Home} />
+          <Route exact path={ROUTES.LOG_IN} component={Login} />
+          <Route exact path={ROUTES.SIGN_UP} component={Signup} />
+          <Route exact path={ROUTES.STUDENT_MAIN} component={StudentMainPage} />
           <Route
             exact
-            path="/students/:studentid"
-            component={StudentMainPage}
-          />
-          <Route
-            exact
-            path="/students/:studentid/subjects/:subjectid"
+            path={ROUTES.STUDENT_SUBJECTS}
             component={StudentSubjectDetails}
           />
+          <Route exact path={ROUTES.STUDENT_TEST} component={StudentDoTest} />
+          <Route exact path={ROUTES.TEACHER_MAIN} component={TeacherMainPage} />
           <Route
             exact
-            path="/students/:studentid/subjects/:subjectid/test"
-            component={StudentDoTest}
-          />
-          <Route
-            exact
-            path="/teachers/:teacherid"
-            component={TeacherMainPage}
-          />
-          <Route
-            exact
-            path="/teachers/:teacherid/students/:studentid"
+            path={ROUTES.TEACHER_STUDENT}
             component={TeacherStudentDetails}
           />
           <Route
             exact
-            path="/teachers/:teacherid/subjects/:subjectid"
+            path={ROUTES.TEACHER_SUBJECT}
             component={TeacherSubjectDetails}
           />
           <Route
             exact
-            path="/teachers/:teacherid/questions/list"
+            path={ROUTES.TEACHER_QUESTIONS_LIST}
             component={ListOfQuestions}
           />
           <Route
             exact
-            path="/teachers/:teacherid/questions/add"
+            path={ROUTES.TEACHER_QUESTION_ADD}
             component={AddQuestionForm}
           />
           <Route
             exact
-            path="/teachers/:teacherid/subject/add"
+            path={ROUTES.TEACHER_SUBJECT_ADD}
             component={AddSubject}
           />
         </Switch>

@@ -1,4 +1,4 @@
-import { DEFAULT_MESSAGE_TIMEOUT } from '../../config/constants';
+import { DEFAULT_MESSAGE_TIMEOUT } from '../../constants/environment';
 import { Dispatch } from 'redux';
 import {
   APP_LOADING,

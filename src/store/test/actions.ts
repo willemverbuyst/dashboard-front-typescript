@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiUrl } from '../../config/constants';
+import { apiUrl } from '../../constants/environment';
 import { Dispatch } from 'redux';
 import { TestResult } from '../../models/test.models';
 import {
