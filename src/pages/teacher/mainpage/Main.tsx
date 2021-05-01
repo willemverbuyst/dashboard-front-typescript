@@ -119,11 +119,7 @@ export default function TeacherMain() {
           </Row>
           <Row justify="space-around">
             {renderScatterChart()}
-            {tests && subjects ? (
-              <LineChartMain tests={tests} subjects={subjects} />
-            ) : (
-              <></>
-            )}
+            {tests && subjects ? <LineChartMain tests={tests} /> : <></>}
           </Row>
         </Content>
       </Layout>

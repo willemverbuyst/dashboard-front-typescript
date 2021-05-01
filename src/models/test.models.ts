@@ -1,5 +1,11 @@
 import { RadioEvent } from './events.model';
 
+export interface ITest {
+  subjectId: number;
+  result: number;
+  at: string;
+}
+
 export type MCanswer = {
   id: number;
   text: string;

@@ -1,27 +1,16 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import LineChart from '../../../components/charts/LineChart';
 import { Col } from 'antd';
 import moment from 'moment';
-
-interface Subject {
-  name: string;
-  id: number;
-}
-
-interface Test {
-  subjectId: number;
-  result: number;
-  at: string;
-}
+import { ITest } from '../../../models/test.models';
 
 interface IProps {
-  tests: Test[];
-  subjects: Subject[];
+  tests: ITest[];
 }
 
-export default function LineChartMain(props: IProps) {
+const LineChartMain: React.FC<IProps> = ({ tests }: IProps): ReactElement => {
   // https://stackoverflow.com/questions/19395257/how-to-count-duplicate-value-in-an-array-in-javascript
-  const testDates = props.tests.map((test) => moment(test.at).format('ll'));
+  const testDates = tests.map((test) => moment(test.at).format('ll'));
   const reducedTests = testDates.reduce(function (prev, cur) {
     prev[cur] = (prev[cur] || 0) + 1;
     return prev;
@@ -40,4 +29,6 @@ export default function LineChartMain(props: IProps) {
       />
     </Col>
   );
-}
+};
+
+export default LineChartMain;
