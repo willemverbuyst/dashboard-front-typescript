@@ -6,8 +6,6 @@ export type StudentState = {
   student: Student;
 };
 
-export type GetStudentState = () => StudentState;
-
 export type Student = {
   id: number | null;
   name: string | null;

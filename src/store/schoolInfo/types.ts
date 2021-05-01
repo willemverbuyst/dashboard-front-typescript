@@ -4,8 +4,6 @@ export type SchoolInfoState = {
   all: TeacherOption[] | null;
 };
 
-export type GetState = () => SchoolInfoState;
-
 export type TeacherOption = {
   name: string;
   id: number;

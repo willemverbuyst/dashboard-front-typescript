@@ -8,8 +8,6 @@ export type AppState = {
   message: Message | null;
 };
 
-export type GetState = () => AppState;
-
 export type Message = {
   variant: 'success' | 'info' | 'warning' | 'error' | undefined;
   dismissable: boolean;

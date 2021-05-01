@@ -16,8 +16,6 @@ import {
   Main,
 } from './types';
 
-import { GetTeacherState } from '../teacher/types';
-
 export const subjectsFetched = (subjects: Subject[]): SubjectsFetched => {
   return {
     type: FETCH_OVERVIEW_FOR_SUBJECT,
@@ -46,7 +44,7 @@ export const removeOverviewTeacher = (): RemoveOverviewTeacher => {
 };
 
 export const getSubjectForOverview = (id: number) => {
-  return async (dispatch: Dispatch, _getState: GetTeacherState) => {
+  return async (dispatch: Dispatch) => {
     const token = localStorage.getItem('teacher_token');
     dispatch(appLoading());
     try {
@@ -71,7 +69,7 @@ export const getSubjectForOverview = (id: number) => {
 };
 
 export const getStudentForOverview = (id: number) => {
-  return async (dispatch: any, _getState: GetTeacherState) => {
+  return async (dispatch: any) => {
     const token = localStorage.getItem('teacher_token');
     dispatch(appLoading());
     try {
@@ -96,7 +94,7 @@ export const getStudentForOverview = (id: number) => {
 };
 
 export const getMainOverview = (id: number | null) => {
-  return async function thunk(dispatch: any, _getState: GetTeacherState) {
+  return async function thunk(dispatch: any) {
     const token = localStorage.getItem('teacher_token');
     dispatch(appLoading());
     // const dataMain = getState().overViewTeacher.main;

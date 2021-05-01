@@ -5,8 +5,6 @@ export type SubjectDetailsStudentState = {
   all: SubjectDetailStudent[] | null;
 };
 
-export type GetState = () => SubjectDetailsStudentState;
-
 export type SubjectDetailStudent = {
   at: string;
   result: number;

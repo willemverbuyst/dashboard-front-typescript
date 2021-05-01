@@ -6,7 +6,6 @@ import {
   TOKEN_STILL_VALID_TEACHER,
   LOG_OUT_TEACHER,
   ADD_SUBJECT,
-  GetTeacherState,
   LoginSuccessTeacher,
   LogOutTeacher,
   TokenTeacherStillValid,
@@ -48,7 +47,7 @@ const addSubject = (subject: ISubject): AddSubject => ({
 
 export const loginTeacher = (credentials: LoginCredentials) => {
   const { email, password, status } = credentials;
-  return async (dispatch: any, _getState: GetTeacherState) => {
+  return async (dispatch: any) => {
     dispatch(appLoading());
     try {
       const response = await axios.post(`${apiUrl}/login`, {
@@ -74,13 +73,13 @@ export const loginTeacher = (credentials: LoginCredentials) => {
 };
 
 export const teacherLoggingOut = () => {
-  return (dispatch: Dispatch, _getState: GetTeacherState) => {
+  return (dispatch: Dispatch) => {
     dispatch(logOutTeacher());
   };
 };
 
 export const getTeacherWithStoredToken = () => {
-  return async (dispatch: Dispatch, _getState: GetTeacherState) => {
+  return async (dispatch: Dispatch) => {
     const token = localStorage.getItem('teacher_token');
 
     if (token === null) return;
@@ -106,7 +105,7 @@ export const getTeacherWithStoredToken = () => {
 
 export const createTeacher = (signUpCredentials: SignUpCredentials) => {
   const { status, name, email, password } = signUpCredentials;
-  return async (dispatch: any, _getState: GetTeacherState) => {
+  return async (dispatch: any) => {
     dispatch(appLoading());
     try {
       const response = await axios.post(`${apiUrl}/signup`, {
@@ -135,7 +134,7 @@ export const createTeacher = (signUpCredentials: SignUpCredentials) => {
 };
 
 export const createSubject = (subject: string) => {
-  return async (dispatch: any, getState: GetTeacherState) => {
+  return async (dispatch: any) => {
     const token = localStorage.getItem('teacher_token');
     dispatch(appLoading());
     try {

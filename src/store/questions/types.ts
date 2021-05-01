@@ -8,8 +8,6 @@ export type QuestionsState = {
   all: IQuestion[] | null;
 };
 
-export type GetState = () => QuestionsState;
-
 export type newQuestion = {
   text: string;
   answers: Answer[];

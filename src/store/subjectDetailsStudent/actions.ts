@@ -8,7 +8,6 @@ import {
   RemoveDetailsStudent,
   SubjectDetailStudent,
 } from './types';
-import { GetStudentState } from '../student/types';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 
 const resultsFetched = (
@@ -26,8 +25,8 @@ export const removeDetailsStudent = (): RemoveDetailsStudent => {
 };
 
 export const getResultsForSubject = (id: number) => {
-  return async (dispatch: Dispatch, getState: GetStudentState) => {
-    const token = getState().student.token;
+  return async (dispatch: Dispatch) => {
+    const token = localStorage.getItem('student_token');
     dispatch(appLoading());
     try {
       const response = await axios.get(`${apiUrl}/data/${id}`, {

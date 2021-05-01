@@ -6,8 +6,6 @@ export type OverviewStudentState = {
   results: Result[] | null;
 };
 
-export type GetState = () => OverviewStudentState;
-
 export type Result = {
   at: string;
   result: number;

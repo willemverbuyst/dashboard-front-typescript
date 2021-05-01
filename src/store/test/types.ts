@@ -7,8 +7,6 @@ export type TestState = {
   all: IMultipleChoiceQuestion[] | null;
 };
 
-export type GetState = () => TestState;
-
 export type MC3QuestionsFetched = {
   type: typeof FETCH_MC_QUESTIONS;
   mc3questions: IMultipleChoiceQuestion[];

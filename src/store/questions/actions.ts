@@ -4,13 +4,11 @@ import { Dispatch } from 'redux';
 import {
   FETCH_QUESTIONS,
   ADD_QUESTION,
-  GetState,
   QuestionsFetched,
   AddQuestionToList,
   PostNewQuestion,
   newQuestion,
 } from './types';
-import { GetTeacherState } from '../teacher/types';
 import {
   appLoading,
   appDoneLoading,
@@ -34,8 +32,7 @@ export const addQuestionToList = (question: newQuestion): AddQuestionToList => {
 };
 
 export const getQuestionsForSubject = (id: number) => async (
-  dispatch: Dispatch,
-  _getState: GetState
+  dispatch: Dispatch
 ) => {
   dispatch(appLoading());
   try {
@@ -62,7 +59,7 @@ export const getQuestionsForSubject = (id: number) => async (
 
 export const createQuestion = (newQuestion: PostNewQuestion) => {
   const { subject, question, answer1, answer2, answer3, answer4 } = newQuestion;
-  return async (dispatch: any, _getState: GetTeacherState) => {
+  return async (dispatch: any) => {
     const token = localStorage.getItem('teacher_token');
     dispatch(appLoading());
     try {

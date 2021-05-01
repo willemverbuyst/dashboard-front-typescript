@@ -8,7 +8,6 @@ import {
   MC3QuestionsFetched,
   RemoveQuestions,
 } from './types';
-import { GetStudentState } from '../student/types';
 import {
   appLoading,
   appDoneLoading,
@@ -32,8 +31,8 @@ export const removeQuestions = (): RemoveQuestions => {
 };
 
 export const getMcQuestionsForTest = (id: number) => {
-  return async (dispatch: Dispatch, getState: GetStudentState) => {
-    const token = getState().student.token;
+  return async (dispatch: Dispatch) => {
+    const token = localStorage.getItem('student_token');
     dispatch(appLoading());
     dispatch(removeQuestions());
     try {
@@ -62,8 +61,8 @@ export function submitTest(
   subjectId: number,
   mcQuestions: TestResult
 ) {
-  return async function thunk(dispatch: any, getState: GetStudentState) {
-    const token = getState().student.token;
+  return async function thunk(dispatch: any) {
+    const token = localStorage.getItem('student_token');
     dispatch(appLoading());
     try {
       const response = await axios.post(

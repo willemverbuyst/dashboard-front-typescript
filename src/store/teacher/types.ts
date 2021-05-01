@@ -15,8 +15,6 @@ export type TeacherState = {
   students: IStudent[] | null;
 };
 
-export type GetTeacherState = () => TeacherState;
-
 export type LogOutTeacher = {
   type: typeof LOG_OUT_TEACHER;
 };

@@ -11,8 +11,6 @@ export type OverviewTeacherState = {
   main: Main;
 };
 
-export type GetState = () => OverviewTeacherState;
-
 export type Student = {
   name: string;
   score: number;
