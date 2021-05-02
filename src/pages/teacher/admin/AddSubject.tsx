@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectTeacherToken,
   selectTeacherId,
-} from '../../store/teacher/selectors';
-import { createSubject } from '../../store/teacher/actions';
+} from '../../../store/teacher/selectors';
+import { createSubject } from '../../../store/teacher/actions';
 import { Layout, Form, Input, Button, Row, Col } from 'antd';
 
 const { Content } = Layout;

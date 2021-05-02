@@ -9,9 +9,9 @@ import StudentDoTest from './pages/student/StudentDoTest';
 import TeacherMainPage from './pages/teacher/mainpage';
 import TeacherStudentDetails from './pages/teacher/TeacherStudentDetails';
 import TeacherSubjectDetails from './pages/teacher/TeacherSubjectDetails';
-import ListOfQuestions from './pages/teacher/questions';
+import ListOfQuestions from './pages/teacher/admin/ListOfQuestions';
 import AddQuestionForm from './pages/teacher/AddQuestionForm';
-import AddSubject from './pages/teacher/AddSubject';
+import AddSubject from './pages/teacher/admin/AddSubject';
 import * as ROUTES from './constants/routes';
 
 const AppRouter = (): JSX.Element => {

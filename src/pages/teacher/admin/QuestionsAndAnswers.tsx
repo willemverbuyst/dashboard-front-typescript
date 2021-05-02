@@ -8,7 +8,7 @@ interface IProps {
   questions: IQuestion[];
 }
 
-const ListOfQuestions: React.FC<IProps> = ({
+const QuestionsAndAnswers: React.FC<IProps> = ({
   questions,
 }: IProps): ReactElement => {
   return (
@@ -35,4 +35,4 @@ const ListOfQuestions: React.FC<IProps> = ({
   );
 };
 
-export default ListOfQuestions;
+export default QuestionsAndAnswers;

@@ -8,7 +8,7 @@ import {
 } from '../../../store/teacher/selectors';
 import { selectAllQuestionsForSubject } from '../../../store/questions/selectors';
 import SubjectSelector from './SubjectSelector';
-import ListOfQuestions from './ListOfQuestions';
+import QuestionsAndAnswers from './QuestionsAndAnswers';
 import Spinner from '../../../components/Spinner';
 import { getQuestionsForSubject } from '../../../store/questions/actions';
 
@@ -29,7 +29,6 @@ const Questions = () => {
   });
 
   const getListOfQuestions = (subjectId: number): void => {
-    console.log(subjectId, 'aaa', questions);
     setSubject(subjectId);
     dispatch(getQuestionsForSubject(subjectId));
   };
@@ -38,7 +37,7 @@ const Questions = () => {
     if (questions) {
       return (
         <Row justify="center">
-          <ListOfQuestions questions={questions} />
+          <QuestionsAndAnswers questions={questions} />
         </Row>
       );
     }
@@ -64,14 +63,6 @@ const Questions = () => {
           ) : (
             <Spinner />
           )}
-          {/* <Button
-            style={{ width: 160, backgroundColor: '#B81D9D', border: 'none' }}
-            type="primary"
-            htmlType=""
-            onClick={getListOfQuestions(subject)}
-          >
-            Show list
-          </Button> */}
           {renderQuestions()}
         </Content>
       </Layout>

@@ -140,9 +140,9 @@ export const createSubject = (subject: string) => {
     dispatch(appLoading());
     try {
       const response = await axios.post(
-        `${apiUrl}/subject`,
+        `${apiUrl}/subjects`,
         {
-          subject,
+          subject: subject.toLocaleLowerCase(),
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
