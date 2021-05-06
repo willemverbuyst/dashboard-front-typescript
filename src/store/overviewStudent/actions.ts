@@ -10,7 +10,7 @@ import {
 } from './types';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 
-const resultsFetched = (results: Result[]): ResultsFetched => {
+export const resultsFetched = (results: Result[]): ResultsFetched => {
   return {
     type: FETCH_RESULTS_FOR_STUDENT_MAIN,
     results,

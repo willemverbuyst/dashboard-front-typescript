@@ -6,7 +6,7 @@ import {
   RemoveResults,
 } from '../types';
 
-describe.only('#overviewStudentReducer', () => {
+describe('#overviewStudentReducer', () => {
   describe('if given no state and FETCH_RESULTS_FOR_STUDENT_MAIN action', () => {
     const results = [{ at: 'test', result: 1, subject: 1 }];
     const action: ResultsFetched = {
