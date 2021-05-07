@@ -76,21 +76,13 @@ export const loginTeacher = (
   }
 };
 
-export const teacherLoggingOut = (): ThunkAction<
-  void,
-  StoreState,
-  unknown,
-  Action<string>
-> => (dispatch: Dispatch): void => {
+export const teacherLoggingOut = (dispatch: Dispatch): void => {
   dispatch(logOutTeacher());
 };
 
-export const getTeacherWithStoredToken = (): ThunkAction<
-  void,
-  StoreState,
-  unknown,
-  Action<string>
-> => async (dispatch: Dispatch): Promise<void> => {
+export const getTeacherWithStoredToken = async (
+  dispatch: Dispatch
+): Promise<void> => {
   const token = localStorage.getItem('teacher_token');
 
   if (token === null) return;

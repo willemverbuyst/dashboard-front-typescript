@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { apiUrl } from '../../constants/environment';
-import { Dispatch } from 'redux';
 import { STORE_TEACHERS, StoreTeachers, TeacherOption } from './types';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
+import { Dispatch } from 'redux';
 
 export const storeTeachers = (teachers: TeacherOption[]): StoreTeachers => {
   return {
@@ -11,7 +11,7 @@ export const storeTeachers = (teachers: TeacherOption[]): StoreTeachers => {
   };
 };
 
-export const fetchAllTeachers = async (dispatch: Dispatch) => {
+export const fetchAllTeachers = async (dispatch: Dispatch): Promise<void> => {
   dispatch(appLoading());
   try {
     const response = await axios.get(`${apiUrl}/school/teachers`, {});

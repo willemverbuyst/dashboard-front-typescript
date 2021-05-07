@@ -75,12 +75,9 @@ export const studentLoggingIn = (
   }
 };
 
-export const getStudentWithStoredToken = (): ThunkAction<
-  void,
-  StoreState,
-  unknown,
-  Action<string>
-> => async (dispatch: Dispatch): Promise<void> => {
+export const getStudentWithStoredToken = async (
+  dispatch: Dispatch
+): Promise<void> => {
   dispatch(appLoading());
   try {
     // if token check if valid
@@ -101,12 +98,7 @@ export const getStudentWithStoredToken = (): ThunkAction<
   }
 };
 
-export const studentLoggingOut = (): ThunkAction<
-  void,
-  StoreState,
-  unknown,
-  Action<string>
-> => async (dispatch: Dispatch): Promise<void> => {
+export const studentLoggingOut = async (dispatch: Dispatch): Promise<void> => {
   dispatch(logOutStudent());
   dispatch(removeResults());
   dispatch(removeDetailsStudent());
