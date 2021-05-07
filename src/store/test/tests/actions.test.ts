@@ -80,11 +80,13 @@ describe('#getMcQuestionsForTest', () => {
     const mcQuestions: IMultipleChoiceQuestion[] = [MCQuestion];
 
     const dispatch = jest.fn();
+    const getState = jest.fn();
+    const extra = null;
     const response = { data: mcQuestions };
 
     mockAxios.get.mockImplementationOnce(() => Promise.resolve(response));
 
-    await getMcQuestionsForTest(1)(dispatch);
+    await getMcQuestionsForTest(1)(dispatch, getState, extra);
 
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith(appLoading());
@@ -107,21 +109,23 @@ describe.only('#submitTest', () => {
     };
 
     const dispatch = jest.fn();
+    const getState = jest.fn();
+    const extra = null;
     const response = { data: { message: 'test' } };
 
     mockAxios.post.mockImplementationOnce(() => Promise.resolve(response));
 
-    await submitTest(1, 1, testResult)(dispatch);
+    await submitTest(1, 1, testResult)(dispatch, getState, extra);
 
     expect(mockAxios.post).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith(appLoading());
     expect(dispatch).toHaveBeenCalledWith(
       showMessageWithTimeout(
+        dispatch,
         'success',
         true,
         response.data.message,
-        1500,
-        dispatch
+        1500
       )
     );
     expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
