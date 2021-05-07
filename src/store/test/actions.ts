@@ -15,7 +15,7 @@ import {
   showMessageWithTimeout,
 } from '../appState/actions';
 
-const questionsFetched = (
+export const questionsFetched = (
   mc3questions: IMultipleChoiceQuestion[]
 ): MC3QuestionsFetched => {
   return {
@@ -81,7 +81,13 @@ export function submitTest(
       );
 
       dispatch(
-        showMessageWithTimeout('success', true, response.data.message, 1500)
+        showMessageWithTimeout(
+          'success',
+          true,
+          response.data.message,
+          1500,
+          dispatch
+        )
       );
       dispatch(appDoneLoading());
     } catch (error) {

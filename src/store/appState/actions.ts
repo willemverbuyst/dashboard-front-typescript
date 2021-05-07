@@ -38,13 +38,12 @@ export const showMessageWithTimeout = (
   variant: 'success' | 'info' | 'warning' | 'error' | undefined,
   dismissable: boolean,
   text: string,
-  timeOutMilliSeconds: number
+  timeOutMilliSeconds: number,
+  dispatch: Dispatch
 ) => {
-  return (dispatch: Dispatch): void => {
-    dispatch(setMessage(variant, dismissable, text));
+  dispatch(setMessage(variant, dismissable, text));
 
-    const timeout = timeOutMilliSeconds || DEFAULT_MESSAGE_TIMEOUT;
+  const timeout = timeOutMilliSeconds || DEFAULT_MESSAGE_TIMEOUT;
 
-    setTimeout(() => dispatch(clearMessage()), timeout);
-  };
+  setTimeout(() => dispatch(clearMessage()), timeout);
 };

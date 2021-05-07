@@ -46,7 +46,6 @@ export const studentLoggingIn = (credentials: LoginCredentials) => {
   return async (dispatch: Dispatch) => {
     dispatch(appLoading());
     try {
-      console.log('loggin in?');
       const { email, password, status } = credentials;
       const response = await axios.post(`${apiUrl}/login`, {
         email,
@@ -120,7 +119,13 @@ export const createStudent = (signUpCredentials: SignUpCredentials) => {
 
       dispatch(loginSuccessStudent(response.data));
       dispatch<any>(
-        showMessageWithTimeout('success', true, response.data.message, 1500)
+        showMessageWithTimeout(
+          'success',
+          true,
+          response.data.message,
+          1500,
+          dispatch
+        )
       );
       dispatch(appDoneLoading());
     } catch (error) {
