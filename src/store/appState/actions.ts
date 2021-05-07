@@ -40,7 +40,7 @@ export const showMessageWithTimeout = (
   dismissable: boolean,
   text: string,
   timeOutMilliSeconds: number
-) => {
+): void => {
   dispatch(setMessage(variant, dismissable, text));
 
   const timeout = timeOutMilliSeconds || DEFAULT_MESSAGE_TIMEOUT;

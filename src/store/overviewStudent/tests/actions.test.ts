@@ -62,7 +62,7 @@ describe('#getResultsForStudentMain', () => {
   test('calls axios and returns results of student', async () => {
     mockAxios.get.mockImplementationOnce(() => Promise.resolve(response));
 
-    await getResultsForStudentMain()(dispatch);
+    await getResultsForStudentMain(dispatch);
 
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith(appLoading());

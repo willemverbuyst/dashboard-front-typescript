@@ -23,27 +23,27 @@ export const removeResults = (): RemoveResults => {
   };
 };
 
-export const getResultsForStudentMain = () => {
-  return async (dispatch: Dispatch) => {
-    const token = localStorage.getItem('student_token');
-    dispatch(appLoading());
-    try {
-      const response = await axios.get(`${apiUrl}/data/main`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const results = response.data;
+export const getResultsForStudentMain = async (
+  dispatch: Dispatch
+): Promise<void> => {
+  const token = localStorage.getItem('student_token');
+  dispatch(appLoading());
+  try {
+    const response = await axios.get(`${apiUrl}/data/main`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const results = response.data;
 
-      dispatch(resultsFetched(results));
-      dispatch(appDoneLoading());
-    } catch (error) {
-      if (error.response) {
-        console.log(error.response.data.message);
-        dispatch(setMessage('error', true, error.response.data.message));
-      } else {
-        console.log(error.message);
-        dispatch(setMessage('error', true, error.message));
-      }
-      dispatch(appDoneLoading());
+    dispatch(resultsFetched(results));
+    dispatch(appDoneLoading());
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.data.message);
+      dispatch(setMessage('error', true, error.response.data.message));
+    } else {
+      console.log(error.message);
+      dispatch(setMessage('error', true, error.message));
     }
-  };
+    dispatch(appDoneLoading());
+  }
 };
