@@ -3,11 +3,7 @@ import {
   IMultipleChoiceQuestion,
   TestResult,
 } from '../../../models/test.models';
-import {
-  appDoneLoading,
-  appLoading,
-  showMessageWithTimeout,
-} from '../../appState/actions';
+import { appDoneLoading, appLoading, setMessage } from '../../appState/actions';
 import {
   getMcQuestionsForTest,
   questionsFetched,
@@ -64,7 +60,7 @@ describe('#testState', () => {
 });
 
 describe('#getMcQuestionsForTest', () => {
-  it('calls axios and returns teams', async () => {
+  it('calls axios and returns questions', async () => {
     const MCAnswer = {
       id: 1,
       text: 'test_answer',
@@ -97,8 +93,8 @@ describe('#getMcQuestionsForTest', () => {
   });
 });
 
-describe.only('#submitTest', () => {
-  it('calls axios and returns a user', async () => {
+describe('#submitTest', () => {
+  it('calls axios and returns a message', async () => {
     const testResult: TestResult = {
       question1: 1,
       question2: 1,
@@ -120,13 +116,7 @@ describe.only('#submitTest', () => {
     expect(mockAxios.post).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith(appLoading());
     expect(dispatch).toHaveBeenCalledWith(
-      showMessageWithTimeout(
-        dispatch,
-        'success',
-        true,
-        response.data.message,
-        1500
-      )
+      setMessage('success', true, response.data.message)
     );
     expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
     expect(dispatch).toHaveBeenCalledTimes(3);

@@ -69,11 +69,12 @@ describe('#showMessageWithTimeout', () => {
     const timeOutMilliSeconds = 1000;
     const dispatch = jest.fn();
     showMessageWithTimeout(
+      dispatch,
       variant,
       dismissable,
       text,
       timeOutMilliSeconds
-    )(dispatch);
+    );
     expect(dispatch).toHaveBeenCalledWith(
       setMessage(variant, dismissable, text)
     );
