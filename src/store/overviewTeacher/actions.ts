@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { apiUrl } from '../../constants/environment';
-import { Dispatch } from 'redux';
+import { Action, Dispatch } from 'redux';
 import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 import {
   FETCH_OVERVIEW_FOR_SUBJECT,
@@ -15,6 +15,8 @@ import {
   Student,
   Main,
 } from './types';
+import { ThunkAction } from 'redux-thunk';
+import { StoreState } from '../types';
 
 export const subjectsFetched = (subjects: Subject[]): SubjectsFetched => {
   return {
@@ -43,58 +45,64 @@ export const removeOverviewTeacher = (): RemoveOverviewTeacher => {
   };
 };
 
-export const getSubjectForOverview = (id: number) => {
-  return async (dispatch: Dispatch) => {
-    const token = localStorage.getItem('teacher_token');
-    dispatch(appLoading());
-    try {
-      const response = await axios.get(`${apiUrl}/data/subjects/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const results = response.data;
+export const getSubjectForOverview = (
+  id: number
+): ThunkAction<void, StoreState, unknown, Action<string>> => async (
+  dispatch: Dispatch
+): Promise<void> => {
+  const token = localStorage.getItem('teacher_token');
+  dispatch(appLoading());
+  try {
+    const response = await axios.get(`${apiUrl}/data/subjects/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const results = response.data;
 
-      dispatch(subjectsFetched(results));
-      dispatch(appDoneLoading());
-    } catch (error) {
-      if (error.response) {
-        console.log(error.response.data.message);
-        dispatch(setMessage('error', true, error.response.data.message));
-      } else {
-        console.log(error.message);
-        dispatch(setMessage('error', true, error.message));
-      }
-      dispatch(appDoneLoading());
+    dispatch(subjectsFetched(results));
+    dispatch(appDoneLoading());
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.data.message);
+      dispatch(setMessage('error', true, error.response.data.message));
+    } else {
+      console.log(error.message);
+      dispatch(setMessage('error', true, error.message));
     }
-  };
+    dispatch(appDoneLoading());
+  }
 };
 
-export const getStudentForOverview = (id: number) => {
-  return async (dispatch: any) => {
-    const token = localStorage.getItem('teacher_token');
-    dispatch(appLoading());
-    try {
-      const response = await axios.get(`${apiUrl}/data/students/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const results = response.data;
+export const getStudentForOverview = (
+  id: number
+): ThunkAction<void, StoreState, unknown, Action<string>> => async (
+  dispatch: any
+): Promise<void> => {
+  const token = localStorage.getItem('teacher_token');
+  dispatch(appLoading());
+  try {
+    const response = await axios.get(`${apiUrl}/data/students/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const results = response.data;
 
-      dispatch(studentsFetched(results));
-      dispatch(appDoneLoading());
-    } catch (error) {
-      if (error.response) {
-        console.log(error.response.data.message);
-        dispatch(setMessage('error', true, error.response.data.message));
-      } else {
-        console.log(error.message);
-        dispatch(setMessage('error', true, error.message));
-      }
-      dispatch(appDoneLoading());
+    dispatch(studentsFetched(results));
+    dispatch(appDoneLoading());
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.data.message);
+      dispatch(setMessage('error', true, error.response.data.message));
+    } else {
+      console.log(error.message);
+      dispatch(setMessage('error', true, error.message));
     }
-  };
+    dispatch(appDoneLoading());
+  }
 };
 
-export const getMainOverview = (id: number | null) => {
-  return async function thunk(dispatch: any) {
+export const getMainOverview = (
+  id: number | null
+): ThunkAction<void, StoreState, unknown, Action<string>> =>
+  async function thunk(dispatch: any): Promise<void> {
     const token = localStorage.getItem('teacher_token');
     dispatch(appLoading());
     // const dataMain = getState().overViewTeacher.main;
@@ -121,4 +129,3 @@ export const getMainOverview = (id: number | null) => {
     dispatch(appDoneLoading());
     return;
   };
-};
