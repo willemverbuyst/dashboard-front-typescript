@@ -35,11 +35,11 @@ export const setMessage = (
 };
 
 export const showMessageWithTimeout = (
+  dispatch: Dispatch,
   variant: 'success' | 'info' | 'warning' | 'error' | undefined,
   dismissable: boolean,
   text: string,
-  timeOutMilliSeconds: number,
-  dispatch: Dispatch
+  timeOutMilliSeconds: number
 ) => {
   dispatch(setMessage(variant, dismissable, text));
 
