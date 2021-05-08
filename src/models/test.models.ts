@@ -35,12 +35,19 @@ export interface IMultipleChoiceQuestion {
   answers: IMultipleChoiceAnswer[];
 }
 
-export type MCanswer = {
-  id: number;
-  text: string;
-  correct: boolean;
-  questionId: number;
-};
+// export interface IMCAnswer {
+//   id: number;
+//   text: string;
+//   correct: boolean;
+//   questionId: number;
+// }
+
+// export interface IMCQuestion {
+//   id: number;
+//   text: string;
+//   subjectId: number;
+//   answers: IMCAnswer[];
+// }
 
 export type TestResult = {
   question1: number;
@@ -53,7 +60,7 @@ export type TestResult = {
 
 export type MCquestionDisplay = {
   text: string;
-  answers: MCanswer[];
+  answers: IMultipleChoiceAnswer[];
   questionNumber: number;
   questionId: number;
   onChange: RadioEvent;

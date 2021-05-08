@@ -24,12 +24,12 @@ export default (
 ): TeacherState => {
   switch (action.type) {
     case LOGIN_SUCCESS_TEACHER:
-      const userToken = action.teacher.token;
+      const userToken = action.payload.token;
       userToken && localStorage.setItem('teacher_token', userToken);
-      return { ...state, ...action.teacher };
+      return { ...state, ...action.payload };
 
     case TOKEN_STILL_VALID_TEACHER:
-      return { ...state, ...action.teacher };
+      return { ...state, ...action.payload };
 
     case LOG_OUT_TEACHER:
       localStorage.removeItem('teacher_token');
@@ -37,9 +37,9 @@ export default (
 
     case ADD_SUBJECT:
       if (state.subjects) {
-        return { ...state, subjects: [...state.subjects, action.subject] };
+        return { ...state, subjects: [...state.subjects, action.payload] };
       } else {
-        return { ...state, subjects: [action.subject] };
+        return { ...state, subjects: [action.payload] };
       }
 
     default:

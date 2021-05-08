@@ -12,12 +12,12 @@ import { appLoading, appDoneLoading, setMessage } from '../appState/actions';
 import { ThunkAction } from 'redux-thunk';
 import { StoreState } from '../types';
 
-const resultsFetched = (
+export const resultsFetched = (
   subjectDetails: SubjectDetailStudent[]
 ): ResultsFetched => {
   return {
     type: FETCH_RESULTS_FOR_SUBJECT,
-    subjectDetails,
+    payload: subjectDetails,
   };
 };
 export const removeDetailsStudent = (): RemoveDetailsStudent => {

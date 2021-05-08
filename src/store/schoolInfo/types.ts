@@ -11,7 +11,7 @@ export type TeacherOption = {
 
 export type StoreTeachers = {
   type: typeof STORE_TEACHERS;
-  teachers: TeacherOption[];
+  payload: TeacherOption[];
 };
 
 export type SchoolInfoActionTypes = StoreTeachers;

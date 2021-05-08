@@ -22,12 +22,12 @@ export default (
 ): StudentState => {
   switch (action.type) {
     case LOGIN_SUCCESS_STUDENT:
-      const userToken = action.student.token;
+      const userToken = action.payload.token;
       userToken && localStorage.setItem('student_token', userToken);
-      return { ...state, ...action.student };
+      return { ...state, ...action.payload };
 
     case TOKEN_STILL_VALID_STUDENT:
-      return { ...state, ...action.student };
+      return { ...state, ...action.payload };
 
     case LOG_OUT_STUDENT:
       localStorage.removeItem('student_token');

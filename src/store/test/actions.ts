@@ -22,7 +22,7 @@ export const questionsFetched = (
 ): MC3QuestionsFetched => {
   return {
     type: FETCH_MC_QUESTIONS,
-    mc3questions,
+    payload: mc3questions,
   };
 };
 
@@ -68,8 +68,9 @@ export const submitTest = (
   dispatch: Dispatch
 ): Promise<void> => {
   const token = localStorage.getItem('student_token');
+
   dispatch(appLoading());
-  console.log(studentId, subjectId, mcQuestions);
+
   try {
     const response = await axios.post(
       `${apiUrl}/questions/3qtest`,

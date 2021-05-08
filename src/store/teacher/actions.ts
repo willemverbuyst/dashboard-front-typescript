@@ -12,8 +12,8 @@ import {
   AddSubject,
 } from './types';
 import {
-  LoginCredentials,
-  SignUpCredentials,
+  ILoginCredentials,
+  ISignUpCredentials,
 } from '../../models/credentials.model';
 import {
   appLoading,
@@ -26,29 +26,31 @@ import { ISubject } from '../../models/subject.models';
 import { ThunkAction } from 'redux-thunk';
 import { StoreState } from '../types';
 
-const loginSuccessTeacher = (teacher: ITeacher): LoginSuccessTeacher => {
+export const loginSuccessTeacher = (teacher: ITeacher): LoginSuccessTeacher => {
   return {
     type: LOGIN_SUCCESS_TEACHER,
-    teacher,
+    payload: teacher,
   };
 };
 
-const logOutTeacher = (): LogOutTeacher => ({
+export const logOutTeacher = (): LogOutTeacher => ({
   type: LOG_OUT_TEACHER,
 });
 
-const tokenTeacherStillValid = (teacher: ITeacher): TokenTeacherStillValid => ({
+export const tokenTeacherStillValid = (
+  teacher: ITeacher
+): TokenTeacherStillValid => ({
   type: TOKEN_STILL_VALID_TEACHER,
-  teacher,
+  payload: teacher,
 });
 
-const addSubject = (subject: ISubject): AddSubject => ({
+export const addSubject = (subject: ISubject): AddSubject => ({
   type: ADD_SUBJECT,
-  subject,
+  payload: subject,
 });
 
 export const loginTeacher = (
-  credentials: LoginCredentials
+  credentials: ILoginCredentials
 ): ThunkAction<void, StoreState, unknown, Action<string>> => async (
   dispatch: Dispatch
 ): Promise<void> => {
@@ -60,9 +62,9 @@ export const loginTeacher = (
       password,
       isStudent: status,
     });
-    console.log(response.data);
+
     dispatch(loginSuccessTeacher(response.data));
-    showMessageWithTimeout(dispatch, 'success', false, 'welcome back!', 1500);
+    showMessageWithTimeout(dispatch, 'success', false, 'Welcome back!', 1500);
     dispatch(appDoneLoading());
   } catch (error) {
     if (error.response) {
@@ -83,15 +85,14 @@ export const teacherLoggingOut = (dispatch: Dispatch): void => {
 export const getTeacherWithStoredToken = async (
   dispatch: Dispatch
 ): Promise<void> => {
-  const token = localStorage.getItem('teacher_token');
-
-  if (token === null) return;
   dispatch(appLoading());
   try {
+    const token = localStorage.getItem('teacher_token');
     // if token check if valid
     const response = await axios.get(`${apiUrl}/teacher`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
     dispatch(tokenTeacherStillValid(response.data));
     dispatch(appDoneLoading());
   } catch (error) {
@@ -106,7 +107,7 @@ export const getTeacherWithStoredToken = async (
 };
 
 export const createTeacher = (
-  signUpCredentials: SignUpCredentials
+  signUpCredentials: ISignUpCredentials
 ): ThunkAction<void, StoreState, unknown, Action<string>> => async (
   dispatch: Dispatch
 ): Promise<void> => {
@@ -120,7 +121,7 @@ export const createTeacher = (
       password,
     });
 
-    dispatch(loginSuccessTeacher(response.data));
+    dispatch(loginSuccessTeacher(response.data.user));
     showMessageWithTimeout(
       dispatch,
       'success',

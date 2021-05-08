@@ -1,3 +1,4 @@
+import { ISubject } from '../../../models/subject.models';
 import reducer from '../reducer';
 import {
   LOGIN_SUCCESS_STUDENT,
@@ -6,19 +7,21 @@ import {
   LoginSuccessStudent,
   LogOutStudent,
   TokenStudentStillValid,
+  StudentState,
+  Student,
 } from '../types';
 
 describe('#studentState', () => {
-  describe('log out Student', () => {
+  describe('#logoutStudent', () => {
     describe('w/ state and LOG_OUT_STUDENT action', () => {
-      const initialState = {
+      const initialState: StudentState = {
         id: null,
         name: null,
         email: null,
         token: null,
         subjects: null,
       };
-      const state = {
+      const state: StudentState = {
         id: null,
         name: null,
         email: null,
@@ -28,7 +31,7 @@ describe('#studentState', () => {
       const action: LogOutStudent = {
         type: LOG_OUT_STUDENT,
       };
-      const newState = reducer(state, action);
+      const newState: StudentState = reducer(state, action);
 
       test('returns the initial state', () => {
         expect(newState).toEqual(initialState);
@@ -38,7 +41,7 @@ describe('#studentState', () => {
     });
 
     describe('w/ initial state and LOG_OUT_STUDENT action', () => {
-      const initialState = {
+      const initialState: StudentState = {
         id: null,
         name: null,
         email: null,
@@ -48,7 +51,7 @@ describe('#studentState', () => {
       const action: LogOutStudent = {
         type: LOG_OUT_STUDENT,
       };
-      const newState = reducer(initialState, action);
+      const newState: StudentState = reducer(initialState, action);
 
       test('returns the initial state', () => {
         expect(newState.token).toEqual(initialState.token);
@@ -60,18 +63,18 @@ describe('#studentState', () => {
 
   describe('log in student', () => {
     describe('w/ initial state and LOGIN_SUCCESS_STUDENT action', () => {
-      const initialState = {
+      const initialState: StudentState = {
         id: null,
         name: null,
         email: null,
         token: null,
         subjects: null,
       };
-      const subject = {
+      const subject: ISubject = {
         name: 'test_subject',
         id: 1,
       };
-      const student = {
+      const student: Student = {
         id: 1,
         name: 'test_name',
         email: 'test@test.com',
@@ -80,9 +83,9 @@ describe('#studentState', () => {
       };
       const action: LoginSuccessStudent = {
         type: LOGIN_SUCCESS_STUDENT,
-        student,
+        payload: student,
       };
-      const newState = reducer(initialState, action);
+      const newState: StudentState = reducer(initialState, action);
 
       test('returns the new state with student', () => {
         expect(newState.token).not.toBeNull();
@@ -96,18 +99,18 @@ describe('#studentState', () => {
 
   describe('student with token', () => {
     describe('w/ initial state and TOKEN_STILL_VALID_STUDENT action', () => {
-      const initialState = {
+      const initialState: StudentState = {
         id: null,
         name: null,
         email: null,
         token: null,
         subjects: null,
       };
-      const subject = {
+      const subject: ISubject = {
         name: 'test_subject',
         id: 1,
       };
-      const student = {
+      const student: Student = {
         id: 1,
         name: 'test_name',
         email: 'test@test.com',
@@ -116,9 +119,9 @@ describe('#studentState', () => {
       };
       const action: TokenStudentStillValid = {
         type: TOKEN_STILL_VALID_STUDENT,
-        student,
+        payload: student,
       };
-      const newState = reducer(initialState, action);
+      const newState: StudentState = reducer(initialState, action);
 
       test('returns the new state with student', () => {
         expect(newState.token).not.toBeNull();

@@ -11,8 +11,8 @@ import {
   Student,
 } from './types';
 import {
-  LoginCredentials,
-  SignUpCredentials,
+  ILoginCredentials,
+  ISignUpCredentials,
 } from '../../models/credentials.model';
 import {
   appLoading,
@@ -29,7 +29,7 @@ import { StoreState } from '../types';
 export const loginSuccessStudent = (student: Student): LoginSuccessStudent => {
   return {
     type: LOGIN_SUCCESS_STUDENT,
-    student,
+    payload: student,
   };
 };
 
@@ -37,7 +37,7 @@ export const tokenStudentStillValid = (
   student: Student
 ): TokenStudentStillValid => ({
   type: TOKEN_STILL_VALID_STUDENT,
-  student,
+  payload: student,
 });
 
 export const logOutStudent = (): LogOutStudent => ({
@@ -45,7 +45,7 @@ export const logOutStudent = (): LogOutStudent => ({
 });
 
 export const studentLoggingIn = (
-  credentials: LoginCredentials
+  credentials: ILoginCredentials
 ): ThunkAction<void, StoreState, unknown, Action<string>> => async (
   dispatch: Dispatch
 ): Promise<void> => {
@@ -107,13 +107,13 @@ export const studentLoggingOut = (dispatch: Dispatch): void => {
 };
 
 export const createStudent = (
-  signUpCredentials: SignUpCredentials
+  signUpCredentials: ISignUpCredentials
 ): ThunkAction<void, StoreState, unknown, Action<string>> => async (
   dispatch: Dispatch
 ): Promise<void> => {
-  const { status, name, email, password, teacherId } = signUpCredentials;
   dispatch(appLoading());
   try {
+    const { status, name, email, password, teacherId } = signUpCredentials;
     const response = await axios.post(`${apiUrl}/signup`, {
       isStudent: status,
       name,
@@ -122,11 +122,11 @@ export const createStudent = (
       teacherId,
     });
 
-    dispatch(loginSuccessStudent(response.data));
+    dispatch(loginSuccessStudent(response.data.user));
     showMessageWithTimeout(
       dispatch,
       'success',
-      true,
+      false,
       response.data.message,
       1500
     );

@@ -7,7 +7,6 @@ import {
   QuestionsFetched,
   AddQuestionToList,
   PostNewQuestion,
-  newQuestion,
 } from './types';
 import {
   appLoading,
@@ -22,14 +21,14 @@ import { StoreState } from '../types';
 export const questionsFetched = (questions: IQuestion[]): QuestionsFetched => {
   return {
     type: FETCH_QUESTIONS,
-    questions,
+    payload: questions,
   };
 };
 
-export const addQuestionToList = (question: newQuestion): AddQuestionToList => {
+export const addQuestionToList = (question: IQuestion): AddQuestionToList => {
   return {
     type: ADD_QUESTION,
-    question,
+    payload: question,
   };
 };
 

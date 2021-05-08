@@ -9,7 +9,7 @@ export type TestState = {
 
 export type MC3QuestionsFetched = {
   type: typeof FETCH_MC_QUESTIONS;
-  mc3questions: IMultipleChoiceQuestion[];
+  payload: IMultipleChoiceQuestion[];
 };
 
 export type RemoveQuestions = {

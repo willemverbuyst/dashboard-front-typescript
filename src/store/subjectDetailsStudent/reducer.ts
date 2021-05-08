@@ -12,7 +12,7 @@ const initialState: SubjectDetailsStudentState = {
 export default (state = initialState, action: StudentDetailsTypes) => {
   switch (action.type) {
     case FETCH_RESULTS_FOR_SUBJECT:
-      return { ...state, all: action.subjectDetails };
+      return { ...state, all: action.payload };
 
     case REMOVE_RESULTS_FOR_SUBJECT:
       return initialState;

@@ -1,4 +1,5 @@
-import { ITeacher } from '../../../models/users.models';
+import { ISubject } from '../../../models/subject.models';
+import { IStudent, ITeacher } from '../../../models/users.models';
 import reducer from '../reducer';
 
 import {
@@ -10,12 +11,13 @@ import {
   LoginSuccessTeacher,
   TokenTeacherStillValid,
   AddSubject,
+  TeacherState,
 } from '../types';
 
 describe('#teacherState', () => {
   describe('log out teacher', () => {
     describe('w/ state and LOG_OUT_TEACHER action', () => {
-      const initialState = {
+      const initialState: TeacherState = {
         id: null,
         name: null,
         email: null,
@@ -23,7 +25,7 @@ describe('#teacherState', () => {
         subjects: null,
         students: null,
       };
-      const state = {
+      const state: TeacherState = {
         id: null,
         name: null,
         email: null,
@@ -44,7 +46,7 @@ describe('#teacherState', () => {
     });
 
     describe('w/ inistial state and LOG_OUT_TEACHER action', () => {
-      const initialState = {
+      const initialState: TeacherState = {
         id: null,
         name: null,
         email: null,
@@ -67,11 +69,11 @@ describe('#teacherState', () => {
 
   describe('log in teacher', () => {
     describe('w/ initial state and LOGIN_SUCCESS_TEACHER action', () => {
-      const subject = {
+      const subject: ISubject = {
         name: 'test_subject',
         id: 1,
       };
-      const student = {
+      const student: IStudent = {
         name: 'test_student',
         id: 1,
       };
@@ -83,7 +85,7 @@ describe('#teacherState', () => {
         subjects: [subject],
         students: [student],
       };
-      const initialState = {
+      const initialState: TeacherState = {
         id: null,
         name: null,
         email: null,
@@ -93,7 +95,7 @@ describe('#teacherState', () => {
       };
       const action: LoginSuccessTeacher = {
         type: LOGIN_SUCCESS_TEACHER,
-        teacher,
+        payload: teacher,
       };
       const newState = reducer(initialState, action);
 
@@ -109,11 +111,11 @@ describe('#teacherState', () => {
 
   describe('teacher with token', () => {
     describe('w/ initial state and TOKEN_STILL_VALID_TEACHER action', () => {
-      const subject = {
+      const subject: ISubject = {
         name: 'test_subject',
         id: 1,
       };
-      const student = {
+      const student: IStudent = {
         name: 'test_student',
         id: 1,
       };
@@ -125,7 +127,7 @@ describe('#teacherState', () => {
         subjects: [subject],
         students: [student],
       };
-      const initialState = {
+      const initialState: TeacherState = {
         id: null,
         name: null,
         email: null,
@@ -135,9 +137,9 @@ describe('#teacherState', () => {
       };
       const action: TokenTeacherStillValid = {
         type: TOKEN_STILL_VALID_TEACHER,
-        teacher,
+        payload: teacher,
       };
-      const newState = reducer(initialState, action);
+      const newState: TeacherState = reducer(initialState, action);
 
       test('returns the new state with teacher', () => {
         expect(newState.token).not.toBeNull();
@@ -151,15 +153,15 @@ describe('#teacherState', () => {
 
   describe('teacher adds sbuject', () => {
     describe('w/ initial state and ADD_SUBJECT action', () => {
-      const subject = {
+      const subject: ISubject = {
         name: 'test_subject',
         id: 1,
       };
-      const newSubject = {
+      const newSubject: ISubject = {
         name: 'test_new_subject',
         id: 1,
       };
-      const student = {
+      const student: IStudent = {
         name: 'test_student',
         id: 1,
       };
@@ -171,7 +173,7 @@ describe('#teacherState', () => {
         subjects: [subject],
         students: [student],
       };
-      const initialState = {
+      const initialState: TeacherState = {
         id: null,
         name: null,
         email: null,
@@ -181,9 +183,9 @@ describe('#teacherState', () => {
       };
       const action: AddSubject = {
         type: ADD_SUBJECT,
-        subject: newSubject,
+        payload: newSubject,
       };
-      const newState = reducer(teacher, action);
+      const newState: TeacherState = reducer(teacher, action);
 
       test('returns the new state with new subject', () => {
         expect(newState.token).toBe(teacher.token);
@@ -193,15 +195,15 @@ describe('#teacherState', () => {
     });
 
     describe('w/ state and ADD_SUBJECT action', () => {
-      const subject = {
+      const subject: ISubject = {
         name: 'test_subject',
         id: 1,
       };
-      const newSubject = {
+      const newSubject: ISubject = {
         name: 'test_new_subject',
         id: 1,
       };
-      const student = {
+      const student: IStudent = {
         name: 'test_student',
         id: 1,
       };
@@ -213,7 +215,7 @@ describe('#teacherState', () => {
         subjects: [subject],
         students: [student],
       };
-      const initialState = {
+      const initialState: TeacherState = {
         id: null,
         name: null,
         email: null,
@@ -223,9 +225,10 @@ describe('#teacherState', () => {
       };
       const action: AddSubject = {
         type: ADD_SUBJECT,
-        subject: newSubject,
+        payload: newSubject,
       };
       const newState = reducer({ ...teacher, subjects: [] }, action);
+
       test('returns the new state with only one subject', () => {
         expect(newState.subjects).toEqual([newSubject]);
         expect(newState).not.toEqual(initialState);

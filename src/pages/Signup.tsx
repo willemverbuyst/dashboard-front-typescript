@@ -6,7 +6,7 @@ import { selectAllTeachers } from '../store/schoolInfo/selectors';
 import { createStudent } from '../store/student/actions';
 import { createTeacher } from '../store/teacher/actions';
 import { Layout, Form, Input, Button, Radio, Select, Row, Col } from 'antd';
-import { SignUpCredentials } from '../models/credentials.model';
+import { ISignUpCredentials } from '../models/credentials.model';
 
 const { Content } = Layout;
 const { Option } = Select;
@@ -15,15 +15,16 @@ export default function Signup() {
   const history = useHistory();
   const dispatch = useDispatch();
   const teachers = useSelector(selectAllTeachers);
-  const [signUpCredentials, setSignUpCredentials] = useState<SignUpCredentials>(
-    {
-      name: '',
-      email: '',
-      password: '',
-      status: 1,
-      teacherId: 1,
-    }
-  );
+  const [
+    signUpCredentials,
+    setSignUpCredentials,
+  ] = useState<ISignUpCredentials>({
+    name: '',
+    email: '',
+    password: '',
+    status: 1,
+    teacherId: 1,
+  });
 
   useEffect(() => {
     dispatch(fetchAllTeachers);
