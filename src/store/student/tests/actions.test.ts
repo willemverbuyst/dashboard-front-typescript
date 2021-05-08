@@ -161,7 +161,7 @@ describe('#studentState', () => {
     const dispatch = jest.fn();
     const getState = jest.fn();
     const extra = null;
-    const response = { data: { student, message: 'test' } };
+    const response = { data: { user: student, message: 'Welcome!' } };
 
     test('calls axios and returns student', async () => {
       mockAxios.post.mockImplementationOnce(() => Promise.resolve(response));
@@ -169,12 +169,12 @@ describe('#studentState', () => {
 
       expect(mockAxios.post).toHaveBeenCalledTimes(1);
       expect(dispatch).toHaveBeenCalledWith(appLoading());
-      // expect(dispatch).toHaveBeenCalledWith(
-      //   loginSuccessStudent(response.data.student)
-      // );
-      // expect(dispatch).toHaveBeenCalledWith(
-      //   setMessage('success', false, response.data.message)
-      // );
+      expect(dispatch).toHaveBeenCalledWith(
+        loginSuccessStudent(response.data.user)
+      );
+      expect(dispatch).toHaveBeenCalledWith(
+        setMessage('success', false, response.data.message)
+      );
       expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
       expect(dispatch).toHaveBeenCalledTimes(4);
     });
@@ -196,17 +196,13 @@ describe('#studentState', () => {
     const dispatch = jest.fn();
     const response = { data: student };
 
-    mockAxios.get.mockImplementationOnce(() => Promise.resolve(response));
-
     test('returns student', async () => {
-      await getStudentWithStoredToken()(dispatch);
+      mockAxios.get.mockImplementationOnce(() => Promise.resolve(response));
+      await getStudentWithStoredToken(dispatch);
 
       expect(mockAxios.get).toHaveBeenCalledTimes(1);
       expect(dispatch).toHaveBeenCalledWith(appLoading());
-      // expect(dispatch).toHaveBeenCalledWith(tokenStudentStillValid(student));
-      // expect(dispatch).toHaveBeenCalledWith(
-      //   setMessage('success', false, 'Welcome back!')
-      // );
+      expect(dispatch).toHaveBeenCalledWith(tokenStudentStillValid(student));
       expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
       expect(dispatch).toHaveBeenCalledTimes(3);
     });

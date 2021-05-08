@@ -111,9 +111,9 @@ export const createStudent = (
 ): ThunkAction<void, StoreState, unknown, Action<string>> => async (
   dispatch: Dispatch
 ): Promise<void> => {
-  const { status, name, email, password, teacherId } = signUpCredentials;
   dispatch(appLoading());
   try {
+    const { status, name, email, password, teacherId } = signUpCredentials;
     const response = await axios.post(`${apiUrl}/signup`, {
       isStudent: status,
       name,
@@ -122,11 +122,11 @@ export const createStudent = (
       teacherId,
     });
 
-    dispatch(loginSuccessStudent(response.data));
+    dispatch(loginSuccessStudent(response.data.user));
     showMessageWithTimeout(
       dispatch,
       'success',
-      true,
+      false,
       response.data.message,
       1500
     );

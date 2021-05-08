@@ -14,7 +14,7 @@ export const storeTeachers = (teachers: TeacherOption[]): StoreTeachers => {
 export const fetchAllTeachers = async (dispatch: Dispatch): Promise<void> => {
   dispatch(appLoading());
   try {
-    const response = await axios.get(`${apiUrl}/school/teachers`, {});
+    const response = await axios.get(`${apiUrl}/general/teachers`, {});
     const teachers = response.data;
 
     dispatch(storeTeachers(teachers));
