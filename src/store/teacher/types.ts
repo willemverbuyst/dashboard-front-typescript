@@ -21,17 +21,17 @@ export type LogOutTeacher = {
 
 export type LoginSuccessTeacher = {
   type: typeof LOGIN_SUCCESS_TEACHER;
-  teacher: ITeacher;
+  payload: ITeacher;
 };
 
 export type TokenTeacherStillValid = {
   type: typeof TOKEN_STILL_VALID_TEACHER;
-  teacher: ITeacher;
+  payload: ITeacher;
 };
 
 export type AddSubject = {
   type: typeof ADD_SUBJECT;
-  subject: ISubject;
+  payload: ISubject;
 };
 
 export type TeacherActionTypes =

@@ -26,25 +26,27 @@ import { ISubject } from '../../models/subject.models';
 import { ThunkAction } from 'redux-thunk';
 import { StoreState } from '../types';
 
-const loginSuccessTeacher = (teacher: ITeacher): LoginSuccessTeacher => {
+export const loginSuccessTeacher = (teacher: ITeacher): LoginSuccessTeacher => {
   return {
     type: LOGIN_SUCCESS_TEACHER,
-    teacher,
+    payload: teacher,
   };
 };
 
-const logOutTeacher = (): LogOutTeacher => ({
+export const logOutTeacher = (): LogOutTeacher => ({
   type: LOG_OUT_TEACHER,
 });
 
-const tokenTeacherStillValid = (teacher: ITeacher): TokenTeacherStillValid => ({
+export const tokenTeacherStillValid = (
+  teacher: ITeacher
+): TokenTeacherStillValid => ({
   type: TOKEN_STILL_VALID_TEACHER,
-  teacher,
+  payload: teacher,
 });
 
-const addSubject = (subject: ISubject): AddSubject => ({
+export const addSubject = (subject: ISubject): AddSubject => ({
   type: ADD_SUBJECT,
-  subject,
+  payload: subject,
 });
 
 export const loginTeacher = (
@@ -60,7 +62,7 @@ export const loginTeacher = (
       password,
       isStudent: status,
     });
-    console.log(response.data);
+
     dispatch(loginSuccessTeacher(response.data));
     showMessageWithTimeout(dispatch, 'success', false, 'welcome back!', 1500);
     dispatch(appDoneLoading());
@@ -92,6 +94,7 @@ export const getTeacherWithStoredToken = async (
     const response = await axios.get(`${apiUrl}/teacher`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
     dispatch(tokenTeacherStillValid(response.data));
     dispatch(appDoneLoading());
   } catch (error) {

@@ -93,7 +93,7 @@ describe('#teacherState', () => {
       };
       const action: LoginSuccessTeacher = {
         type: LOGIN_SUCCESS_TEACHER,
-        teacher,
+        payload: teacher,
       };
       const newState = reducer(initialState, action);
 
@@ -135,7 +135,7 @@ describe('#teacherState', () => {
       };
       const action: TokenTeacherStillValid = {
         type: TOKEN_STILL_VALID_TEACHER,
-        teacher,
+        payload: teacher,
       };
       const newState = reducer(initialState, action);
 
@@ -181,7 +181,7 @@ describe('#teacherState', () => {
       };
       const action: AddSubject = {
         type: ADD_SUBJECT,
-        subject: newSubject,
+        payload: newSubject,
       };
       const newState = reducer(teacher, action);
 
@@ -223,7 +223,7 @@ describe('#teacherState', () => {
       };
       const action: AddSubject = {
         type: ADD_SUBJECT,
-        subject: newSubject,
+        payload: newSubject,
       };
       const newState = reducer({ ...teacher, subjects: [] }, action);
       test('returns the new state with only one subject', () => {
