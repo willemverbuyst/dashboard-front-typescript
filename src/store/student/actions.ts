@@ -75,7 +75,7 @@ export const studentLoggingIn = (
   }
 };
 
-export const getStudentWithStoredToken = async (
+export const getStudentWithStoredToken = () => async (
   dispatch: Dispatch
 ): Promise<void> => {
   dispatch(appLoading());
@@ -85,6 +85,7 @@ export const getStudentWithStoredToken = async (
     const response = await axios.get(`${apiUrl}/student`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
     dispatch(tokenStudentStillValid(response.data));
     dispatch(appDoneLoading());
   } catch (error) {
@@ -98,7 +99,7 @@ export const getStudentWithStoredToken = async (
   }
 };
 
-export const studentLoggingOut = async (dispatch: Dispatch): Promise<void> => {
+export const studentLoggingOut = (dispatch: Dispatch): void => {
   dispatch(logOutStudent());
   dispatch(removeResults());
   dispatch(removeDetailsStudent());
