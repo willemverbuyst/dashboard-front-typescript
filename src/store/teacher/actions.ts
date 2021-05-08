@@ -12,8 +12,8 @@ import {
   AddSubject,
 } from './types';
 import {
-  LoginCredentials,
-  SignUpCredentials,
+  ILoginCredentials,
+  ISignUpCredentials,
 } from '../../models/credentials.model';
 import {
   appLoading,
@@ -50,7 +50,7 @@ export const addSubject = (subject: ISubject): AddSubject => ({
 });
 
 export const loginTeacher = (
-  credentials: LoginCredentials
+  credentials: ILoginCredentials
 ): ThunkAction<void, StoreState, unknown, Action<string>> => async (
   dispatch: Dispatch
 ): Promise<void> => {
@@ -107,7 +107,7 @@ export const getTeacherWithStoredToken = async (
 };
 
 export const createTeacher = (
-  signUpCredentials: SignUpCredentials
+  signUpCredentials: ISignUpCredentials
 ): ThunkAction<void, StoreState, unknown, Action<string>> => async (
   dispatch: Dispatch
 ): Promise<void> => {

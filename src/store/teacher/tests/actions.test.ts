@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { SignUpCredentials } from '../../../models/credentials.model';
+import {
+  ILoginCredentials,
+  ISignUpCredentials,
+} from '../../../models/credentials.model';
 import { ISubject } from '../../../models/subject.models';
 import { ITeacher } from '../../../models/users.models';
 import { appLoading, setMessage, appDoneLoading } from '../../appState/actions';
@@ -146,7 +149,7 @@ describe('#loginTeacher', () => {
       },
     ],
   };
-  const credentials = {
+  const credentials: ILoginCredentials = {
     email: 'test@test',
     password: 'test_password',
     status: 0,
@@ -235,7 +238,7 @@ describe('#createTeacher', () => {
       },
     ],
   };
-  const credentials: SignUpCredentials = {
+  const credentials: ISignUpCredentials = {
     email: 'test@test',
     password: 'test_password',
     status: 0,

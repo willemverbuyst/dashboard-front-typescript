@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {
+  IMultipleChoiceAnswer,
   IMultipleChoiceQuestion,
   TestResult,
 } from '../../../models/test.models';
@@ -25,13 +26,13 @@ beforeEach(() => {
 
 describe('#testState', () => {
   describe('#questionsFetched w/ questions', () => {
-    const MCAnswer = {
+    const MCAnswer: IMultipleChoiceAnswer = {
       id: 1,
       text: 'test_answer',
       correct: true,
       questionId: 1,
     };
-    const MCQuestion = {
+    const MCQuestion: IMultipleChoiceQuestion = {
       id: 1,
       text: 'test_question',
       subjectId: 1,
@@ -65,13 +66,13 @@ describe('#testState', () => {
 });
 
 describe('#getMcQuestionsForTest', () => {
-  const MCAnswer = {
+  const MCAnswer: IMultipleChoiceAnswer = {
     id: 1,
     text: 'test_answer',
     correct: true,
     questionId: 1,
   };
-  const MCQuestion = {
+  const MCQuestion: IMultipleChoiceQuestion = {
     id: 1,
     text: 'test_question',
     subjectId: 1,

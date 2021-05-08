@@ -1,3 +1,7 @@
+import {
+  IMultipleChoiceAnswer,
+  IMultipleChoiceQuestion,
+} from '../../../models/test.models';
 import reducer from '../reducer';
 
 import {
@@ -13,14 +17,14 @@ describe('#testReducer', () => {
     const initialState: TestState = {
       all: null,
     };
-    const MCAnswer = {
+    const MCAnswer: IMultipleChoiceAnswer = {
       id: 1,
       text: 'test_answer',
       correct: true,
       questionId: 1,
     };
 
-    const MCQuestion = {
+    const MCQuestion: IMultipleChoiceQuestion = {
       id: 1,
       text: 'test_question',
       subjectId: 1,
@@ -30,7 +34,7 @@ describe('#testReducer', () => {
       type: FETCH_MC_QUESTIONS,
       payload: [MCQuestion],
     };
-    const newState = reducer(initialState, action);
+    const newState: TestState = reducer(initialState, action);
 
     test('returns the state with the questions', () => {
       expect(newState).not.toEqual(initialState);
@@ -43,13 +47,13 @@ describe('#testReducer', () => {
     const initialState: TestState = {
       all: null,
     };
-    const MCAnswer = {
+    const MCAnswer: IMultipleChoiceAnswer = {
       id: 1,
       text: 'test_answer',
       correct: true,
       questionId: 1,
     };
-    const MCQuestion = {
+    const MCQuestion: IMultipleChoiceQuestion = {
       id: 1,
       text: 'test_question',
       subjectId: 1,
@@ -58,8 +62,11 @@ describe('#testReducer', () => {
     const action: RemoveQuestions = {
       type: REMOVE_MC_QUESTIONS,
     };
-    const newState_1 = reducer({ ...initialState, all: [MCQuestion] }, action);
-    const newState_2 = reducer(initialState, action);
+    const newState_1: TestState = reducer(
+      { ...initialState, all: [MCQuestion] },
+      action
+    );
+    const newState_2: TestState = reducer(initialState, action);
 
     test('returns the initial state', () => {
       expect(newState_1).toEqual(initialState);

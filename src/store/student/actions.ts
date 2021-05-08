@@ -11,8 +11,8 @@ import {
   Student,
 } from './types';
 import {
-  LoginCredentials,
-  SignUpCredentials,
+  ILoginCredentials,
+  ISignUpCredentials,
 } from '../../models/credentials.model';
 import {
   appLoading,
@@ -45,7 +45,7 @@ export const logOutStudent = (): LogOutStudent => ({
 });
 
 export const studentLoggingIn = (
-  credentials: LoginCredentials
+  credentials: ILoginCredentials
 ): ThunkAction<void, StoreState, unknown, Action<string>> => async (
   dispatch: Dispatch
 ): Promise<void> => {
@@ -107,7 +107,7 @@ export const studentLoggingOut = (dispatch: Dispatch): void => {
 };
 
 export const createStudent = (
-  signUpCredentials: SignUpCredentials
+  signUpCredentials: ISignUpCredentials
 ): ThunkAction<void, StoreState, unknown, Action<string>> => async (
   dispatch: Dispatch
 ): Promise<void> => {

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { studentLoggingIn } from '../store/student/actions';
 import { loginTeacher } from '../store/teacher/actions';
 import { ButtonEvent } from '../models/events.model';
-import { LoginCredentials } from '../models/credentials.model';
+import { ILoginCredentials } from '../models/credentials.model';
 import { selectStudentId } from '../store/student/selectors';
 import { selectTeacherId } from '../store/teacher/selectors';
 
@@ -15,7 +15,7 @@ const { Content } = Layout;
 export default function Login() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [loginCredentials, setLoginCredentials] = useState<LoginCredentials>({
+  const [loginCredentials, setLoginCredentials] = useState<ILoginCredentials>({
     email: '',
     password: '',
     status: 1,
