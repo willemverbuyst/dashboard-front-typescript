@@ -10,7 +10,7 @@ export default (
 ): SchoolInfoState => {
   switch (action.type) {
     case STORE_TEACHERS:
-      return { ...state, all: action.teachers };
+      return { ...state, all: action.payload };
 
     default:
       return state;

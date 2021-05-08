@@ -12,7 +12,7 @@ import {
 } from '../types';
 
 describe('#studentState', () => {
-  describe('log out Student', () => {
+  describe('#logoutStudent', () => {
     describe('w/ state and LOG_OUT_STUDENT action', () => {
       const initialState: StudentState = {
         id: null,

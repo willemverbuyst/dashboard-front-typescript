@@ -7,7 +7,7 @@ import { Dispatch } from 'redux';
 export const storeTeachers = (teachers: TeacherOption[]): StoreTeachers => {
   return {
     type: STORE_TEACHERS,
-    teachers,
+    payload: teachers,
   };
 };
 
