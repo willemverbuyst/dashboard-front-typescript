@@ -64,6 +64,7 @@ describe('#teacherState', () => {
       });
     });
   });
+
   describe('log in teacher', () => {
     describe('w/ initial state and LOGIN_SUCCESS_TEACHER action', () => {
       const subject = {
