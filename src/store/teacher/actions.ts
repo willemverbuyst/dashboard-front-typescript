@@ -64,7 +64,7 @@ export const loginTeacher = (
     });
 
     dispatch(loginSuccessTeacher(response.data));
-    showMessageWithTimeout(dispatch, 'success', false, 'welcome back!', 1500);
+    showMessageWithTimeout(dispatch, 'success', false, 'Welcome back!', 1500);
     dispatch(appDoneLoading());
   } catch (error) {
     if (error.response) {
@@ -85,11 +85,9 @@ export const teacherLoggingOut = (dispatch: Dispatch): void => {
 export const getTeacherWithStoredToken = async (
   dispatch: Dispatch
 ): Promise<void> => {
-  const token = localStorage.getItem('teacher_token');
-
-  if (token === null) return;
   dispatch(appLoading());
   try {
+    const token = localStorage.getItem('teacher_token');
     // if token check if valid
     const response = await axios.get(`${apiUrl}/teacher`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -123,7 +121,7 @@ export const createTeacher = (
       password,
     });
 
-    dispatch(loginSuccessTeacher(response.data));
+    dispatch(loginSuccessTeacher(response.data.user));
     showMessageWithTimeout(
       dispatch,
       'success',
