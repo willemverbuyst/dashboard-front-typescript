@@ -12,7 +12,7 @@ const initialState: TestState = {
 export default (state = initialState, action: TestTypes) => {
   switch (action.type) {
     case FETCH_MC_QUESTIONS:
-      return { ...state, all: action.mc3questions };
+      return { ...state, all: action.payload };
 
     case REMOVE_MC_QUESTIONS:
       return initialState;

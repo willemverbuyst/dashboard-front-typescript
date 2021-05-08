@@ -226,6 +226,7 @@ describe('#teacherState', () => {
         payload: newSubject,
       };
       const newState = reducer({ ...teacher, subjects: [] }, action);
+
       test('returns the new state with only one subject', () => {
         expect(newState.subjects).toEqual([newSubject]);
         expect(newState).not.toEqual(initialState);

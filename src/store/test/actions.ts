@@ -22,7 +22,7 @@ export const questionsFetched = (
 ): MC3QuestionsFetched => {
   return {
     type: FETCH_MC_QUESTIONS,
-    mc3questions,
+    payload: mc3questions,
   };
 };
 

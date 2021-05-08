@@ -28,11 +28,11 @@ describe('#testReducer', () => {
     };
     const action: MC3QuestionsFetched = {
       type: FETCH_MC_QUESTIONS,
-      mc3questions: [MCQuestion],
+      payload: [MCQuestion],
     };
+    const newState = reducer(initialState, action);
 
     test('returns the state with the questions', () => {
-      const newState = reducer(initialState, action);
       expect(newState).not.toEqual(initialState);
       expect(newState.all).toEqual([MCQuestion]);
       expect(newState.all).not.toBeNull();
