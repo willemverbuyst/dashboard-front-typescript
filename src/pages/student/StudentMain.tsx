@@ -28,7 +28,7 @@ export default function StudentMain() {
   });
 
   useEffect(() => {
-    dispatch(getResultsForStudentMain());
+    dispatch(getResultsForStudentMain);
   }, [dispatch]);
 
   const renderData = () => {

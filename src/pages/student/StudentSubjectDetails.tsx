@@ -17,7 +17,7 @@ const { Content } = Layout;
 
 export default function StudentSubjectDetails() {
   const dispatch = useDispatch();
-  const { subjectid } = useParams();
+  const { subjectid } = useParams<{ subjectid: string }>();
   const history = useHistory();
   const token = useSelector(selectStudentToken);
   const studentId = useSelector(selectStudentId);
@@ -32,7 +32,7 @@ export default function StudentSubjectDetails() {
   });
 
   useEffect(() => {
-    dispatch(getResultsForSubject(subjectid));
+    dispatch(getResultsForSubject(Number(subjectid)));
   }, [dispatch, subjectid]);
 
   const goTo = (goto: string) => {
@@ -116,7 +116,7 @@ export default function StudentSubjectDetails() {
   const renderBarChart = () => {
     if (subjects && results) {
       const subject = subjects.filter(
-        (subject) => subject.id === subjectid * 1
+        (subject) => subject.id === Number(subjectid)
       )[0].name;
 
       const sortedData =
@@ -131,7 +131,7 @@ export default function StudentSubjectDetails() {
           : results;
 
       const barData = sortedData.map(({ result }) => result);
-      const barColor = results.map((result) => 'rgb(255, 99, 132)');
+      const barColor = results.map(() => 'rgb(255, 99, 132)');
       const barLabels = results.map(({ at }) => moment(at).format('MMM Do YY'));
 
       return (

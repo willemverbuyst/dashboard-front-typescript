@@ -29,7 +29,7 @@ export const getResultsForStudentMain = async (
   const token = localStorage.getItem('student_token');
   dispatch(appLoading());
   try {
-    const response = await axios.get(`${apiUrl}/data/main`, {
+    const response = await axios.get(`${apiUrl}/data/student/main`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const results = response.data;

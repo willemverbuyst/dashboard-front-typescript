@@ -34,7 +34,7 @@ export const getResultsForSubject = (
   const token = localStorage.getItem('student_token');
   dispatch(appLoading());
   try {
-    const response = await axios.get(`${apiUrl}/data/${id}`, {
+    const response = await axios.get(`${apiUrl}/data/student/subjects/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const subjectDetails = response.data;

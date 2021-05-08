@@ -75,7 +75,7 @@ export const studentLoggingIn = (
   }
 };
 
-export const getStudentWithStoredToken = () => async (
+export const getStudentWithStoredToken = async (
   dispatch: Dispatch
 ): Promise<void> => {
   dispatch(appLoading());

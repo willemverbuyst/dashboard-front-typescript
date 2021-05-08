@@ -17,8 +17,8 @@ function App() {
   const isLoading = useSelector(selectAppLoading);
 
   useEffect(() => {
-    dispatch(getTeacherWithStoredToken());
-    dispatch(getStudentWithStoredToken());
+    dispatch(getTeacherWithStoredToken);
+    dispatch(getStudentWithStoredToken);
   }, [dispatch]);
 
   return (

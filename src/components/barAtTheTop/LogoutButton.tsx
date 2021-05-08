@@ -15,10 +15,10 @@ const LogoutButton = (): ReactElement => {
 
   const handleLogOut = (): void => {
     if (studentToken) {
-      dispatch(studentLoggingOut());
+      dispatch(studentLoggingOut);
     }
     if (teacherToken) {
-      dispatch(teacherLoggingOut());
+      dispatch(teacherLoggingOut);
     }
     history.push('/');
   };
