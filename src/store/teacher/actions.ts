@@ -150,7 +150,7 @@ export const createSubject = (
   dispatch(appLoading());
   try {
     const response = await axios.post(
-      `${apiUrl}/subjects`,
+      `${apiUrl}/general/subjects`,
       {
         subject: subject.toLocaleLowerCase(),
       },

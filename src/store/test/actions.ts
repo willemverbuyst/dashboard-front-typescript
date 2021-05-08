@@ -69,18 +69,20 @@ export const submitTest = (
 ): Promise<void> => {
   const token = localStorage.getItem('student_token');
   dispatch(appLoading());
+  console.log(studentId, subjectId, mcQuestions);
   try {
     const response = await axios.post(
       `${apiUrl}/questions/3qtest`,
       {
         studentId,
         subjectId,
-        q1: mcQuestions.question1,
-        q2: mcQuestions.question2,
-        q3: mcQuestions.question3,
-        a1: mcQuestions.answer1,
-        a2: mcQuestions.answer2,
-        a3: mcQuestions.answer3,
+        // convert to string a zero will considered an empty value by the backend
+        q1: String(mcQuestions.question1),
+        q2: String(mcQuestions.question2),
+        q3: String(mcQuestions.question3),
+        a1: String(mcQuestions.answer1),
+        a2: String(mcQuestions.answer2),
+        a3: String(mcQuestions.answer3),
       },
       { headers: { Authorization: `Bearer ${token}` } }
     );
