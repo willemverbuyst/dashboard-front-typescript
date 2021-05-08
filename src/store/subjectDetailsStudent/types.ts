@@ -12,7 +12,7 @@ export type SubjectDetailStudent = {
 
 export type ResultsFetched = {
   type: typeof FETCH_RESULTS_FOR_SUBJECT;
-  subjectDetails: SubjectDetailStudent[];
+  payload: SubjectDetailStudent[];
 };
 
 export type RemoveDetailsStudent = {

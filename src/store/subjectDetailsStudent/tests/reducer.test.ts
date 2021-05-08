@@ -16,11 +16,11 @@ describe('#subjectDetailsStudentState', () => {
     const subjectDetails: SubjectDetailStudent[] = [
       { at: 'test_at', result: 1 },
     ];
-    const action_fetch: ResultsFetched = {
+    const action: ResultsFetched = {
       type: FETCH_RESULTS_FOR_SUBJECT,
-      subjectDetails,
+      payload: subjectDetails,
     };
-    const newState = reducer(initialState, action_fetch);
+    const newState = reducer(initialState, action);
 
     test('returns state with subject details', () => {
       expect(newState.all).not.toEqual(initialState.all);
