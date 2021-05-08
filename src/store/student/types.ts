@@ -1,3 +1,5 @@
+import { ISubject } from '../../models/subject.models';
+
 export const LOGIN_SUCCESS_STUDENT = 'LOGIN_SUCCESS_STUDENT';
 export const TOKEN_STILL_VALID_STUDENT = 'TOKEN_STILL_VALID_STUDENT';
 export const LOG_OUT_STUDENT = 'LOG_OUT_STUDENT';
@@ -7,7 +9,7 @@ export type StudentState = {
   name: string | null;
   email: string | null;
   token: string | null;
-  subjects: Subject[] | null;
+  subjects: ISubject[] | null;
 };
 
 export type Student = {
@@ -15,11 +17,7 @@ export type Student = {
   name: string | null;
   email: string | null;
   token: string | null;
-  subjects: Subject[] | null;
-};
-export type Subject = {
-  name: string;
-  id: number;
+  subjects: ISubject[] | null;
 };
 
 export type LogOutStudent = {
@@ -28,12 +26,12 @@ export type LogOutStudent = {
 
 export type LoginSuccessStudent = {
   type: typeof LOGIN_SUCCESS_STUDENT;
-  student: Student;
+  payload: Student;
 };
 
 export type TokenStudentStillValid = {
   type: typeof TOKEN_STILL_VALID_STUDENT;
-  student: Student;
+  payload: Student;
 };
 
 export type StudentActionTypes =
