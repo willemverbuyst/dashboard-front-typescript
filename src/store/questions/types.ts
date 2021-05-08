@@ -8,16 +8,6 @@ export type QuestionsState = {
   all: IQuestion[] | null;
 };
 
-export type newQuestion = {
-  text: string;
-  answers: Answer[];
-};
-
-export type Answer = {
-  text: string;
-  correct: boolean;
-};
-
 export type PostNewQuestion = {
   subject: number;
   question: string;
@@ -29,12 +19,12 @@ export type PostNewQuestion = {
 
 export type QuestionsFetched = {
   type: typeof FETCH_QUESTIONS;
-  questions: IQuestion[];
+  payload: IQuestion[];
 };
 
 export type AddQuestionToList = {
   type: typeof ADD_QUESTION;
-  question: newQuestion;
+  payload: IQuestion;
 };
 
 export type QuestionActionTypes = QuestionsFetched | AddQuestionToList;

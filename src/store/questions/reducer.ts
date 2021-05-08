@@ -15,13 +15,13 @@ export default (
 ): QuestionsState => {
   switch (action.type) {
     case FETCH_QUESTIONS:
-      return { ...state, all: action.questions };
+      return { ...state, all: action.payload };
 
     case ADD_QUESTION:
       if (state.all) {
-        return { ...state, all: [...state.all, action.question] };
+        return { ...state, all: [...state.all, action.payload] };
       } else {
-        return { ...state, all: [action.question] };
+        return { ...state, all: [action.payload] };
       }
 
     // case REMOVE_QUESTIONS:
