@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectTeacherToken,
-  selectTeacherId,
   selectTeacherSubjects,
 } from '../../../store/teacher/selectors';
 import {
@@ -24,7 +23,6 @@ const MainPage: React.FC = (): ReactElement => {
   const dispatch = useDispatch();
   const history = useHistory();
   const token = useSelector(selectTeacherToken);
-  const id = useSelector(selectTeacherId);
   const mainPageData = useSelector(selectMainOverview);
   const subjects = useSelector(selectTeacherSubjects);
   const tests = useSelector(selectMainOverviewScatter);
@@ -36,8 +34,8 @@ const MainPage: React.FC = (): ReactElement => {
   });
 
   useEffect(() => {
-    dispatch(getMainOverview(id));
-  }, [dispatch, id]);
+    dispatch(getMainOverview);
+  }, [dispatch]);
 
   const renderCharts = (): JSX.Element => {
     return mainPageData && tests && subjects ? (

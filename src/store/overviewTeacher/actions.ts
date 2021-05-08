@@ -53,7 +53,7 @@ export const getSubjectForOverview = (
   const token = localStorage.getItem('teacher_token');
   dispatch(appLoading());
   try {
-    const response = await axios.get(`${apiUrl}/data/subjects/${id}`, {
+    const response = await axios.get(`${apiUrl}/data/teacher/subjects/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const results = response.data;
@@ -80,7 +80,7 @@ export const getStudentForOverview = (
   const token = localStorage.getItem('teacher_token');
   dispatch(appLoading());
   try {
-    const response = await axios.get(`${apiUrl}/data/students/${id}`, {
+    const response = await axios.get(`${apiUrl}/data/teacher/students/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const results = response.data;
@@ -99,33 +99,28 @@ export const getStudentForOverview = (
   }
 };
 
-export const getMainOverview = (
-  id: number | null
-): ThunkAction<void, StoreState, unknown, Action<string>> =>
-  async function thunk(dispatch: any): Promise<void> {
-    const token = localStorage.getItem('teacher_token');
-    dispatch(appLoading());
-    // const dataMain = getState().overViewTeacher.main;
-    // if (dataMain.length < 1) {
-    try {
-      const response = await axios.get(`${apiUrl}/data/teacher/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const results = response.data;
+export const getMainOverview = async (dispatch: any): Promise<void> => {
+  const token = localStorage.getItem('teacher_token');
+  dispatch(appLoading());
+  try {
+    const response = await axios.get(`${apiUrl}/data/teacher/main`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const results = response.data;
 
-      dispatch(mainFetched(results));
-      dispatch(appDoneLoading());
-    } catch (error) {
-      if (error.response) {
-        console.log(error.response.data.message);
-        dispatch(setMessage('error', true, error.response.data.message));
-      } else {
-        console.log(error.message);
-        dispatch(setMessage('error', true, error.message));
-      }
-      dispatch(appDoneLoading());
-      // }
+    dispatch(mainFetched(results));
+    dispatch(appDoneLoading());
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.data.message);
+      dispatch(setMessage('error', true, error.response.data.message));
+    } else {
+      console.log(error.message);
+      dispatch(setMessage('error', true, error.message));
     }
     dispatch(appDoneLoading());
-    return;
-  };
+    // }
+  }
+  dispatch(appDoneLoading());
+  return;
+};
