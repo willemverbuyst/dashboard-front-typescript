@@ -24,7 +24,6 @@ export default (
 ): TeacherState => {
   switch (action.type) {
     case LOGIN_SUCCESS_TEACHER:
-      console.log(action.teacher);
       const userToken = action.teacher.token;
       userToken && localStorage.setItem('teacher_token', userToken);
       return { ...state, ...action.teacher };
