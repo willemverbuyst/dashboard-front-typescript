@@ -14,7 +14,7 @@ export type Result = {
 
 export type ResultsFetched = {
   type: typeof FETCH_RESULTS_FOR_STUDENT_MAIN;
-  results: Result[];
+  payload: Result[];
 };
 
 export type RemoveResults = {

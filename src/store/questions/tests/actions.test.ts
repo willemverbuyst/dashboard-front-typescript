@@ -17,6 +17,10 @@ import { IQuestion } from '../../../models/test.models';
 
 const mockAxios = axios as jest.Mocked<typeof axios>;
 
+beforeEach(() => {
+  jest.resetAllMocks();
+});
+
 describe('#questionsState', () => {
   describe('#questionsFetched ', () => {
     const questions: IQuestion[] = [

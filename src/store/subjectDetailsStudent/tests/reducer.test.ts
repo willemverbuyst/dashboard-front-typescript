@@ -8,7 +8,7 @@ import {
   SubjectDetailsStudentState,
 } from '../types';
 
-describe('#subjectDetailsStudentState', () => {
+describe('#subjectDetailsStudentReducer', () => {
   describe('w/ initial state and FETCH_RESULTS_FOR_SUBJECT action', () => {
     const initialState: SubjectDetailsStudentState = {
       all: null,

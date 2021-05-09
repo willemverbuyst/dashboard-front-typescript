@@ -50,9 +50,9 @@ export const getSubjectForOverview = (
 ): ThunkAction<void, StoreState, unknown, Action<string>> => async (
   dispatch: Dispatch
 ): Promise<void> => {
-  const token = localStorage.getItem('teacher_token');
   dispatch(appLoading());
   try {
+    const token = localStorage.getItem('teacher_token');
     const response = await axios.get(`${apiUrl}/data/teacher/subjects/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -77,9 +77,9 @@ export const getStudentForOverview = (
 ): ThunkAction<void, StoreState, unknown, Action<string>> => async (
   dispatch: any
 ): Promise<void> => {
-  const token = localStorage.getItem('teacher_token');
   dispatch(appLoading());
   try {
+    const token = localStorage.getItem('teacher_token');
     const response = await axios.get(`${apiUrl}/data/teacher/students/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -100,9 +100,9 @@ export const getStudentForOverview = (
 };
 
 export const getMainOverview = async (dispatch: any): Promise<void> => {
-  const token = localStorage.getItem('teacher_token');
   dispatch(appLoading());
   try {
+    const token = localStorage.getItem('teacher_token');
     const response = await axios.get(`${apiUrl}/data/teacher/main`, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -119,8 +119,5 @@ export const getMainOverview = async (dispatch: any): Promise<void> => {
       dispatch(setMessage('error', true, error.message));
     }
     dispatch(appDoneLoading());
-    // }
   }
-  dispatch(appDoneLoading());
-  return;
 };

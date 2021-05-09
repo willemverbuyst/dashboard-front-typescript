@@ -1,7 +1,7 @@
 import reducer from '../reducer';
 import { SchoolInfoState, STORE_TEACHERS, TeacherOption } from '../types';
 
-describe('#schoolinfoState', () => {
+describe('#schoolinfoReducer', () => {
   describe('w/ initial state and STORE_TEACHERS action ', () => {
     const initialState: SchoolInfoState = {
       all: null,
