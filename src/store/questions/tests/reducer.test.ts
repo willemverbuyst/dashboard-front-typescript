@@ -8,73 +8,10 @@ import {
   QuestionsState,
 } from '../types';
 
-describe('#questionsState', () => {
-  describe('#questionsFetched', () => {
-    describe('w/ no state and a FETCH_QUESTIONS action', () => {
-      const questions: IQuestion[] = [
-        {
-          text: 'test',
-          answers: [
-            {
-              text: 'test_answer',
-              correct: true,
-            },
-          ],
-        },
-      ];
-      const action: QuestionsFetched = {
-        type: FETCH_QUESTIONS,
-        payload: questions,
-      };
-      const newState: QuestionsState = reducer(undefined, action);
-
-      test('returns a state with questions', () => {
-        expect(newState).toEqual({ all: action.payload });
-      });
-    });
-
-    describe('w/ state and ADD_QUESTIONS action', () => {
-      const initialState: QuestionsState = {
-        all: null,
-      };
-      const questions: IQuestion[] = [
-        {
-          text: 'test',
-          answers: [
-            {
-              text: 'test_answer',
-              correct: true,
-            },
-          ],
-        },
-      ];
-      const action: QuestionsFetched = {
-        type: FETCH_QUESTIONS,
-        payload: questions,
-      };
-      const newState: QuestionsState = reducer(initialState, action);
-      test('returns a state with questions', () => {
-        expect(newState).toEqual({ all: action.payload });
-      });
-    });
-  });
-
-  describe('#addQuestionToList', () => {
-    describe('w/ state and a ADD_QUESTIONS action', () => {
-      const initialState: QuestionsState = {
-        all: [
-          {
-            text: 'test',
-            answers: [
-              {
-                text: 'test_answer',
-                correct: true,
-              },
-            ],
-          },
-        ],
-      };
-      const question: IQuestion = {
+describe('#questionsReducer', () => {
+  describe('w/ no state and a FETCH_QUESTIONS action', () => {
+    const questions: IQuestion[] = [
+      {
         text: 'test',
         answers: [
           {
@@ -82,18 +19,75 @@ describe('#questionsState', () => {
             correct: true,
           },
         ],
-      };
-      const action: AddQuestionToList = {
-        type: ADD_QUESTION,
-        payload: question,
-      };
-      const newState = reducer(initialState, action);
+      },
+    ];
+    const action: QuestionsFetched = {
+      type: FETCH_QUESTIONS,
+      payload: questions,
+    };
+    const newState: QuestionsState = reducer(undefined, action);
 
-      test('returns a state with questions', () => {
-        expect(newState).toEqual({
-          all: [...initialState.all!, question],
-        });
-      });
+    test('returns a state with questions', () => {
+      expect(newState.all).toEqual(questions);
+    });
+  });
+
+  describe('w/ state and ADD_QUESTIONS action', () => {
+    const initialState: QuestionsState = {
+      all: null,
+    };
+    const questions: IQuestion[] = [
+      {
+        text: 'test',
+        answers: [
+          {
+            text: 'test_answer',
+            correct: true,
+          },
+        ],
+      },
+    ];
+    const action: QuestionsFetched = {
+      type: FETCH_QUESTIONS,
+      payload: questions,
+    };
+    const newState: QuestionsState = reducer(initialState, action);
+    test('returns a state with questions', () => {
+      expect(newState.all).toEqual(questions);
+    });
+  });
+
+  describe('w/ state and a ADD_QUESTIONS action', () => {
+    const initialState: QuestionsState = {
+      all: [
+        {
+          text: 'test',
+          answers: [
+            {
+              text: 'test_answer',
+              correct: true,
+            },
+          ],
+        },
+      ],
+    };
+    const question: IQuestion = {
+      text: 'test',
+      answers: [
+        {
+          text: 'test_answer',
+          correct: true,
+        },
+      ],
+    };
+    const action: AddQuestionToList = {
+      type: ADD_QUESTION,
+      payload: question,
+    };
+    const newState = reducer(initialState, action);
+
+    test('returns a state with questions', () => {
+      expect(newState.all).toEqual([...initialState.all!, question]);
     });
   });
 });

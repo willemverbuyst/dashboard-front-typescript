@@ -12,7 +12,7 @@ import {
   CLEAR_MESSAGE,
 } from '../types';
 
-describe.only('#appState', () => {
+describe('#appState', () => {
   describe('#setMessage with text, variant and dismissable', () => {
     const variant = 'success';
     const dismissable = true;
