@@ -15,11 +15,11 @@ describe('#overviewStudentReducer', () => {
     const results = [{ at: 'test', result: 1, subject: 1 }];
     const action: ResultsFetched = {
       type: FETCH_RESULTS_FOR_STUDENT_MAIN,
-      results,
+      payload: results,
     };
     const newState = reducer(undefined, action);
 
-    test('returns the new state with overview for main', () => {
+    test('returns the new state with overview for results', () => {
       expect(newState).not.toEqual(initialState);
       expect(newState.results).toEqual(results);
     });
@@ -38,7 +38,7 @@ describe('#overviewStudentReducer', () => {
     };
     const newState: OverviewStudentState = reducer(state, action);
 
-    test('returns the new state, null for main', () => {
+    test('returns the new state, null for results', () => {
       expect(newState.results).toEqual(initialState.results);
       expect(newState).toHaveProperty('results');
     });
