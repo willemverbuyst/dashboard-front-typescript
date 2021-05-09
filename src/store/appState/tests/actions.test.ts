@@ -46,7 +46,7 @@ describe('#appState', () => {
     const expected = {
       type: APP_LOADING,
     };
-    test('returns an action w/ type APP_LOADING', () => {
+    test('returns an action w/ type APP_LOADING and no payload', () => {
       expect(appLoading()).toEqual(expected);
       expect(appLoading().type).toEqual(APP_LOADING);
       expect(appLoading()).not.toHaveProperty('payload');
@@ -57,7 +57,7 @@ describe('#appState', () => {
     const expected = {
       type: APP_DONE_LOADING,
     };
-    test('returns an action w/ type APP_DONE_LOADING', () => {
+    test('returns an action w/ type APP_DONE_LOADING and no payload', () => {
       expect(appDoneLoading()).toEqual(expected);
       expect(appDoneLoading().type).toEqual(APP_DONE_LOADING);
       expect(appDoneLoading()).not.toHaveProperty('payload');

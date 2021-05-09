@@ -14,7 +14,7 @@ import {
   SubjectsFetched,
 } from '../types';
 
-describe('#overviewTeacheReducerr', () => {
+describe('#overviewTeacheReducer', () => {
   describe('w/ initial state and FETCH_OVERVIEW_FOR_MAIN action', () => {
     const initialState: OverviewTeacherState = {
       subjects: null,
@@ -68,7 +68,7 @@ describe('#overviewTeacheReducerr', () => {
     });
   });
 
-  describe('w/ initial state and FETCH_OVERVIEW_FOR_SUBJECT  action', () => {
+  describe('w/ initial state and FETCH_OVERVIEW_FOR_SUBJECT action', () => {
     const initialState: OverviewTeacherState = {
       subjects: null,
       students: null,

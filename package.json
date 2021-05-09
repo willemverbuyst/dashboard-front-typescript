@@ -35,6 +35,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:verbose": "react-scripts test --verbose",
+    "test:all": "react-scripts test --verbose --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
