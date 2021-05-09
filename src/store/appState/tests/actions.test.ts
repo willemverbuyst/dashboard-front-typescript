@@ -13,7 +13,7 @@ import {
 } from '../types';
 
 describe('#appState', () => {
-  describe('#setMessage with text, variant and dismissable', () => {
+  describe('#setMessage', () => {
     const variant = 'success';
     const dismissable = true;
     const text = 'test_text';
@@ -24,6 +24,7 @@ describe('#appState', () => {
 
     test('returns an anction w/ type SET_MESSAGE and payload variant, dismissable and text', () => {
       expect(setMessage(variant, dismissable, text)).toEqual(expected);
+      expect(setMessage(variant, dismissable, text).type).toEqual(SET_MESSAGE);
       expect(setMessage(variant, dismissable, text).payload).toEqual(
         expected.payload
       );
@@ -37,6 +38,7 @@ describe('#appState', () => {
     test('returns an action w/ type CLEAR_MESSAGE and no payload', () => {
       expect(clearMessage()).toEqual(expected);
       expect(clearMessage().type).toBe(CLEAR_MESSAGE);
+      expect(clearMessage()).not.toHaveProperty('payload');
     });
   });
 
@@ -46,7 +48,8 @@ describe('#appState', () => {
     };
     test('returns an action w/ type APP_LOADING', () => {
       expect(appLoading()).toEqual(expected);
-      expect(appLoading().type).not.toBeUndefined();
+      expect(appLoading().type).toEqual(APP_LOADING);
+      expect(appLoading()).not.toHaveProperty('payload');
     });
   });
 
@@ -56,7 +59,8 @@ describe('#appState', () => {
     };
     test('returns an action w/ type APP_DONE_LOADING', () => {
       expect(appDoneLoading()).toEqual(expected);
-      expect(appDoneLoading().type).toBe(expected.type);
+      expect(appDoneLoading().type).toEqual(APP_DONE_LOADING);
+      expect(appDoneLoading()).not.toHaveProperty('payload');
     });
   });
 });
