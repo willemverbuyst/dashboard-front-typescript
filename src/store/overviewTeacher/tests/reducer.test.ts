@@ -117,7 +117,7 @@ describe('#overviewTeacheReducerr', () => {
     };
     const newState: OverviewTeacherState = reducer(state, action);
 
-    test('returns the new state null for main', () => {
+    test('returns the new state, null for main', () => {
       expect(newState.main).toEqual(initialState.main);
       expect(newState.main.scores).toBeNull();
       expect(newState.main.tests).toBeNull();
