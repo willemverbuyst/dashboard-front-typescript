@@ -91,7 +91,7 @@ describe('#overviewTeacheReducerr', () => {
     });
   });
 
-  describe('w/ initial state and REMOVE_OVERVIEW action', () => {
+  describe('w/ state and REMOVE_OVERVIEW action', () => {
     const initialState: OverviewTeacherState = {
       subjects: null,
       students: null,
